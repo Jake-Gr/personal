@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #FDFCF1;
+    font-family: 'Source Code Pro', monospace;
+    color: #36454F;
+}
+.row {
+    display: flex;
+    justify-content: left;
+    gap: 20px;
+}
+
+.tooltip-text {
+    display: none;
+    background-color: #f9f9f9;
+    color: #333;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
