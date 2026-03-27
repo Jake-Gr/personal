@@ -390,6 +390,155 @@
         .d3 { transition-delay: 0.24s; }
         .d4 { transition-delay: 0.32s; }
 
+        /* ---- SCALE: THE FILTER ---- */
+        #scale-container {
+            position: relative;
+            height: 300vh;
+        }
+        #scale-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            background: #FDFCF1;
+        }
+        .scale-inner {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 48px;
+            width: 100%;
+        }
+        .scale-top-label {
+            display: block;
+            font-size: 0.67rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            opacity: 0.35;
+            margin-bottom: 44px;
+        }
+        .scale-extremes {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 14px;
+        }
+        .scale-ext-label {
+            font-size: 0.67rem;
+            font-weight: 700;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            transition: opacity 0.5s ease;
+        }
+        #scaleLabelLeft  { opacity: 0.55; }
+        #scaleLabelRight { opacity: 0.12; }
+
+        /* tick marks above track */
+        .scale-ticks {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        .scale-tick {
+            font-size: 0.58rem;
+            letter-spacing: 0.08em;
+            opacity: 0.18;
+            text-align: center;
+            transition: opacity 0.4s ease;
+            width: 20%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .scale-tick:first-child { text-align: left; }
+        .scale-tick:last-child  { text-align: right; }
+        .scale-tick.near { opacity: 0.55; }
+
+        .scale-track {
+            position: relative;
+            height: 1px;
+            background: rgba(54,69,79,0.13);
+            margin-bottom: 52px;
+        }
+        .scale-fill {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 0%;
+            background: #36454F;
+            transition: width 0.05s linear;
+        }
+        .scale-needle {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            width: 13px; height: 13px;
+            border-radius: 50%;
+            background: #FDFCF1;
+            border: 2px solid #36454F;
+            transform: translate(-50%, -50%);
+            transition: left 0.05s linear;
+            z-index: 2;
+        }
+
+        /* central display: slot-machine text swap */
+        .scale-display {
+            position: relative;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .scale-phase {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            padding: 0 40px;
+            transition: transform 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.38s ease;
+        }
+        .scale-phase.entering { transform: translateY(28px); opacity: 0; pointer-events: none; }
+        .scale-phase.active   { transform: translateY(0);    opacity: 1; }
+        .scale-phase.exiting  { transform: translateY(-28px); opacity: 0; pointer-events: none; }
+
+        .scale-phase .ph-main {
+            display: block;
+            font-size: clamp(1rem, 2.3vw, 1.42rem);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            transition: opacity 0.4s ease;
+        }
+        .scale-phase .ph-sub {
+            display: block;
+            font-size: 0.76rem;
+            line-height: 1.7;
+            opacity: 0.45;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        .scale-phase.s-left  .ph-main { opacity: 0.38; }
+        .scale-phase.s-mid   .ph-main { opacity: 0.72; }
+        .scale-phase.s-right .ph-main { opacity: 1.0; }
+
+        /* dots */
+        .scale-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 36px;
+        }
+        .scale-dot {
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: #36454F;
+            opacity: 0.15;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .scale-dot.on { opacity: 0.7; transform: scale(1.7); }
+
         /* ---- RESPONSIVE ---- */
         @media (max-width: 780px) {
             .sticky-nav { padding: 13px 24px; }
@@ -667,6 +816,50 @@
     </div>
 </div>
 
+<!-- SCALE: THE FILTER -->
+<div id="scale-container">
+    <div id="scale-sticky">
+        <div class="scale-inner">
+
+            <span class="scale-top-label">The filter</span>
+
+            <div class="scale-ticks">
+                <span class="scale-tick" data-pos="0">Pass</span>
+                <span class="scale-tick" data-pos="25">No thanks</span>
+                <span class="scale-tick" data-pos="50">Tell me more</span>
+                <span class="scale-tick" data-pos="75">Getting warmer</span>
+                <span class="scale-tick" data-pos="100">Let's build</span>
+            </div>
+
+            <div class="scale-extremes">
+                <span class="scale-ext-label" id="scaleLabelLeft">Not interested</span>
+                <span class="scale-ext-label" id="scaleLabelRight">Let's build</span>
+            </div>
+
+            <div class="scale-track">
+                <div class="scale-fill"   id="scaleFill"></div>
+                <div class="scale-needle" id="scaleNeedle"></div>
+            </div>
+
+            <div class="scale-display" id="scaleDisplay">
+                <div class="scale-phase active s-left">
+                    <span class="ph-main">Lots of capital. No product market fit.</span>
+                    <span class="ph-sub">The pressure to spend without knowing what you are building is not a growth problem. It is a strategy problem. I cannot fix that.</span>
+                </div>
+            </div>
+
+            <div class="scale-dots" id="scaleDots">
+                <div class="scale-dot on"></div>
+                <div class="scale-dot"></div>
+                <div class="scale-dot"></div>
+                <div class="scale-dot"></div>
+                <div class="scale-dot"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <!-- CTA -->
 <div id="cta">
     <div class="wrap">
@@ -738,6 +931,121 @@ const countObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.35 });
 
 document.querySelectorAll('.win-card').forEach(c => countObs.observe(c));
+
+// ---- SCALE: THE FILTER ----
+(function() {
+    const container = document.getElementById('scale-container');
+    const needle    = document.getElementById('scaleNeedle');
+    const fill      = document.getElementById('scaleFill');
+    const labelL    = document.getElementById('scaleLabelLeft');
+    const labelR    = document.getElementById('scaleLabelRight');
+    const display   = document.getElementById('scaleDisplay');
+    const dots      = document.querySelectorAll('#scaleDots .scale-dot');
+    const ticks     = document.querySelectorAll('.scale-tick');
+
+    if (!container) return;
+
+    const phases = [
+        {
+            range: [0, 0.20],
+            side:  's-left',
+            main:  "Lots of capital. No product market fit.",
+            sub:   "The pressure to spend without knowing what you are building is not a growth problem. It is a strategy problem. I cannot fix that."
+        },
+        {
+            range: [0.20, 0.38],
+            side:  's-left',
+            main:  "Chasing the stock price, not the customer.",
+            sub:   "Growth as a financial instrument produces fragile companies and bad work. That is not the craft and it is not what I am here to do."
+        },
+        {
+            range: [0.38, 0.56],
+            side:  's-mid',
+            main:  "Starting to find the system. Starting to find the voice.",
+            sub:   "Somewhere between confusion and clarity. The structure is not there yet but the intention is real. This is where the work begins."
+        },
+        {
+            range: [0.56, 0.76],
+            side:  's-right',
+            main:  "Solving a real problem for real people.",
+            sub:   "A mission you can build a program around. A reason behind the pipeline. This is where durable growth lives."
+        },
+        {
+            range: [0.76, 1.01],
+            side:  's-right',
+            main:  "Wants to build something that lasts.",
+            sub:   "May not have everything figured out. But the problem is real, the intention is right, and the goal is financial stability built on something worth building. That is the work."
+        }
+    ];
+
+    let currentPhase = 0;
+
+    function getPhase(p) {
+        for (let i = 0; i < phases.length; i++) {
+            if (p >= phases[i].range[0] && p < phases[i].range[1]) return i;
+        }
+        return phases.length - 1;
+    }
+
+    function swapText(idx) {
+        const ph = phases[idx];
+        const old = display.querySelector('.scale-phase');
+
+        // Build next node
+        const next = document.createElement('div');
+        next.className = 'scale-phase entering ' + ph.side;
+        next.innerHTML =
+            '<span class="ph-main">' + ph.main + '</span>' +
+            '<span class="ph-sub">'  + ph.sub  + '</span>';
+        display.appendChild(next);
+
+        // Trigger exit on old
+        if (old) {
+            old.classList.remove('active');
+            old.classList.add('exiting');
+            setTimeout(function() { if (old.parentNode) old.parentNode.removeChild(old); }, 420);
+        }
+
+        // Two rAF to let browser register "entering" before transitioning
+        requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+                next.classList.remove('entering');
+                next.classList.add('active');
+            });
+        });
+    }
+
+    function update() {
+        const rect  = container.getBoundingClientRect();
+        const total = container.offsetHeight - window.innerHeight;
+        const p     = Math.max(0, Math.min(1, -rect.top / total));
+
+        // Needle + fill
+        needle.style.left  = (p * 100) + '%';
+        fill.style.width   = (p * 100) + '%';
+
+        // Extreme labels
+        labelL.style.opacity = Math.max(0.08, 1 - p * 1.6);
+        labelR.style.opacity = Math.min(1,    (p - 0.2) * 1.6);
+
+        // Tick marks: highlight the one closest to needle
+        var nearestIdx = Math.round(p * 4);
+        ticks.forEach(function(t, i) {
+            t.classList.toggle('near', i === nearestIdx);
+        });
+
+        // Phase text
+        var ph = getPhase(p);
+        if (ph !== currentPhase) {
+            swapText(ph);
+            currentPhase = ph;
+            dots.forEach(function(d, i) { d.classList.toggle('on', i === ph); });
+        }
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+})();
 </script>
 
 </body>
