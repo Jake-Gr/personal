@@ -4,279 +4,741 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jake Gronsky | Growth Consultant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Source Code Pro', monospace;
-            background-color: #FDFCF1;
+            background: #FDFCF1;
             color: #36454F;
-            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- STICKY NAV ---- */
+        .sticky-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253, 252, 241, 0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(54, 69, 79, 0.1);
+            padding: 14px 48px;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 80px 24px;
+            justify-content: space-between;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
         }
-
-        .container {
-            max-width: 680px;
-            width: 100%;
-        }
-
-        /* Header */
-        .site-header {
-            margin-bottom: 64px;
-        }
-
-        .site-header h1 {
-            font-size: 1.1rem;
+        .sticky-nav.visible { transform: translateY(0); }
+        .sticky-nav .nav-name {
+            font-size: 0.78rem;
             font-weight: 700;
-            letter-spacing: 0.02em;
-            margin-bottom: 4px;
+            letter-spacing: 0.04em;
         }
-
-        .site-header .subtitle {
-            font-size: 0.85rem;
-            font-weight: 400;
-            opacity: 0.6;
-        }
-
-        /* Nav */
-        .nav {
-            margin-top: 20px;
-            display: flex;
-            gap: 24px;
-        }
-
-        .nav a {
-            font-size: 0.85rem;
+        .sticky-nav .nav-links { display: flex; gap: 32px; }
+        .sticky-nav .nav-links a {
+            font-size: 0.7rem;
             color: #36454F;
             text-decoration: none;
-            opacity: 0.6;
+            opacity: 0.45;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: opacity 0.2s;
+        }
+        .sticky-nav .nav-links a:hover { opacity: 1; }
+
+        /* ---- LAYOUT ---- */
+        .wrap {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+        .pad { padding-top: 80px; padding-bottom: 80px; }
+        .divider {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 48px;
+            border-top: 1px solid rgba(54, 69, 79, 0.1);
         }
 
-        .nav a:hover {
-            opacity: 1;
-        }
-
-        /* Sections */
-        section {
-            margin-bottom: 56px;
-        }
-
-        .section-label {
-            font-size: 0.72rem;
+        /* ---- LABELS ---- */
+        .label {
+            font-size: 0.67rem;
             font-weight: 700;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            opacity: 0.35;
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        /* ---- HERO ---- */
+        #hero {
+            padding: 130px 48px 96px;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+        .eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
             opacity: 0.4;
-            margin-bottom: 20px;
-        }
-
-        /* Intro */
-        .intro p {
-            font-size: 1rem;
-            line-height: 1.75;
-            max-width: 580px;
-        }
-
-        /* Wins */
-        .wins-list {
-            list-style: none;
-        }
-
-        .wins-list li {
-            font-size: 0.9rem;
-            line-height: 1.65;
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(54, 69, 79, 0.1);
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 24px;
-            align-items: start;
-        }
-
-        .wins-list li:first-child {
-            border-top: 1px solid rgba(54, 69, 79, 0.1);
-        }
-
-        .win-result {
-            font-weight: 700;
-            white-space: nowrap;
-            padding-top: 1px;
-            font-size: 0.85rem;
-            opacity: 0.75;
-        }
-
-        /* Pledge */
-        .pledge p {
-            font-size: 0.9rem;
-            line-height: 1.85;
-            margin-bottom: 18px;
-        }
-
-        .pledge p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* CTA */
-        .cta {
-            margin-bottom: 0;
-        }
-
-        .cta p {
-            font-size: 0.9rem;
-            line-height: 1.75;
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-
-        .cta-links {
+            margin-bottom: 28px;
             display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
         }
-
-        .cta-links a {
-            font-size: 0.85rem;
-            color: #36454F;
-            text-decoration: none;
+        .status-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #6a9e6a;
+            flex-shrink: 0;
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+        #hero h1 {
+            font-size: clamp(2rem, 4.8vw, 3.5rem);
             font-weight: 700;
-            border-bottom: 1px solid #36454F;
-            padding-bottom: 2px;
+            line-height: 1.18;
+            letter-spacing: -0.015em;
+            max-width: 740px;
+            margin-bottom: 32px;
         }
+        #hero h1 em {
+            font-style: normal;
+            opacity: 0.3;
+        }
+        .hero-sub {
+            font-size: 0.85rem;
+            line-height: 1.9;
+            opacity: 0.55;
+            margin-bottom: 44px;
+        }
+        .hero-sub span {
+            display: inline-block;
+            border-right: 1px solid rgba(54,69,79,0.2);
+            padding-right: 14px;
+            margin-right: 14px;
+        }
+        .hero-sub span:last-child {
+            border: none;
+            padding: 0; margin: 0;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: #FDFCF1;
+            background: #36454F;
+            text-decoration: none;
+            padding: 13px 24px;
+            transition: opacity 0.2s;
+        }
+        .hero-cta:hover { opacity: 0.72; }
 
-        .cta-links a:hover {
+        /* ---- PROBLEM ---- */
+        #problem { padding: 80px 0; }
+        .problem-statement {
+            font-size: clamp(1.05rem, 2.2vw, 1.38rem);
+            font-weight: 600;
+            line-height: 1.55;
+            max-width: 620px;
+            margin-bottom: 52px;
+        }
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(54,69,79,0.1);
+        }
+        .prob-col { padding: 28px 28px 28px 0; }
+        .prob-col + .prob-col { border-left: 1px solid rgba(54,69,79,0.1); padding-left: 28px; }
+        .prob-col .col-label {
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            opacity: 0.32;
+            margin-bottom: 14px;
+            display: block;
+        }
+        .prob-col ul { list-style: none; }
+        .prob-col ul li {
+            font-size: 0.79rem;
+            line-height: 1.65;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(54,69,79,0.06);
+            display: flex;
+            gap: 8px;
+        }
+        .prob-col ul li::before { content: '>'; opacity: 0.25; flex-shrink: 0; }
+
+        /* ---- WINS ---- */
+        #wins {
+            background: #36454F;
+            color: #FDFCF1;
+            padding: 80px 0;
+        }
+        #wins .label { color: #FDFCF1; opacity: 0.35; }
+        .wins-hint {
+            font-size: 0.67rem;
+            letter-spacing: 0.08em;
+            opacity: 0.28;
+            color: #FDFCF1;
+            margin-top: -28px;
+            margin-bottom: 36px;
+        }
+        .wins-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: rgba(253,252,241,0.07);
+        }
+        .win-card {
+            background: #36454F;
+            padding: 36px 30px;
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+        .win-card:hover { background: #2c3a42; }
+        .win-num {
+            font-size: clamp(2rem, 3.8vw, 2.75rem);
+            font-weight: 700;
+            line-height: 1;
+            color: #FDFCF1;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+        .win-lbl {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.4;
+            color: #FDFCF1;
+            margin-bottom: 4px;
+        }
+        .win-hint {
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            opacity: 0.2;
+            color: #FDFCF1;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+        .win-card:hover .win-hint { opacity: 0.45; }
+        .win-detail {
+            font-size: 0.76rem;
+            line-height: 1.7;
+            color: #FDFCF1;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease, opacity 0.35s ease, margin-top 0.3s ease;
+            margin-top: 0;
+        }
+        .win-card.open .win-detail {
+            max-height: 160px;
             opacity: 0.6;
+            margin-top: 14px;
         }
+        .win-card.open .win-hint { opacity: 0; }
 
-        /* Footer */
-        footer {
-            margin-top: 80px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(54, 69, 79, 0.1);
+        /* ---- APPROACH ---- */
+        #approach { padding: 80px 0; }
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid rgba(54,69,79,0.1);
         }
+        .step { padding: 28px 26px 28px 0; }
+        .step + .step { border-left: 1px solid rgba(54,69,79,0.1); padding-left: 26px; }
+        .step-num {
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            opacity: 0.28;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .step-title {
+            font-size: 0.87rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+        .step-body { font-size: 0.76rem; line-height: 1.75; opacity: 0.58; }
 
-        footer a {
-            font-size: 0.75rem;
+        /* ---- CAPABILITIES ---- */
+        #capabilities {
+            background: rgba(54,69,79,0.04);
+            padding: 80px 0;
+        }
+        .cap-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .cap {
+            font-size: 0.73rem;
+            letter-spacing: 0.05em;
+            padding: 8px 15px;
+            border: 1px solid rgba(54,69,79,0.18);
+            cursor: default;
+            transition: all 0.18s;
+            line-height: 1;
+        }
+        .cap:hover { background: #36454F; color: #FDFCF1; border-color: #36454F; }
+
+        /* ---- PLEDGE ---- */
+        #pledge { padding: 80px 0; }
+        .pledge-body p {
+            font-size: 0.91rem;
+            line-height: 2;
+            margin-bottom: 20px;
+            max-width: 640px;
+        }
+        .pledge-body p:last-child { margin-bottom: 0; }
+        .pledge-body strong { font-weight: 700; }
+
+        /* ---- FIT ---- */
+        #fit {
+            background: #36454F;
+            color: #FDFCF1;
+            padding: 80px 0;
+        }
+        #fit .label { color: #FDFCF1; opacity: 0.35; }
+        .fit-list { list-style: none; max-width: 620px; }
+        .fit-list li {
+            font-size: 0.87rem;
+            line-height: 1.65;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(253,252,241,0.1);
+            display: flex;
+            gap: 16px;
+            color: #FDFCF1;
+        }
+        .fit-list li:first-child { border-top: 1px solid rgba(253,252,241,0.1); }
+        .fit-arrow { opacity: 0.3; flex-shrink: 0; }
+
+        /* ---- CTA ---- */
+        #cta { padding: 100px 0 80px; }
+        .cta-head {
+            font-size: clamp(1.15rem, 2.8vw, 1.75rem);
+            font-weight: 700;
+            line-height: 1.4;
+            max-width: 500px;
+            margin-bottom: 36px;
+        }
+        .cta-row { display: flex; gap: 28px; flex-wrap: wrap; align-items: center; }
+        .cta-btn {
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: #FDFCF1;
+            background: #36454F;
+            text-decoration: none;
+            padding: 14px 26px;
+            transition: opacity 0.2s;
+            font-family: 'Source Code Pro', monospace;
+        }
+        .cta-btn:hover { opacity: 0.7; }
+        .cta-link {
+            font-size: 0.8rem;
             color: #36454F;
             text-decoration: none;
-            opacity: 0.4;
+            opacity: 0.5;
+            letter-spacing: 0.04em;
+            border-bottom: 1px solid rgba(54,69,79,0.25);
+            padding-bottom: 2px;
+            transition: opacity 0.2s;
+        }
+        .cta-link:hover { opacity: 0.9; }
+
+        /* ---- FOOTER ---- */
+        footer {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 24px 48px;
+            border-top: 1px solid rgba(54,69,79,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        footer a {
+            font-size: 0.7rem;
+            color: #36454F;
+            text-decoration: none;
+            opacity: 0.3;
+            letter-spacing: 0.04em;
+            transition: opacity 0.2s;
+        }
+        footer a:hover { opacity: 0.7; }
+
+        /* ---- SCROLL ANIMATIONS ---- */
+        .rv {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .rv.in { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.08s; }
+        .d2 { transition-delay: 0.16s; }
+        .d3 { transition-delay: 0.24s; }
+        .d4 { transition-delay: 0.32s; }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 780px) {
+            .sticky-nav { padding: 13px 24px; }
+            .sticky-nav .nav-links { gap: 20px; }
+            #hero { padding: 100px 24px 72px; }
+            .wrap { padding: 0 24px; }
+            .divider { padding: 0 24px; }
+            .pad { padding-top: 64px; padding-bottom: 64px; }
+            #problem { padding: 64px 0; }
+            #wins { padding: 64px 0; }
+            #approach { padding: 64px 0; }
+            #capabilities { padding: 64px 0; }
+            #pledge { padding: 64px 0; }
+            #fit { padding: 64px 0; }
+            #cta { padding: 72px 0 64px; }
+
+            .problem-grid { grid-template-columns: 1fr; }
+            .prob-col { padding: 20px 0; }
+            .prob-col + .prob-col { border-left: none; border-top: 1px solid rgba(54,69,79,0.1); padding-left: 0; }
+
+            .wins-grid { grid-template-columns: 1fr 1fr; }
+
+            .approach-grid { grid-template-columns: 1fr 1fr; }
+            .step { padding: 22px 20px 22px 0; }
+            .step:nth-child(2) { border-right: none; }
+            .step:nth-child(3),
+            .step:nth-child(4) { border-top: 1px solid rgba(54,69,79,0.1); }
+            .step:nth-child(3) { border-left: none; padding-left: 0; }
+            .step + .step:nth-child(4) { padding-left: 20px; }
         }
 
-        footer a:hover {
-            opacity: 0.8;
-        }
-
-        @media (max-width: 540px) {
-            body {
-                padding: 48px 20px;
-            }
-
-            .wins-list li {
-                grid-template-columns: 1fr;
-                gap: 4px;
-            }
-
-            .win-result {
-                font-size: 0.8rem;
-            }
+        @media (max-width: 520px) {
+            .wins-grid { grid-template-columns: 1fr; }
+            .approach-grid { grid-template-columns: 1fr; }
+            .step, .step + .step { padding: 20px 0; border-left: none; padding-left: 0; }
+            .step + .step { border-top: 1px solid rgba(54,69,79,0.1); }
+            .hero-sub span { border: none; padding: 0; margin: 0; display: block; }
+            footer { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="stickyNav">
+    <span class="nav-name">Jake Gronsky</span>
+    <div class="nav-links">
+        <a href="#wins">Results</a>
+        <a href="#approach">Approach</a>
+        <a href="#pledge">Pledge</a>
+        <a href="mailto:gronsky.jake@gmail.com">Contact</a>
+    </div>
+</nav>
 
-    <header class="site-header">
-        <h1>Jake Gronsky</h1>
-        <p class="subtitle">Head of Growth. Former pro baseball. Builder of durable companies.</p>
-        <nav class="nav">
-            <a href="https://www.jakegronsky.com">Home</a>
-            <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/" target="_blank">LinkedIn</a>
-            <a href="mailto:gronsky.jake@gmail.com">Email</a>
-        </nav>
-    </header>
+<!-- HERO -->
+<div id="hero">
+    <div class="eyebrow">
+        <span class="status-dot"></span>
+        Jake Gronsky &nbsp;/&nbsp; Growth Consultant
+    </div>
+    <h1>I build the operating systems behind <em>durable</em> growth.</h1>
+    <p class="hero-sub">
+        <span>12 years</span>
+        <span>5 companies scaled</span>
+        <span>Reports to CEO</span>
+        <span>Ex-St. Louis Cardinals</span>
+    </p>
+    <a href="mailto:gronsky.jake@gmail.com" class="hero-cta">Let's talk &rarr;</a>
+</div>
 
-    <section class="intro">
-        <p class="section-label">Who I am</p>
-        <p>
-            Twelve years of turning ambiguous business problems into structured programs with measurable outcomes.
-            I build the operating systems behind revenue growth: GTM design, pipeline architecture, field marketing, AI infrastructure, and the cross-functional cadences that make it all hold together.
-            I have done this at CNET, Red Ventures, and Centrical, reporting directly to the CEO.
-            I do not run tactics. I build the engine.
+<div class="divider"></div>
+
+<!-- THE PROBLEM -->
+<div id="problem">
+    <div class="wrap">
+        <span class="label rv">The problem</span>
+        <p class="problem-statement rv d1">
+            Most companies don't have a growth problem.<br>They have a structure problem.
         </p>
-    </section>
+        <div class="problem-grid">
+            <div class="prob-col rv">
+                <span class="col-label">What you see</span>
+                <ul>
+                    <li>Pipeline slows down</li>
+                    <li>CAC keeps climbing</li>
+                    <li>Teams misaligned on goals</li>
+                    <li>Marketing spend unclear</li>
+                    <li>Reports lack clarity</li>
+                </ul>
+            </div>
+            <div class="prob-col rv d1">
+                <span class="col-label">What it really is</span>
+                <ul>
+                    <li>No operating model</li>
+                    <li>GTM is activity, not program</li>
+                    <li>No cross-functional cadence</li>
+                    <li>No P&amp;L discipline on growth</li>
+                    <li>No framework from MQL to close</li>
+                </ul>
+            </div>
+            <div class="prob-col rv d2">
+                <span class="col-label">What I fix</span>
+                <ul>
+                    <li>GTM operating model design</li>
+                    <li>Pipeline architecture</li>
+                    <li>Quarterly planning cadence</li>
+                    <li>Full P&amp;L ownership</li>
+                    <li>Board-ready KPI framework</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <section>
-        <p class="section-label">Selected wins</p>
-        <ul class="wins-list">
+<!-- WINS -->
+<div id="wins">
+    <div class="wrap">
+        <span class="label">Evidence</span>
+        <p class="wins-hint">Click any result to expand.</p>
+        <div class="wins-grid">
+
+            <div class="win-card rv"
+                 data-target="40" data-prefix="+" data-suffix="%">
+                <div class="win-num">+0%</div>
+                <div class="win-lbl">Pipeline YoY</div>
+                <div class="win-hint">tap for context &darr;</div>
+                <div class="win-detail">Rebuilt Centrical's GTM operating model: quarterly goal-setting, monthly cross-functional sprints, and a KPI framework from MQL through closed-won. Pipeline grew 40% year over year.</div>
+            </div>
+
+            <div class="win-card rv d1"
+                 data-target="32" data-prefix="-" data-suffix="%">
+                <div class="win-num">-0%</div>
+                <div class="win-lbl">Spend reduced</div>
+                <div class="win-hint">tap for context &darr;</div>
+                <div class="win-detail">Reduced total marketing spend by 32% while simultaneously growing pipeline. Achieved through structured program design, tighter channel allocation, and cutting everything without a clear pipeline tie.</div>
+            </div>
+
+            <div class="win-card rv d2"
+                 data-target="200" data-prefix="-" data-suffix="%">
+                <div class="win-num">-0%</div>
+                <div class="win-lbl">CAC reduction</div>
+                <div class="win-hint">tap for context &darr;</div>
+                <div class="win-detail">Cut customer acquisition cost by 200% alongside the spend reduction. Spending less, acquiring more efficiently. Both moved in the right direction at the same time.</div>
+            </div>
+
+            <div class="win-card rv"
+                 data-target="1" data-prefix="" data-suffix="M+">
+                <div class="win-num">0M+</div>
+                <div class="win-lbl">Monthly sessions</div>
+                <div class="win-hint">tap for context &darr;</div>
+                <div class="win-detail">Launched BestColleges marketplace at CNET from zero. Led full rebrand, rebuilt acquisition funnels, scaled the team from 5 to 17. Set all-time revenue and engagement records.</div>
+            </div>
+
+            <div class="win-card rv d1"
+                 data-target="34" data-prefix="+" data-suffix="%">
+                <div class="win-num">+0%</div>
+                <div class="win-lbl">Turnaround growth</div>
+                <div class="win-hint">tap for context &darr;</div>
+                <div class="win-detail">Reversed two years of portfolio decline at Red Ventures across SEO, content, UX, and brand. Introduced operating cadences and accountability structures that improved output quality and eliminated wasted effort.</div>
+            </div>
+
+            <div class="win-card rv d2"
+                 data-target="60" data-prefix="" data-suffix="K">
+                <div class="win-num">0K</div>
+                <div class="win-lbl">DAU in 10 months</div>
+                <div class="win-hint">tap for context &darr;</div>
+                <div class="win-detail">Scaled a consumer app from 500 daily active users to 60,000 in under 10 months through structured PLG design and disciplined multi-channel acquisition. Started from near zero.</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- APPROACH -->
+<div id="approach">
+    <div class="wrap">
+        <span class="label rv">How I work</span>
+        <div class="approach-grid">
+            <div class="step rv">
+                <span class="step-num">01</span>
+                <div class="step-title">Diagnose the structure</div>
+                <p class="step-body">Before a single tactic, I map the operating model: where is the program broken, what is misaligned, and what is the real bottleneck between you and durable growth.</p>
+            </div>
+            <div class="step rv d1">
+                <span class="step-num">02</span>
+                <div class="step-title">Design the system</div>
+                <p class="step-body">Strategy is only useful if it runs. I build the full operating model: planning cadences, KPI frameworks, cross-functional sprint structures, and accountability from MQL to closed-won.</p>
+            </div>
+            <div class="step rv d2">
+                <span class="step-num">03</span>
+                <div class="step-title">Build the cadence</div>
+                <p class="step-body">I install the rhythm: quarterly planning, monthly reviews, weekly sprints. Growth that cannot be measured, reviewed, and corrected is not durable. I build the machine that keeps it honest.</p>
+            </div>
+            <div class="step rv d3">
+                <span class="step-num">04</span>
+                <div class="step-title">Measure and compound</div>
+                <p class="step-body">Every program ties back to pipeline. Not impressions, not engagement. Pipeline. I build the reporting infrastructure that connects marketing activity to revenue, clearly, at the board level.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CAPABILITIES -->
+<div id="capabilities">
+    <div class="wrap pad">
+        <span class="label rv">What I bring</span>
+        <div class="cap-grid">
+            <span class="cap rv">GTM Program Design</span>
+            <span class="cap rv d1">Pipeline Architecture</span>
+            <span class="cap rv d2">Quarterly Planning</span>
+            <span class="cap rv d3">Cross-functional Sprints</span>
+            <span class="cap rv">Field Marketing (5 formats)</span>
+            <span class="cap rv d1">ABM Programs</span>
+            <span class="cap rv d2">Demand Generation</span>
+            <span class="cap rv d3">MQL / SAL / SQL Reporting</span>
+            <span class="cap rv">P&amp;L Ownership</span>
+            <span class="cap rv d1">Board &amp; Executive Reporting</span>
+            <span class="cap rv d2">Agency &amp; Vendor Management</span>
+            <span class="cap rv d3">AI Agent Development</span>
+            <span class="cap rv">HubSpot / Salesforce</span>
+            <span class="cap rv d1">Team Scaling</span>
+            <span class="cap rv d2">Partner &amp; Co-marketing Programs</span>
+            <span class="cap rv d3">Category Development</span>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PLEDGE -->
+<div id="pledge">
+    <div class="wrap pad">
+        <span class="label rv">My pledge</span>
+        <div class="pledge-body">
+            <p class="rv">I believe growth is a craft. Not a title, not a tactic, not a quarter's worth of spend. A craft. One that takes years to develop and a lifetime to refine.</p>
+            <p class="rv">I care about building <strong>durable</strong> companies. Not vanity metrics. Not hockey-stick charts that collapse six months later. Durable growth: the kind that compounds, holds pressure, and still works when the market shifts.</p>
+            <p class="rv">I will always take the tradesman's approach. Show up. Do the work. Hold the standard. The extra analysis, the uncomfortable conversation, the program that takes three months to build and ten years to pay off. That is the work I am here to do.</p>
+            <p class="rv">I do not chase tactics. I build systems. Tactics age. Systems compound. I will never recommend a shortcut I would not stake my own name on.</p>
+            <p class="rv">I pledge to bring the same relentlessness to your pipeline that I brought to the diamond. No complaining. No coasting. No half-measures. If I am in, I am all in.</p>
+            <p class="rv">I will fail. I will miss. I will make calls that do not land. But I will never stop studying the craft, adjusting the program, and pushing to build something that lasts.</p>
+            <p class="rv">I am never bigger than the company I am serving. When the work is done right, the company wins and I move on. That is how it should be.</p>
+            <p class="rv"><strong>Durable growth is not something I promise lightly. It is something I bleed for.</strong></p>
+        </div>
+    </div>
+</div>
+
+<!-- WHO THIS IS FOR -->
+<div id="fit">
+    <div class="wrap pad">
+        <span class="label">Who I work with</span>
+        <ul class="fit-list">
             <li>
-                <span>Rebuilt the GTM operating model at Centrical: quarterly planning, cross-functional sprints, board reviews, and a KPI framework from lead through closed-won.</span>
-                <span class="win-result">+40% pipeline YoY</span>
+                <span class="fit-arrow">&gt;</span>
+                <span>Series A through C companies that are growing but the growth is fragile, unstructured, or hard to explain to a board.</span>
             </li>
             <li>
-                <span>Reduced customer acquisition cost and spend simultaneously through structured program design and cross-channel optimization. No cuts to headcount or output.</span>
-                <span class="win-result">CAC down 200% | Spend down 32%</span>
+                <span class="fit-arrow">&gt;</span>
+                <span>Enterprise teams where marketing, sales, and product are not aligned on the same pipeline goals or operating cadence.</span>
             </li>
             <li>
-                <span>Launched BestColleges marketplace at CNET from zero. Set all-time revenue and engagement records. Full rebrand, repositioned the acquisition funnel, rebuilt the team.</span>
-                <span class="win-result">0 to 1M+ monthly sessions</span>
+                <span class="fit-arrow">&gt;</span>
+                <span>Founders and CEOs who need a real GTM operating model, not a list of tactics or another agency with a retainer.</span>
             </li>
             <li>
-                <span>Reversed two years of portfolio decline at Red Ventures across SEO, content, UX, and brand. Introduced operating cadences and accountability structures that held.</span>
-                <span class="win-result">34% turnaround growth</span>
+                <span class="fit-arrow">&gt;</span>
+                <span>Companies coming off a decline or plateau that need a structured turnaround, not a rebrand.</span>
             </li>
             <li>
-                <span>Scaled a consumer app from launch to sustained daily active users in under a year through structured PLG design and multi-channel acquisition.</span>
-                <span class="win-result">500 to 60,000 DAU in 10 months</span>
-            </li>
-            <li>
-                <span>Built autonomous GTM agents in Python and Claude Code that process ICP data, intent signals, and conversion behavior to accelerate pipeline without adding headcount.</span>
-                <span class="win-result">Centrical, 2025</span>
+                <span class="fit-arrow">&gt;</span>
+                <span>Teams that want to build AI infrastructure into their growth motion without hiring a full engineering team to do it.</span>
             </li>
         </ul>
-    </section>
-
-    <section class="pledge">
-        <p class="section-label">My pledge</p>
-
-        <p>I believe growth is a craft. Not a title, not a tactic, not a quarter's worth of spend. A craft. One that takes years to develop and a lifetime to refine.</p>
-
-        <p>I care about building durable companies. Not vanity metrics. Not hockey-stick charts that collapse six months later. Durable growth: the kind that compounds, holds pressure, and still works when the market shifts.</p>
-
-        <p>I will always take the tradesman's approach. Show up. Do the work. Hold the standard. The extra analysis, the uncomfortable conversation, the program that takes three months to build and ten years to pay off. That is the work I am here to do.</p>
-
-        <p>I do not chase tactics. I build systems. Tactics age. Systems compound. I will never recommend a shortcut I would not stake my own name on.</p>
-
-        <p>I pledge to bring the same relentlessness to your pipeline that I brought to the diamond. No complaining. No coasting. No half-measures. If I am in, I am all in.</p>
-
-        <p>I will fail. I will miss. I will make calls that do not land. But I will never stop studying the craft, adjusting the program, and pushing to build something that lasts.</p>
-
-        <p>I am never bigger than the company I am serving. When the work is done right, the company wins and I move on. That is how it should be.</p>
-
-        <p>Durable growth is not something I promise lightly. It is something I bleed for.</p>
-    </section>
-
-    <section class="cta">
-        <p class="section-label">Work together</p>
-        <p>If you are building something that needs to last, reach out.</p>
-        <div class="cta-links">
-            <a href="mailto:gronsky.jake@gmail.com">gronsky.jake@gmail.com</a>
-            <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/" target="_blank">LinkedIn</a>
-        </div>
-    </section>
-
-    <footer>
-        <a href="https://www.jakegronsky.com">Jake Gronsky</a>
-    </footer>
-
+    </div>
 </div>
+
+<!-- CTA -->
+<div id="cta">
+    <div class="wrap">
+        <h2 class="cta-head rv">If you are building something that needs to last, let's talk.</h2>
+        <div class="cta-row rv d1">
+            <a href="mailto:gronsky.jake@gmail.com" class="cta-btn">gronsky.jake@gmail.com</a>
+            <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/" target="_blank" class="cta-link">LinkedIn &rarr;</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <a href="https://www.jakegronsky.com">&larr; jakegronsky.com</a>
+    <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/" target="_blank">LinkedIn</a>
+</footer>
+
+<script>
+// ---- STICKY NAV ----
+const nav = document.getElementById('stickyNav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('visible', window.scrollY > 180);
+}, { passive: true });
+
+// ---- SCROLL REVEAL ----
+const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObs.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.rv').forEach(el => revealObs.observe(el));
+
+// ---- WIN CARDS: expand on click ----
+document.querySelectorAll('.win-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const isOpen = card.classList.contains('open');
+        document.querySelectorAll('.win-card').forEach(c => c.classList.remove('open'));
+        if (!isOpen) card.classList.add('open');
+    });
+});
+
+// ---- WIN CARDS: count-up on scroll into view ----
+function countUp(card) {
+    const target  = parseInt(card.dataset.target, 10);
+    const prefix  = card.dataset.prefix  || '';
+    const suffix  = card.dataset.suffix  || '';
+    const numEl   = card.querySelector('.win-num');
+    const dur     = 1300;
+    const start   = performance.now();
+
+    (function tick(now) {
+        const p  = Math.min((now - start) / dur, 1);
+        const ep = 1 - Math.pow(1 - p, 3);          // ease-out cubic
+        numEl.textContent = prefix + Math.round(ep * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+    })(start);
+}
+
+const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            countUp(e.target);
+            countObs.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.35 });
+
+document.querySelectorAll('.win-card').forEach(c => countObs.observe(c));
+</script>
 
 </body>
 </html>
