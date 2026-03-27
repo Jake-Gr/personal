@@ -391,19 +391,9 @@
         .d4 { transition-delay: 0.32s; }
 
         /* ---- SCALE: THE FILTER ---- */
-        #scale-container {
-            position: relative;
-            height: 300vh;
-        }
-        #scale-sticky {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow: hidden;
-            background: #FDFCF1;
+        #scale-section {
+            padding: 80px 0 90px;
+            border-top: 1px solid rgba(54,69,79,0.1);
         }
         .scale-inner {
             max-width: 920px;
@@ -431,12 +421,11 @@
             font-weight: 700;
             letter-spacing: 0.13em;
             text-transform: uppercase;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease;
         }
         #scaleLabelLeft  { opacity: 0.55; }
         #scaleLabelRight { opacity: 0.12; }
 
-        /* tick marks above track */
         .scale-ticks {
             display: flex;
             justify-content: space-between;
@@ -447,73 +436,85 @@
             letter-spacing: 0.08em;
             opacity: 0.18;
             text-align: center;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
             width: 20%;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            pointer-events: none;
         }
         .scale-tick:first-child { text-align: left; }
         .scale-tick:last-child  { text-align: right; }
         .scale-tick.near { opacity: 0.55; }
 
+        /* tall hit area, thin visible line inside */
         .scale-track {
             position: relative;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            cursor: grab;
+            margin-bottom: 48px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .scale-track.dragging { cursor: grabbing; }
+        .scale-track-line {
+            position: absolute;
+            left: 0; right: 0;
             height: 1px;
             background: rgba(54,69,79,0.13);
-            margin-bottom: 52px;
+            pointer-events: none;
         }
         .scale-fill {
             position: absolute;
-            left: 0; top: 0; bottom: 0;
+            left: 0; top: 50%;
+            transform: translateY(-50%);
             width: 0%;
+            height: 1px;
             background: #36454F;
-            transition: width 0.05s linear;
+            pointer-events: none;
         }
         .scale-needle {
             position: absolute;
             top: 50%;
             left: 0%;
-            width: 13px; height: 13px;
+            width: 14px; height: 14px;
             border-radius: 50%;
             background: #FDFCF1;
             border: 2px solid #36454F;
             transform: translate(-50%, -50%);
-            transition: left 0.05s linear;
+            pointer-events: none;
             z-index: 2;
         }
 
-        /* central display: slot-machine text swap */
+        /* display: crossfade only, no translateY clipping */
         .scale-display {
             position: relative;
-            height: 130px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            height: 170px;
+            text-align: center;
         }
         .scale-phase {
             position: absolute;
-            width: 100%;
-            text-align: center;
+            top: 0; left: 0; right: 0;
             padding: 0 40px;
-            transition: transform 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.38s ease;
+            text-align: center;
+            transition: opacity 0.35s ease;
         }
-        .scale-phase.entering { transform: translateY(28px); opacity: 0; pointer-events: none; }
-        .scale-phase.active   { transform: translateY(0);    opacity: 1; }
-        .scale-phase.exiting  { transform: translateY(-28px); opacity: 0; pointer-events: none; }
-
+        .scale-phase.entering,
+        .scale-phase.exiting  { opacity: 0; pointer-events: none; }
+        .scale-phase.active   { opacity: 1; }
         .scale-phase .ph-main {
             display: block;
-            font-size: clamp(1rem, 2.3vw, 1.42rem);
+            font-size: clamp(0.95rem, 2.2vw, 1.35rem);
             font-weight: 700;
             line-height: 1.3;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             transition: opacity 0.4s ease;
         }
         .scale-phase .ph-sub {
             display: block;
-            font-size: 0.76rem;
+            font-size: 0.75rem;
             line-height: 1.7;
             opacity: 0.45;
             max-width: 540px;
@@ -523,7 +524,6 @@
         .scale-phase.s-mid   .ph-main { opacity: 0.72; }
         .scale-phase.s-right .ph-main { opacity: 1.0; }
 
-        /* dots */
         .scale-dots {
             display: flex;
             justify-content: center;
@@ -538,6 +538,67 @@
             transition: opacity 0.3s, transform 0.3s;
         }
         .scale-dot.on { opacity: 0.7; transform: scale(1.7); }
+
+        /* ---- PASSWORD OVERLAY ---- */
+        #pwOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #FDFCF1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #pwBox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            max-width: 300px;
+            width: 100%;
+            padding: 0 24px;
+        }
+        #pwLabel {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            opacity: 0.38;
+        }
+        #pwInput {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1rem;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(54,69,79,0.25);
+            color: #36454F;
+            text-align: center;
+            padding: 8px 0;
+            width: 100%;
+            outline: none;
+            letter-spacing: 0.18em;
+        }
+        #pwInput::placeholder { opacity: 0.25; letter-spacing: 0.04em; font-size: 0.8rem; }
+        #pwBtn {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #FDFCF1;
+            background: #36454F;
+            border: none;
+            padding: 12px 28px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        #pwBtn:hover { opacity: 0.7; }
+        #pwError {
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
+            opacity: 0.45;
+            display: none;
+        }
 
         /* ---- RESPONSIVE ---- */
         @media (max-width: 780px) {
@@ -581,6 +642,16 @@
     </style>
 </head>
 <body>
+
+<!-- PASSWORD OVERLAY -->
+<div id="pwOverlay">
+    <div id="pwBox">
+        <p id="pwLabel">Password required</p>
+        <input type="password" id="pwInput" placeholder="enter password" autocomplete="off" />
+        <button id="pwBtn">Enter</button>
+        <p id="pwError">Incorrect. Try again.</p>
+    </div>
+</div>
 
 <!-- STICKY NAV -->
 <nav class="sticky-nav" id="stickyNav">
@@ -817,46 +888,45 @@
 </div>
 
 <!-- SCALE: THE FILTER -->
-<div id="scale-container">
-    <div id="scale-sticky">
-        <div class="scale-inner">
+<div id="scale-section">
+    <div class="scale-inner">
 
-            <span class="scale-top-label">The filter</span>
+        <span class="scale-top-label">The filter</span>
 
-            <div class="scale-ticks">
-                <span class="scale-tick" data-pos="0">Pass</span>
-                <span class="scale-tick" data-pos="25">No thanks</span>
-                <span class="scale-tick" data-pos="50">Tell me more</span>
-                <span class="scale-tick" data-pos="75">Getting warmer</span>
-                <span class="scale-tick" data-pos="100">Let's build</span>
-            </div>
-
-            <div class="scale-extremes">
-                <span class="scale-ext-label" id="scaleLabelLeft">Not interested</span>
-                <span class="scale-ext-label" id="scaleLabelRight">Let's build</span>
-            </div>
-
-            <div class="scale-track">
-                <div class="scale-fill"   id="scaleFill"></div>
-                <div class="scale-needle" id="scaleNeedle"></div>
-            </div>
-
-            <div class="scale-display" id="scaleDisplay">
-                <div class="scale-phase active s-left">
-                    <span class="ph-main">Lots of capital. No product market fit.</span>
-                    <span class="ph-sub">The pressure to spend without knowing what you are building is not a growth problem. It is a strategy problem. I cannot fix that.</span>
-                </div>
-            </div>
-
-            <div class="scale-dots" id="scaleDots">
-                <div class="scale-dot on"></div>
-                <div class="scale-dot"></div>
-                <div class="scale-dot"></div>
-                <div class="scale-dot"></div>
-                <div class="scale-dot"></div>
-            </div>
-
+        <div class="scale-ticks">
+            <span class="scale-tick" data-pos="0">Pass</span>
+            <span class="scale-tick" data-pos="25">No thanks</span>
+            <span class="scale-tick" data-pos="50">Tell me more</span>
+            <span class="scale-tick" data-pos="75">Getting warmer</span>
+            <span class="scale-tick" data-pos="100">Let's build</span>
         </div>
+
+        <div class="scale-extremes">
+            <span class="scale-ext-label" id="scaleLabelLeft">Not interested</span>
+            <span class="scale-ext-label" id="scaleLabelRight">Let's build</span>
+        </div>
+
+        <div class="scale-track" id="scaleTrack">
+            <div class="scale-track-line"></div>
+            <div class="scale-fill"   id="scaleFill"></div>
+            <div class="scale-needle" id="scaleNeedle"></div>
+        </div>
+
+        <div class="scale-display" id="scaleDisplay">
+            <div class="scale-phase active s-left">
+                <span class="ph-main">Lots of capital. No product market fit.</span>
+                <span class="ph-sub">The pressure to spend without knowing what you are building is not a growth problem. It is a strategy problem. I cannot fix that.</span>
+            </div>
+        </div>
+
+        <div class="scale-dots" id="scaleDots">
+            <div class="scale-dot on"></div>
+            <div class="scale-dot"></div>
+            <div class="scale-dot"></div>
+            <div class="scale-dot"></div>
+            <div class="scale-dot"></div>
+        </div>
+
     </div>
 </div>
 
@@ -932,20 +1002,23 @@ const countObs = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.win-card').forEach(c => countObs.observe(c));
 
-// ---- SCALE: THE FILTER ----
+// ---- SCALE: THE FILTER (DRAG SLIDER) ----
 (function() {
-    const container = document.getElementById('scale-container');
-    const needle    = document.getElementById('scaleNeedle');
-    const fill      = document.getElementById('scaleFill');
-    const labelL    = document.getElementById('scaleLabelLeft');
-    const labelR    = document.getElementById('scaleLabelRight');
-    const display   = document.getElementById('scaleDisplay');
-    const dots      = document.querySelectorAll('#scaleDots .scale-dot');
-    const ticks     = document.querySelectorAll('.scale-tick');
+    var track   = document.getElementById('scaleTrack');
+    var needle  = document.getElementById('scaleNeedle');
+    var fill    = document.getElementById('scaleFill');
+    var labelL  = document.getElementById('scaleLabelLeft');
+    var labelR  = document.getElementById('scaleLabelRight');
+    var display = document.getElementById('scaleDisplay');
+    var dots    = document.querySelectorAll('#scaleDots .scale-dot');
+    var ticks   = document.querySelectorAll('.scale-tick');
 
-    if (!container) return;
+    if (!track) return;
 
-    const phases = [
+    var dragging     = false;
+    var currentPhase = 0;
+
+    var phases = [
         {
             range: [0, 0.20],
             side:  's-left',
@@ -978,35 +1051,27 @@ document.querySelectorAll('.win-card').forEach(c => countObs.observe(c));
         }
     ];
 
-    let currentPhase = 0;
-
     function getPhase(p) {
-        for (let i = 0; i < phases.length; i++) {
+        for (var i = 0; i < phases.length; i++) {
             if (p >= phases[i].range[0] && p < phases[i].range[1]) return i;
         }
         return phases.length - 1;
     }
 
     function swapText(idx) {
-        const ph = phases[idx];
-        const old = display.querySelector('.scale-phase');
-
-        // Build next node
-        const next = document.createElement('div');
+        var ph  = phases[idx];
+        var old = display.querySelector('.scale-phase.active');
+        var next = document.createElement('div');
         next.className = 'scale-phase entering ' + ph.side;
         next.innerHTML =
             '<span class="ph-main">' + ph.main + '</span>' +
             '<span class="ph-sub">'  + ph.sub  + '</span>';
         display.appendChild(next);
-
-        // Trigger exit on old
         if (old) {
             old.classList.remove('active');
             old.classList.add('exiting');
-            setTimeout(function() { if (old.parentNode) old.parentNode.removeChild(old); }, 420);
+            setTimeout(function() { if (old.parentNode) old.parentNode.removeChild(old); }, 380);
         }
-
-        // Two rAF to let browser register "entering" before transitioning
         requestAnimationFrame(function() {
             requestAnimationFrame(function() {
                 next.classList.remove('entering');
@@ -1015,26 +1080,13 @@ document.querySelectorAll('.win-card').forEach(c => countObs.observe(c));
         });
     }
 
-    function update() {
-        const rect  = container.getBoundingClientRect();
-        const total = container.offsetHeight - window.innerHeight;
-        const p     = Math.max(0, Math.min(1, -rect.top / total));
-
-        // Needle + fill
-        needle.style.left  = (p * 100) + '%';
-        fill.style.width   = (p * 100) + '%';
-
-        // Extreme labels
-        labelL.style.opacity = Math.max(0.08, 1 - p * 1.6);
-        labelR.style.opacity = Math.min(1,    (p - 0.2) * 1.6);
-
-        // Tick marks: highlight the one closest to needle
-        var nearestIdx = Math.round(p * 4);
-        ticks.forEach(function(t, i) {
-            t.classList.toggle('near', i === nearestIdx);
-        });
-
-        // Phase text
+    function render(p) {
+        needle.style.left    = (p * 100) + '%';
+        fill.style.width     = (p * 100) + '%';
+        labelL.style.opacity = Math.max(0.08, 1 - p * 1.6).toString();
+        labelR.style.opacity = Math.min(1, (p - 0.2) * 1.6).toString();
+        var nearIdx = Math.round(p * 4);
+        ticks.forEach(function(t, i) { t.classList.toggle('near', i === nearIdx); });
         var ph = getPhase(p);
         if (ph !== currentPhase) {
             swapText(ph);
@@ -1043,8 +1095,69 @@ document.querySelectorAll('.win-card').forEach(c => countObs.observe(c));
         }
     }
 
-    window.addEventListener('scroll', update, { passive: true });
-    update();
+    function posFromEvent(e) {
+        var rect    = track.getBoundingClientRect();
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        return Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    }
+
+    // Mouse
+    track.addEventListener('mousedown', function(e) {
+        dragging = true;
+        track.classList.add('dragging');
+        render(posFromEvent(e));
+        e.preventDefault();
+    });
+    window.addEventListener('mousemove', function(e) {
+        if (!dragging) return;
+        render(posFromEvent(e));
+    });
+    window.addEventListener('mouseup', function() {
+        dragging = false;
+        track.classList.remove('dragging');
+    });
+
+    // Touch
+    track.addEventListener('touchstart', function(e) {
+        dragging = true;
+        render(posFromEvent(e));
+        e.preventDefault();
+    }, { passive: false });
+    window.addEventListener('touchmove', function(e) {
+        if (!dragging) return;
+        render(posFromEvent(e));
+    }, { passive: true });
+    window.addEventListener('touchend', function() { dragging = false; });
+
+    render(0);
+})();
+
+// ---- PASSWORD GATE ----
+(function() {
+    var overlay = document.getElementById('pwOverlay');
+    var input   = document.getElementById('pwInput');
+    var btn     = document.getElementById('pwBtn');
+    var err     = document.getElementById('pwError');
+    if (!overlay) return;
+    if (sessionStorage.getItem('jgc_auth') === '1') {
+        overlay.style.display = 'none';
+        return;
+    }
+    setTimeout(function() { input.focus(); }, 80);
+    function check() {
+        if (input.value === 'JGC') {
+            sessionStorage.setItem('jgc_auth', '1');
+            overlay.style.transition = 'opacity 0.4s ease';
+            overlay.style.opacity = '0';
+            setTimeout(function() { overlay.style.display = 'none'; }, 420);
+        } else {
+            err.style.display = 'block';
+            input.value = '';
+            input.focus();
+        }
+    }
+    btn.addEventListener('click', check);
+    input.addEventListener('keydown', function(e) { if (e.key === 'Enter') check(); });
 })();
 </script>
 
