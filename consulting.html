@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jake Gronsky | Growth Consultant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace;
+            background-color: #FDFCF1;
+            color: #36454F;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 80px 24px;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+        }
+
+        /* Header */
+        .site-header {
+            margin-bottom: 64px;
+        }
+
+        .site-header h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin-bottom: 4px;
+        }
+
+        .site-header .subtitle {
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.6;
+        }
+
+        /* Nav */
+        .nav {
+            margin-top: 20px;
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav a {
+            font-size: 0.85rem;
+            color: #36454F;
+            text-decoration: none;
+            opacity: 0.6;
+        }
+
+        .nav a:hover {
+            opacity: 1;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 56px;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin-bottom: 20px;
+        }
+
+        /* Intro */
+        .intro p {
+            font-size: 1rem;
+            line-height: 1.75;
+            max-width: 580px;
+        }
+
+        /* Wins */
+        .wins-list {
+            list-style: none;
+        }
+
+        .wins-list li {
+            font-size: 0.9rem;
+            line-height: 1.65;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(54, 69, 79, 0.1);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .wins-list li:first-child {
+            border-top: 1px solid rgba(54, 69, 79, 0.1);
+        }
+
+        .win-result {
+            font-weight: 700;
+            white-space: nowrap;
+            padding-top: 1px;
+            font-size: 0.85rem;
+            opacity: 0.75;
+        }
+
+        /* Pledge */
+        .pledge p {
+            font-size: 0.9rem;
+            line-height: 1.85;
+            margin-bottom: 18px;
+        }
+
+        .pledge p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* CTA */
+        .cta {
+            margin-bottom: 0;
+        }
+
+        .cta p {
+            font-size: 0.9rem;
+            line-height: 1.75;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .cta-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .cta-links a {
+            font-size: 0.85rem;
+            color: #36454F;
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 1px solid #36454F;
+            padding-bottom: 2px;
+        }
+
+        .cta-links a:hover {
+            opacity: 0.6;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(54, 69, 79, 0.1);
+        }
+
+        footer a {
+            font-size: 0.75rem;
+            color: #36454F;
+            text-decoration: none;
+            opacity: 0.4;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 540px) {
+            body {
+                padding: 48px 20px;
+            }
+
+            .wins-list li {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            .win-result {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header class="site-header">
+        <h1>Jake Gronsky</h1>
+        <p class="subtitle">Head of Growth. Former pro baseball. Builder of durable companies.</p>
+        <nav class="nav">
+            <a href="https://www.jakegronsky.com">Home</a>
+            <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/" target="_blank">LinkedIn</a>
+            <a href="mailto:gronsky.jake@gmail.com">Email</a>
+        </nav>
+    </header>
+
+    <section class="intro">
+        <p class="section-label">Who I am</p>
+        <p>
+            Twelve years of turning ambiguous business problems into structured programs with measurable outcomes.
+            I build the operating systems behind revenue growth: GTM design, pipeline architecture, field marketing, AI infrastructure, and the cross-functional cadences that make it all hold together.
+            I have done this at CNET, Red Ventures, and Centrical, reporting directly to the CEO.
+            I do not run tactics. I build the engine.
+        </p>
+    </section>
+
+    <section>
+        <p class="section-label">Selected wins</p>
+        <ul class="wins-list">
+            <li>
+                <span>Rebuilt the GTM operating model at Centrical: quarterly planning, cross-functional sprints, board reviews, and a KPI framework from lead through closed-won.</span>
+                <span class="win-result">+40% pipeline YoY</span>
+            </li>
+            <li>
+                <span>Reduced customer acquisition cost and spend simultaneously through structured program design and cross-channel optimization. No cuts to headcount or output.</span>
+                <span class="win-result">CAC down 200% | Spend down 32%</span>
+            </li>
+            <li>
+                <span>Launched BestColleges marketplace at CNET from zero. Set all-time revenue and engagement records. Full rebrand, repositioned the acquisition funnel, rebuilt the team.</span>
+                <span class="win-result">0 to 1M+ monthly sessions</span>
+            </li>
+            <li>
+                <span>Reversed two years of portfolio decline at Red Ventures across SEO, content, UX, and brand. Introduced operating cadences and accountability structures that held.</span>
+                <span class="win-result">34% turnaround growth</span>
+            </li>
+            <li>
+                <span>Scaled a consumer app from launch to sustained daily active users in under a year through structured PLG design and multi-channel acquisition.</span>
+                <span class="win-result">500 to 60,000 DAU in 10 months</span>
+            </li>
+            <li>
+                <span>Built autonomous GTM agents in Python and Claude Code that process ICP data, intent signals, and conversion behavior to accelerate pipeline without adding headcount.</span>
+                <span class="win-result">Centrical, 2025</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="pledge">
+        <p class="section-label">My pledge</p>
+
+        <p>I believe growth is a craft. Not a title, not a tactic, not a quarter's worth of spend. A craft. One that takes years to develop and a lifetime to refine.</p>
+
+        <p>I care about building durable companies. Not vanity metrics. Not hockey-stick charts that collapse six months later. Durable growth: the kind that compounds, holds pressure, and still works when the market shifts.</p>
+
+        <p>I will always take the tradesman's approach. Show up. Do the work. Hold the standard. The extra analysis, the uncomfortable conversation, the program that takes three months to build and ten years to pay off. That is the work I am here to do.</p>
+
+        <p>I do not chase tactics. I build systems. Tactics age. Systems compound. I will never recommend a shortcut I would not stake my own name on.</p>
+
+        <p>I pledge to bring the same relentlessness to your pipeline that I brought to the diamond. No complaining. No coasting. No half-measures. If I am in, I am all in.</p>
+
+        <p>I will fail. I will miss. I will make calls that do not land. But I will never stop studying the craft, adjusting the program, and pushing to build something that lasts.</p>
+
+        <p>I am never bigger than the company I am serving. When the work is done right, the company wins and I move on. That is how it should be.</p>
+
+        <p>Durable growth is not something I promise lightly. It is something I bleed for.</p>
+    </section>
+
+    <section class="cta">
+        <p class="section-label">Work together</p>
+        <p>If you are building something that needs to last, reach out.</p>
+        <div class="cta-links">
+            <a href="mailto:gronsky.jake@gmail.com">gronsky.jake@gmail.com</a>
+            <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/" target="_blank">LinkedIn</a>
+        </div>
+    </section>
+
+    <footer>
+        <a href="https://www.jakegronsky.com">Jake Gronsky</a>
+    </footer>
+
+</div>
+
+</body>
+</html>
