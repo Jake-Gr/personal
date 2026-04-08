@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jake Gronsky Author | Books & Mission</title>
+    <meta name="description" content="Jake Gronsky is a recovering professional baseball player turned author. Read his pledge to readers: the 9 commitments that guide every story he tells.">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Code Pro', monospace;
+            background: #FDFCF1;
+            color: #36454F;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- LAYOUT ---- */
+        .wrap {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        /* ---- PAGE ---- */
+        #pledge {
+            padding: 96px 0 120px;
+        }
+
+        h1 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 56px;
+        }
+
+        /* ---- TIMELINE LIST ---- */
+        .pledge-list {
+            list-style: none;
+            position: relative;
+        }
+
+        /* vertical connector line */
+        .pledge-list::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 6px;
+            bottom: 6px;
+            width: 1px;
+            background: linear-gradient(
+                to bottom,
+                rgba(54, 69, 79, 0),
+                rgba(54, 69, 79, 0.18) 8%,
+                rgba(54, 69, 79, 0.18) 92%,
+                rgba(54, 69, 79, 0)
+            );
+        }
+
+        .pledge-list li {
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+            padding: 20px 0 20px 0;
+            cursor: default;
+            transition: opacity 0.2s;
+        }
+
+        /* dim siblings on hover */
+        .pledge-list:hover li { opacity: 0.38; }
+        .pledge-list:hover li:hover { opacity: 1; }
+
+        /* number node */
+        .pledge-list li .num {
+            flex-shrink: 0;
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            border: 1px solid rgba(54, 69, 79, 0.25);
+            background: #FDFCF1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: rgba(54, 69, 79, 0.45);
+            position: relative;
+            z-index: 1;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            margin-top: 1px;
+        }
+
+        .pledge-list li:hover .num {
+            background: #36454F;
+            border-color: #36454F;
+            color: #FDFCF1;
+        }
+
+        /* text */
+        .pledge-list li p {
+            font-size: 0.84rem;
+            line-height: 1.82;
+            color: #36454F;
+            padding-top: 1px;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 600px) {
+            .wrap { padding: 0 24px; }
+            #pledge { padding: 64px 0 80px; }
+            .pledge-list::before { left: 9px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section id="pledge">
+        <div class="wrap">
+
+            <h1>My Pledge to Readers</h1>
+
+            <ol class="pledge-list">
+                <li>
+                    <span class="num">1</span>
+                    <p>People matter. Stories matter. The way in which the story is told, matters. I will never lose sight of these truths.</p>
+                </li>
+                <li>
+                    <span class="num">2</span>
+                    <p>I believe the best storytellers are people who are willing to take risks. Fight for something. Chase a dream. Stand for what matters. Then, tell it.</p>
+                </li>
+                <li>
+                    <span class="num">3</span>
+                    <p>I pledge to take the same mentality to our story as I did as a baseball player. There is no complaining and no excuse for anything less than my best.</p>
+                </li>
+                <li>
+                    <span class="num">4</span>
+                    <p>I will always accept constructive criticism. The day I stop striving for a better story is the day I will stop writing.</p>
+                </li>
+                <li>
+                    <span class="num">5</span>
+                    <p>I am never bigger than the story. Writing, when done correctly, should be an act of humility and not self-admiration.</p>
+                </li>
+                <li>
+                    <span class="num">6</span>
+                    <p>Memoirs and autobiographies will always hold a soft spot in my heart. You have one chance at connecting your story, your journey, your life to readers that adore you. Working together means we both pledge to bring your words to life.</p>
+                </li>
+                <li>
+                    <span class="num">7</span>
+                    <p>I do not choose story on "passion." I write with passion. I live with passion. Passion is not something I chase, it comes with me.</p>
+                </li>
+                <li>
+                    <span class="num">8</span>
+                    <p>I am entitled to nothing. I am grateful for the opportunities in my life and will never take them for granted.</p>
+                </li>
+                <li>
+                    <span class="num">9</span>
+                    <p>I will fail. I will make mistakes. I will never be perfect. But I will always make the extra phone call, willingly choose another rewrite, and give every ounce of energy I have until the story is done right. I pledge to bleed for my stories.</p>
+                </li>
+            </ol>
+
+        </div>
+    </section>
+
+</body>
+</html>
