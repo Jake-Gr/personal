@@ -2,27 +2,154 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jake Gronsky | Head of Growth | ex ballplayer</title>
-    <link rel="stylesheet" href="static/bulma_css_static.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Code Pro', monospace;
+            background: #FDFCF1;
+            color: #36454F;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.042;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 220px 220px;
+        }
+
+        /* orange top bar */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: #F74902;
+            z-index: 100;
+        }
+
+        .wrap {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 0 48px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* name label */
+        .eyebrow {
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #F74902;
+            display: block;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(1.55rem, 4.5vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 44px;
+        }
+
+        /* links */
+        .links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .links a, .links button {
+            all: unset;
+            cursor: pointer;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.82rem;
+            color: #36454F;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(54, 69, 79, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: color 0.15s;
+            position: relative;
+        }
+
+        .links > :first-child {
+            border-top: 1px solid rgba(54, 69, 79, 0.1);
+        }
+
+        /* orange dot indicator */
+        .links a::before, .links button::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #F74902;
+            flex-shrink: 0;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .links a:hover, .links button:hover { color: #F74902; }
+        .links a:hover::before, .links button:hover::before { opacity: 1; }
+
+        /* tooltip */
+        .tooltip-wrap { position: relative; }
+        .tooltip-text {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: calc(100% + 6px);
+            background: #36454F;
+            color: #FDFCF1;
+            font-size: 0.7rem;
+            line-height: 1.6;
+            padding: 10px 14px;
+            max-width: 280px;
+            z-index: 10;
+        }
+        .tooltip-text.visible { display: block; }
+
+        @media (max-width: 480px) {
+            .wrap { padding: 0 28px; }
+        }
+    </style>
 </head>
 <body>
-<div class="content centered-text">
-    <h1>Builder of humble projects.</h1>
-    <div class="row">
-        <p><a href="https://www.sunburypress.com/blogs/blog/a-short-season-by-david-bohner-and-jake-gronsky-wins-the-sunny-awards-for-sunbury-press-bestseller-in-2018-and-sunbury-press-book-of-the-year">Wrote this.</a></p>
-        <p><a href="#" class="tooltip-link">Building these.<span class="tooltip-text">Didn't build this page yet. I co-own a few small businesses.</span></a></p>
-        <p><a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/">Growing these.</a></p>
+
+    <div class="wrap">
+        <span class="eyebrow">Jake Gronsky</span>
+        <h1>Builder of humble projects.</h1>
+        <nav class="links">
+            <a href="https://www.sunburypress.com/blogs/blog/a-short-season-by-david-bohner-and-jake-gronsky-wins-the-sunny-awards-for-sunbury-press-bestseller-in-2018-and-sunbury-press-book-of-the-year">Wrote this.</a>
+            <button class="tooltip-wrap" id="building-btn">
+                Building these.
+                <span class="tooltip-text" id="tooltip">Didn't build this page yet. I co-own a few small businesses.</span>
+            </button>
+            <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/">Growing these.</a>
+        </nav>
     </div>
-</div>
-<script>
-$(document).ready(function(){
-    $(".tooltip-link").click(function(event){
-        event.preventDefault();
-        $(this).find(".tooltip-text").toggle();
-    });
-});
-</script>
+
+    <script>
+        document.getElementById('building-btn').addEventListener('click', function() {
+            document.getElementById('tooltip').classList.toggle('visible');
+        });
+    </script>
+
 </body>
 </html>
