@@ -6,16 +6,22 @@
     <title>Jake Gronsky | Head of Growth | ex ballplayer</title>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --red:    #8C1C1C;
+            --manila: #EDD9A3;
+            --ink:    #1C2A2F;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Source Code Pro', monospace;
             background: #FDFCF1;
-            color: #36454F;
+            color: var(--ink);
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
         }
 
@@ -41,115 +47,195 @@
             z-index: 100;
         }
 
-        .wrap {
-            max-width: 520px;
-            margin: 0 auto;
-            padding: 0 48px;
+        /* ---- CARD ---- */
+        .card {
+            width: 500px;
+            background: var(--manila);
+            border: 1.5px solid var(--red);
             position: relative;
             z-index: 1;
+            box-shadow:
+                0 1px 3px rgba(0,0,0,0.08),
+                0 6px 28px rgba(0,0,0,0.10),
+                3px 3px 0px rgba(140,28,28,0.07);
         }
 
-        /* name label */
-        .eyebrow {
-            font-size: 0.64rem;
+        /* grid rows */
+        .row {
+            display: grid;
+            border-bottom: 1px solid var(--red);
+        }
+        .row:last-child { border-bottom: none; }
+
+        .cell {
+            padding: 8px 11px;
+            border-right: 1px solid var(--red);
+        }
+        .cell:last-child { border-right: none; }
+
+        /* label — printed red */
+        .lbl {
+            font-size: 0.48rem;
             font-weight: 700;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: #F74902;
+            color: var(--red);
             display: block;
-            margin-bottom: 18px;
+            margin-bottom: 4px;
         }
 
-        h1 {
-            font-size: clamp(1.55rem, 4.5vw, 2.2rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            margin-bottom: 44px;
+        /* value — typed ink */
+        .val {
+            font-size: 0.74rem;
+            color: var(--ink);
+            letter-spacing: 0.01em;
+            display: block;
         }
 
-        /* links */
-        .links {
-            display: flex;
-            flex-direction: column;
+        /* blank fill line */
+        .blank {
+            display: inline-block;
+            border-bottom: 1px solid rgba(28,42,47,0.3);
+            width: 52px;
+            vertical-align: bottom;
         }
 
-        .links a, .links button {
+        /* dim empty cells */
+        .empty { opacity: 0.14; min-height: 34px; }
+
+        /* clickable entries */
+        a.entry, button.entry {
             all: unset;
             cursor: pointer;
             font-family: 'Source Code Pro', monospace;
-            font-size: 0.82rem;
-            color: #36454F;
-            padding: 13px 0;
-            border-bottom: 1px solid rgba(54, 69, 79, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: color 0.15s;
-            position: relative;
+            font-size: 0.74rem;
+            letter-spacing: 0.01em;
+            color: var(--ink);
+            display: block;
+            transition: color 0.14s;
         }
-
-        .links > :first-child {
-            border-top: 1px solid rgba(54, 69, 79, 0.1);
-        }
-
-        /* orange dot indicator */
-        .links a::before, .links button::before {
-            content: '';
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #F74902;
-            flex-shrink: 0;
-            opacity: 0;
-            transition: opacity 0.15s;
-        }
-
-        .links a:hover, .links button:hover { color: #F74902; }
-        .links a:hover::before, .links button:hover::before { opacity: 1; }
+        a.entry:hover, button.entry:hover { color: var(--red); }
 
         /* tooltip */
-        .tooltip-wrap { position: relative; }
-        .tooltip-text {
+        .tip-wrap { position: relative; }
+        .tip-box {
             display: none;
             position: absolute;
             left: 0;
-            top: calc(100% + 6px);
-            background: #36454F;
-            color: #FDFCF1;
-            font-size: 0.7rem;
-            line-height: 1.6;
-            padding: 10px 14px;
-            max-width: 280px;
+            top: calc(100% + 8px);
+            background: var(--ink);
+            color: var(--manila);
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.62rem;
+            line-height: 1.55;
+            padding: 9px 13px;
+            max-width: 240px;
             z-index: 10;
+            white-space: normal;
         }
-        .tooltip-text.visible { display: block; }
+        .tip-box.show { display: block; }
 
-        @media (max-width: 480px) {
-            .wrap { padding: 0 28px; }
+        @media (max-width: 540px) {
+            .card { width: 94vw; }
         }
     </style>
 </head>
 <body>
 
-    <div class="wrap">
-        <span class="eyebrow">Jake Gronsky</span>
-        <h1>Builder of humble projects.</h1>
-        <nav class="links">
-            <a href="https://www.sunburypress.com/blogs/blog/a-short-season-by-david-bohner-and-jake-gronsky-wins-the-sunny-awards-for-sunbury-press-bestseller-in-2018-and-sunbury-press-book-of-the-year">Wrote this.</a>
-            <button class="tooltip-wrap" id="building-btn">
-                Building these.
-                <span class="tooltip-text" id="tooltip">Didn't build this page yet. I co-own a few small businesses.</span>
-            </button>
-            <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/">Growing these.</a>
-        </nav>
+<div class="card">
+
+    <!-- ROW 0: H1 title -->
+    <div class="row" style="grid-template-columns: 1fr;">
+        <div class="cell" style="text-align:center; padding: 11px 11px 10px;">
+            <h1 style="font-size:0.82rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink);">Builder of Durable Projects</h1>
+        </div>
     </div>
 
-    <script>
-        document.getElementById('building-btn').addEventListener('click', function() {
-            document.getElementById('tooltip').classList.toggle('visible');
-        });
-    </script>
+    <!-- ROW 1: No. | NAME | WK. ENDING -->
+    <div class="row" style="grid-template-columns: 80px 1fr 148px;">
+        <div class="cell">
+            <span class="lbl">No.</span>
+            <span class="val"><span class="blank"></span></span>
+        </div>
+        <div class="cell">
+            <span class="lbl">Name</span>
+            <span class="val">Jake Gronsky</span>
+        </div>
+        <div class="cell">
+            <span class="lbl">Wk. Ending</span>
+            <span class="val"><span class="blank"></span>&thinsp;20__</span>
+        </div>
+    </div>
+
+    <!-- ROW 2: column headers -->
+    <div class="row" style="grid-template-columns: 100px 1fr 58px 58px;">
+        <div class="cell empty"></div>
+        <div class="cell">
+            <span class="lbl">Description</span>
+        </div>
+        <div class="cell">
+            <span class="lbl">Rate</span>
+        </div>
+        <div class="cell">
+            <span class="lbl">Amt.</span>
+        </div>
+    </div>
+
+    <!-- ROW 3: Wrote this -->
+    <div class="row" style="grid-template-columns: 100px 1fr 58px 58px;">
+        <div class="cell">
+            <span class="lbl">Reg. Hrs.</span>
+        </div>
+        <div class="cell">
+            <a href="/writing" class="entry">Why I write.</a>
+        </div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+    </div>
+
+    <!-- ROW 4: Building these -->
+    <div class="row" style="grid-template-columns: 100px 1fr 58px 58px;">
+        <div class="cell">
+            <span class="lbl">O.T. Hrs.</span>
+        </div>
+        <div class="cell" style="position:relative;">
+            <button class="entry tip-wrap" id="building-btn">
+                Building these.
+                <span class="tip-box" id="tip">Didn't build this page yet. I co-own a few small businesses.</span>
+            </button>
+        </div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+    </div>
+
+    <!-- ROW 5: Growing these -->
+    <div class="row" style="grid-template-columns: 100px 1fr 58px 58px;">
+        <div class="cell">
+            <span class="lbl">Comm.</span>
+        </div>
+        <div class="cell">
+            <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/" class="entry">Growing these.</a>
+        </div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+    </div>
+
+    <!-- ROW 6: footer / net check -->
+    <div class="row" style="grid-template-columns: 1fr 148px;">
+        <div class="cell empty"></div>
+        <div class="cell">
+            <span class="lbl">Net Check</span>
+            <span class="val" style="font-size:0.65rem; opacity:0.7;">Humble projects.</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.getElementById('building-btn').addEventListener('click', function() {
+        document.getElementById('tip').classList.toggle('show');
+    });
+</script>
 
 </body>
 </html>
