@@ -116,24 +116,6 @@
         }
         a.entry:hover, button.entry:hover { color: var(--red); }
 
-        /* tooltip */
-        .tip-wrap { position: relative; }
-        .tip-box {
-            display: none;
-            position: absolute;
-            left: 0;
-            top: calc(100% + 8px);
-            background: var(--ink);
-            color: var(--manila);
-            font-family: 'Source Code Pro', monospace;
-            font-size: 0.62rem;
-            line-height: 1.55;
-            padding: 9px 13px;
-            max-width: 240px;
-            z-index: 10;
-            white-space: normal;
-        }
-        .tip-box.show { display: block; }
 
         @media (max-width: 540px) {
             .card { width: 94vw; }
@@ -198,11 +180,8 @@
         <div class="cell">
             <span class="lbl">O.T. Hrs.</span>
         </div>
-        <div class="cell" style="position:relative;">
-            <button class="entry tip-wrap" id="building-btn">
-                Building these.
-                <span class="tip-box" id="tip">Didn't build this page yet. I co-own a few small businesses.</span>
-            </button>
+        <div class="cell">
+            <a href="/ventures" class="entry">Building these.</a>
         </div>
         <div class="cell empty"></div>
         <div class="cell empty"></div>
@@ -231,11 +210,6 @@
 
 </div>
 
-<script>
-    document.getElementById('building-btn').addEventListener('click', function() {
-        document.getElementById('tip').classList.toggle('show');
-    });
-</script>
 
 </body>
 </html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jake Gronsky | Ventures</title>
+    <meta name="description" content="Jake Gronsky invests in and operates small businesses built to last. A portfolio of durable companies across e-commerce, healthcare, tech, and education.">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #F74902;
+            --red:    #8C1C1C;
+            --manila: #EDD9A3;
+            --ink:    #1C2A2F;
+            --cream:  #FDFCF1;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Code Pro', monospace;
+            background: var(--cream);
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.042;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 220px 220px;
+        }
+
+        /* orange top bar */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--orange);
+            z-index: 100;
+        }
+
+        .wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 80px 32px 120px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* back link */
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--orange);
+            text-decoration: none;
+            margin-bottom: 56px;
+            opacity: 0.7;
+            transition: opacity 0.15s;
+        }
+        .back:hover { opacity: 1; }
+        .back::before { content: '\2190'; font-size: 0.75rem; }
+
+        /* statement */
+        .statement {
+            margin-bottom: 52px;
+        }
+        .statement p {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.55;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+        .statement .accent { color: var(--orange); }
+
+        /* stamp line under statement */
+        .stamp-line {
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--orange);
+            margin-top: 16px;
+        }
+
+        /* ledger */
+        .ledger {
+            border: 1.5px solid var(--red);
+            background: var(--manila);
+            box-shadow:
+                0 1px 3px rgba(0,0,0,0.08),
+                0 8px 32px rgba(0,0,0,0.10),
+                4px 4px 0px rgba(140,28,28,0.08);
+        }
+
+        /* ledger top label bar */
+        .ledger-title {
+            padding: 8px 14px;
+            border-bottom: 1.5px solid var(--red);
+            background: rgba(140,28,28,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ledger-title span {
+            font-size: 0.46rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--red);
+        }
+
+        /* column headers */
+        .ledger-head {
+            display: grid;
+            grid-template-columns: 1fr 140px 110px;
+            border-bottom: 1px solid var(--red);
+        }
+        .ledger-head .hcell {
+            padding: 7px 14px;
+            font-size: 0.44rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--red);
+            border-right: 1px solid rgba(140,28,28,0.35);
+        }
+        .ledger-head .hcell:last-child { border-right: none; }
+
+        /* rows */
+        .ledger-row {
+            display: grid;
+            grid-template-columns: 1fr 140px 110px;
+            border-bottom: 1px solid rgba(140,28,28,0.22);
+            transition: background 0.13s;
+        }
+        .ledger-row:last-child { border-bottom: none; }
+        .ledger-row:hover { background: rgba(247,73,2,0.05); }
+
+        .lcell {
+            padding: 14px 14px;
+            border-right: 1px solid rgba(140,28,28,0.22);
+        }
+        .lcell:last-child { border-right: none; }
+
+        .co-name {
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--ink);
+            display: block;
+            letter-spacing: 0.02em;
+        }
+        .co-desc {
+            font-size: 0.60rem;
+            color: rgba(28,42,47,0.5);
+            display: block;
+            margin-top: 3px;
+            letter-spacing: 0.01em;
+        }
+
+        .co-sector {
+            font-size: 0.63rem;
+            color: var(--ink);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .co-role {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* note section below ledger */
+        .note {
+            margin-top: 40px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(28,42,47,0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .note-label {
+            font-size: 0.44rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(28,42,47,0.35);
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+        .note-text {
+            font-size: 0.64rem;
+            color: rgba(28,42,47,0.45);
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+
+        @media (max-width: 580px) {
+            .wrap { padding: 72px 20px 80px; }
+            .ledger-head { grid-template-columns: 1fr 90px; }
+            .ledger-row { grid-template-columns: 1fr 90px; }
+            .ledger-head .hcell:last-child,
+            .ledger-row .lcell:last-child { display: none; }
+            .statement p { font-size: 0.92rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+
+    <a href="/" class="back">Home</a>
+
+    <div class="statement">
+        <p>Investing &amp; operating businesses that will last another <span class="accent">36 years.</span></p>
+        <span class="stamp-line"></span>
+    </div>
+
+    <div class="ledger">
+
+        <div class="ledger-title">
+            <span>Portfolio &amp; Partners</span>
+            <span>Active</span>
+        </div>
+
+        <div class="ledger-head">
+            <div class="hcell">Company</div>
+            <div class="hcell">Sector</div>
+            <div class="hcell">Role</div>
+        </div>
+
+        <div class="ledger-row">
+            <div class="lcell">
+                <span class="co-name">Looptimer</span>
+                <span class="co-desc">Workstation timers built for deep work</span>
+            </div>
+            <div class="lcell">
+                <span class="co-sector">DTC E-Commerce</span>
+            </div>
+            <div class="lcell">
+                <span class="co-role">Co-Owner</span>
+            </div>
+        </div>
+
+        <div class="ledger-row">
+            <div class="lcell">
+                <span class="co-name">Redmond Spine Center</span>
+                <span class="co-desc">Chiropractic &amp; spine care</span>
+            </div>
+            <div class="lcell">
+                <span class="co-sector">Healthcare</span>
+            </div>
+            <div class="lcell">
+                <span class="co-role">Part Owner</span>
+            </div>
+        </div>
+
+        <div class="ledger-row">
+            <div class="lcell">
+                <span class="co-name">Brighthire</span>
+                <span class="co-desc">Interview intelligence platform</span>
+            </div>
+            <div class="lcell">
+                <span class="co-sector">HR Tech</span>
+            </div>
+            <div class="lcell">
+                <span class="co-role">Consultant</span>
+            </div>
+        </div>
+
+        <div class="ledger-row">
+            <div class="lcell">
+                <span class="co-name">Expertise.ai</span>
+                <span class="co-desc">AI-powered chatbot platform</span>
+            </div>
+            <div class="lcell">
+                <span class="co-sector">AI / SaaS</span>
+            </div>
+            <div class="lcell">
+                <span class="co-role">Consultant</span>
+            </div>
+        </div>
+
+        <div class="ledger-row">
+            <div class="lcell">
+                <span class="co-name">AIRA</span>
+                <span class="co-desc">&nbsp;</span>
+            </div>
+            <div class="lcell">
+                <span class="co-sector">Active</span>
+            </div>
+            <div class="lcell">
+                <span class="co-role">&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="ledger-row">
+            <div class="lcell">
+                <span class="co-name">TeachMeTo</span>
+                <span class="co-desc">The Airbnb for lessons</span>
+            </div>
+            <div class="lcell">
+                <span class="co-sector">Marketplace</span>
+            </div>
+            <div class="lcell">
+                <span class="co-role">Co-Founder</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="note">
+        <span class="note-label">Note</span>
+        <span class="note-text">Writing in progress. More to come.</span>
+    </div>
+
+</div>
+
+</body>
+</html>
