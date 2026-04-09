@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jake Gronsky | What's Wrong with Me</title>
+    <meta name="description" content="An honest, unfiltered Q&A about writing, baseball, romance novels, and why Jake Gronsky built a website with his own name on it.">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Code Pro', monospace;
+            background: #FDFCF1;
+            color: #1C2A2F;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.042;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 220px 220px;
+        }
+
+        /* orange top bar */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: #F74902;
+            z-index: 100;
+        }
+
+        .wrap {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 48px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #dialogue {
+            padding: 96px 0 120px;
+        }
+
+        /* back link */
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #F74902;
+            text-decoration: none;
+            margin-bottom: 52px;
+            opacity: 0.7;
+            transition: opacity 0.15s;
+        }
+        .back:hover { opacity: 1; }
+        .back::before { content: '\2190'; font-size: 0.75rem; }
+
+        h1 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 10px;
+        }
+
+        .h1-accent {
+            display: block;
+            width: 32px;
+            height: 2px;
+            background: #F74902;
+            margin-bottom: 56px;
+        }
+
+        /* dialogue */
+        .exchange {
+            margin-bottom: 32px;
+        }
+
+        .exchange:last-child {
+            margin-bottom: 0;
+        }
+
+        .speaker {
+            font-size: 0.44rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .speaker.them { color: rgba(28,42,47,0.38); }
+        .speaker.me   { color: rgba(247,73,2,0.55); }
+
+        .line {
+            font-size: 0.84rem;
+            line-height: 1.85;
+        }
+
+        .line p + p {
+            margin-top: 14px;
+        }
+
+        /* antagonist: bold, dark */
+        .line.them {
+            font-weight: 700;
+            color: #1C2A2F;
+        }
+
+        /* jake: orange, readable weight */
+        .line.me {
+            font-weight: 400;
+            color: #D94000;
+        }
+
+        @media (max-width: 600px) {
+            .wrap { padding: 0 24px; }
+            #dialogue { padding: 72px 0 80px; }
+        }
+    </style>
+</head>
+<body>
+
+<section id="dialogue">
+    <div class="wrap">
+
+        <a href="/" class="back">Home</a>
+
+        <h1>What's Wrong with Me</h1>
+        <span class="h1-accent"></span>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">What's your deal?</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">Excuse me?</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">Hey, I'm asking the questions here. What's the deal with buying a domain of your name? Seems pretty narcissistic.</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">Maybe? I'm a writer, and this is my digital portfolio. Plus, my Google page is loaded with baseball stuff, so I'd like to get ahead of the narrative.</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">Weird flex. You mean Google shows the world you hit .200 in A-ball, and you'd like to cover it up.</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">Yikes. Not that I need to explain myself, but I was extremely fortunate with my career. Playing in the St. Louis Cardinals organization was a dream come true. It introduced me to Josiah Viera. It taught me about life, and although ending my playing career was excruciating, it gave me the greatest gift of all: a fresh start.</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">You're an author and former baseball player AND growth consultant or investor/operator (whatever that is)? Which one are you?</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">
+                <p>This is the trap human beings fall into.</p>
+                <p>We want life to be binary.</p>
+                <p>We want to define who we are by what we do so our elevator pitch to God can be easily understood and accepted. But we are much more than our occupation. I've spent decades of my life BEING a baseball player rather than examining the fibers of who I am. It became a mask, shielding me from the person I was meant to be.</p>
+                <p>So, I'm all three. I'm actually much more than all three, and I bet you are, too.</p>
+            </div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">Okay, McConaughey. You're a jack of all trades.</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">
+                <p>Not at all. I split my day into buckets.</p>
+                <p>The first bucket is writing. I've spent years honing the craft of storytelling (still a work in progress) specifically focusing on sports memoirs and building my Romance debut. I have no plans on stopping.</p>
+                <p>Then, I work hard at growing durable companies, some my own, some I'm contracted, for ten-to-twelve-hour workday. (My LinkedIn is dedicated solely to this part of my life).</p>
+                <p>It's simple. I work hard from the early morning to the late afternoon. Then I don't.</p>
+            </div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">Wait, did you say romance novel?</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">Yeah, I finished the manuscript and now in the process</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">HAHA! Romance! Okay, Fabio! HAHA!</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">
+                <p>Wow. Okay.</p>
+                <p>One, Fabio hasn't been on a cover since the early 90s.</p>
+                <p>Two, I'm a huge advocate for men reading romance.</p>
+                <p>Three, to be a Romance the main character must allow themselves to be vulnerable. They have to overcome loss and regret and be willing to sacrifice everything they have to earn the love they seek. They are stories of redemption. They are stories of acceptance, no matter who you are or who you love. They are stories of us.</p>
+                <p>And I wonder how amazing this world could be if we celebrated these characteristics of romance rather than scoff at them.</p>
+            </div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">HAHAHA, Romance!</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">Okay then.</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">HAHAHA! You're trying to be the next Nicky Sparks.</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">Nicholas Sparks has an incredible and aspiring career...but not romance.</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">HAHAHAHA. Ladies and gentlemen, the next Fabio Sparks!</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">Are we done here?</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker them">Them</span>
+            <div class="line them">Wait, I. Need. To. HAHA. Catch my. HAHAHAHAHA.</div>
+        </div>
+
+        <div class="exchange">
+            <span class="speaker me">Jake</span>
+            <div class="line me">Okay. We're done.</div>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>
