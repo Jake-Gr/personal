@@ -289,11 +289,23 @@
 
         /* ---- RESULTS ---- */
         #results {
-            background: var(--ink);
+            background: var(--orange);
             color: var(--cream);
             padding: 88px 0;
+            position: relative;
         }
-        #results .section-label { color: var(--orange); }
+        #results::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.09;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 180px 180px;
+            mix-blend-mode: soft-light;
+        }
+        #results .section-label { color: rgba(255,255,255,0.75); }
         .results-head {
             font-size: clamp(1.2rem, 2.8vw, 1.8rem);
             font-weight: 700;
@@ -301,6 +313,7 @@
             max-width: 540px;
             margin-bottom: 52px;
             letter-spacing: -0.01em;
+            color: #fff;
         }
         .results-grid {
             display: grid;
@@ -308,38 +321,39 @@
             gap: 2px;
         }
         .result-card {
-            background: rgba(253,252,241,0.05);
+            background: rgba(255,255,255,0.1);
             padding: 32px 26px;
             cursor: pointer;
-            transition: background 0.18s;
             border-left: 2px solid transparent;
             transition: background 0.18s, border-color 0.18s;
+            position: relative;
+            z-index: 1;
         }
-        .result-card:hover { background: rgba(253,252,241,0.09); border-color: var(--orange); }
-        .result-card.open { background: rgba(253,252,241,0.09); border-color: var(--orange); }
+        .result-card:hover { background: rgba(255,255,255,0.2); border-color: #fff; }
+        .result-card.open { background: rgba(255,255,255,0.2); border-color: #fff; }
         .result-num {
             font-size: clamp(2rem, 3.5vw, 2.6rem);
             font-weight: 700;
             line-height: 1;
             margin-bottom: 6px;
             letter-spacing: -0.02em;
-            color: var(--cream);
+            color: #fff;
         }
         .result-lbl {
             font-size: 0.62rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            opacity: 0.38;
+            color: rgba(255,255,255,0.6);
             margin-bottom: 4px;
         }
         .result-hint {
             font-size: 0.6rem;
             letter-spacing: 0.06em;
-            opacity: 0.2;
+            color: rgba(255,255,255,0.4);
             margin-top: 10px;
             transition: opacity 0.18s;
         }
-        .result-card:hover .result-hint { opacity: 0.5; }
+        .result-card:hover .result-hint { color: rgba(255,255,255,0.65); }
         .result-detail {
             font-size: 0.74rem;
             line-height: 1.7;
@@ -348,9 +362,9 @@
             overflow: hidden;
             transition: max-height 0.38s ease, opacity 0.3s ease, margin-top 0.3s ease;
             margin-top: 0;
-            color: var(--cream);
+            color: rgba(255,255,255,0.82);
         }
-        .result-card.open .result-detail { max-height: 160px; opacity: 0.55; margin-top: 14px; }
+        .result-card.open .result-detail { max-height: 160px; opacity: 1; margin-top: 14px; }
         .result-card.open .result-hint { opacity: 0; }
 
         /* ---- APPROACH ---- */
@@ -442,11 +456,23 @@
 
         /* ---- FIT ---- */
         #fit {
-            background: var(--ink);
+            background: var(--orange);
             color: var(--cream);
             padding: 88px 0;
+            position: relative;
         }
-        #fit .section-label { color: var(--orange); }
+        #fit::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.09;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 180px 180px;
+            mix-blend-mode: soft-light;
+        }
+        #fit .section-label { color: rgba(255,255,255,0.75); }
         .fit-head {
             font-size: clamp(1.2rem, 2.6vw, 1.7rem);
             font-weight: 700;
@@ -454,8 +480,9 @@
             max-width: 480px;
             margin-bottom: 40px;
             letter-spacing: -0.01em;
+            color: #fff;
         }
-        .fit-list { list-style: none; max-width: 620px; }
+        .fit-list { list-style: none; max-width: 620px; position: relative; z-index: 1; }
         .fit-item {
             display: flex;
             gap: 18px;
@@ -463,12 +490,11 @@
             font-size: 0.82rem;
             line-height: 1.72;
             padding: 16px 0;
-            border-bottom: 1px solid rgba(253,252,241,0.08);
-            color: var(--cream);
-            opacity: 0.75;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.88);
         }
-        .fit-item:first-child { border-top: 1px solid rgba(253,252,241,0.08); }
-        .fit-arrow { color: var(--orange); flex-shrink: 0; opacity: 1; }
+        .fit-item:first-child { border-top: 1px solid rgba(255,255,255,0.2); }
+        .fit-arrow { color: #fff; flex-shrink: 0; opacity: 0.7; }
 
         /* ---- CTA ---- */
         #cta { padding: 100px 0 88px; }
@@ -650,42 +676,42 @@
         <div class="results-grid">
 
             <div class="result-card" data-target="40" data-prefix="+" data-suffix="%">
-                <div class="result-num">+40%</div>
+                <div class="result-num">+0%</div>
                 <div class="result-lbl">Pipeline YoY</div>
                 <div class="result-hint">tap for context &darr;</div>
                 <div class="result-detail">Rebuilt the GTM operating model: quarterly goal-setting, monthly cross-functional sprints, and a KPI framework from MQL through closed-won. Pipeline grew 40% year over year.</div>
             </div>
 
             <div class="result-card" data-target="32" data-prefix="-" data-suffix="%">
-                <div class="result-num">-32%</div>
+                <div class="result-num">-0%</div>
                 <div class="result-lbl">Spend reduced</div>
                 <div class="result-hint">tap for context &darr;</div>
                 <div class="result-detail">Reduced total marketing spend by 32% while simultaneously growing pipeline. Achieved through structured program design, tighter channel allocation, and cutting everything without a clear pipeline tie.</div>
             </div>
 
             <div class="result-card" data-target="200" data-prefix="-" data-suffix="%">
-                <div class="result-num">-200%</div>
+                <div class="result-num">-0%</div>
                 <div class="result-lbl">CAC reduction</div>
                 <div class="result-hint">tap for context &darr;</div>
                 <div class="result-detail">Cut customer acquisition cost by 200% alongside the spend reduction. Spending less, acquiring more efficiently. Both moved in the right direction at the same time.</div>
             </div>
 
             <div class="result-card" data-target="1" data-prefix="" data-suffix="M+">
-                <div class="result-num">1M+</div>
+                <div class="result-num">0M+</div>
                 <div class="result-lbl">Monthly sessions</div>
                 <div class="result-hint">tap for context &darr;</div>
                 <div class="result-detail">Launched BestColleges marketplace at CNET from zero. Led full rebrand, rebuilt acquisition funnels, scaled the team from 5 to 17. Set all-time revenue and engagement records.</div>
             </div>
 
             <div class="result-card" data-target="34" data-prefix="+" data-suffix="%">
-                <div class="result-num">+34%</div>
+                <div class="result-num">+0%</div>
                 <div class="result-lbl">Turnaround growth</div>
                 <div class="result-hint">tap for context &darr;</div>
                 <div class="result-detail">Reversed two years of portfolio decline at Red Ventures across SEO, content, UX, and brand. Introduced operating cadences and accountability structures that improved output quality and eliminated wasted effort.</div>
             </div>
 
             <div class="result-card" data-target="60" data-prefix="" data-suffix="K">
-                <div class="result-num">60K</div>
+                <div class="result-num">0K</div>
                 <div class="result-lbl">DAU in 10 months</div>
                 <div class="result-hint">tap for context &darr;</div>
                 <div class="result-detail">Scaled a consumer app from 500 daily active users to 60,000 in under 10 months through structured PLG design and disciplined multi-channel acquisition. Started from near zero.</div>
@@ -855,7 +881,7 @@ window.addEventListener('scroll', () => {
     nav.classList.toggle('visible', window.scrollY > 200);
 }, { passive: true });
 
-// ---- RESULT CARDS ----
+// ---- RESULT CARDS: expand on click ----
 document.querySelectorAll('.result-card').forEach(card => {
     card.addEventListener('click', () => {
         const open = card.classList.contains('open');
@@ -863,6 +889,33 @@ document.querySelectorAll('.result-card').forEach(card => {
         if (!open) card.classList.add('open');
     });
 });
+
+// ---- COUNT-UP ON SCROLL ----
+function countUp(card) {
+    const target = parseInt(card.dataset.target, 10);
+    const prefix = card.dataset.prefix || '';
+    const suffix = card.dataset.suffix || '';
+    const numEl  = card.querySelector('.result-num');
+    const dur    = 1300;
+    const start  = performance.now();
+    (function tick(now) {
+        const p  = Math.min((now - start) / dur, 1);
+        const ep = 1 - Math.pow(1 - p, 3);
+        numEl.textContent = prefix + Math.round(ep * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+    })(start);
+}
+
+const countObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            countUp(e.target);
+            countObs.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.result-card').forEach(c => countObs.observe(c));
 
 // ---- SCROLL REVEAL ----
 const obs = new IntersectionObserver(entries => {
