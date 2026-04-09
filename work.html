@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jake Gronsky | Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #F74902;
+            --ink:    #36454F;
+            --cream:  #FDFCF1;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Code Pro', monospace;
+            background: var(--cream);
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* grain */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.042;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 220px 220px;
+        }
+
+        /* orange top bar */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--orange);
+            z-index: 200;
+        }
+
+        /* ---- PASSWORD GATE ---- */
+        #pwOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #pwBox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 280px;
+            width: 100%;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .pw-bar {
+            width: 32px;
+            height: 2px;
+            background: var(--orange);
+            margin-bottom: 8px;
+        }
+        #pwLabel {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            opacity: 0.4;
+        }
+        #pwInput {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1.1rem;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(54,69,79,0.2);
+            color: var(--ink);
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            outline: none;
+            letter-spacing: 0.24em;
+        }
+        #pwInput::placeholder { opacity: 0.2; font-size: 0.8rem; letter-spacing: 0.06em; }
+        #pwBtn {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cream);
+            background: var(--orange);
+            border: none;
+            padding: 12px 32px;
+            cursor: pointer;
+            transition: opacity 0.18s;
+        }
+        #pwBtn:hover { opacity: 0.82; }
+        #pwError {
+            font-size: 0.66rem;
+            letter-spacing: 0.08em;
+            color: var(--orange);
+            display: none;
+            opacity: 0.7;
+        }
+
+        /* ---- LAYOUT ---- */
+        .wrap {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 48px;
+            position: relative;
+            z-index: 1;
+        }
+        .divider {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 48px;
+            border-top: 1px solid rgba(54,69,79,0.1);
+        }
+
+        /* ---- STICKY NAV ---- */
+        .sticky-nav {
+            position: fixed;
+            top: 3px; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,252,241,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(54,69,79,0.08);
+            padding: 13px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: translateY(-110%);
+            transition: transform 0.3s ease;
+        }
+        .sticky-nav.visible { transform: translateY(0); }
+        .nav-name {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: var(--orange);
+        }
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a {
+            font-size: 0.65rem;
+            color: var(--ink);
+            text-decoration: none;
+            opacity: 0.42;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: opacity 0.18s;
+        }
+        .nav-links a:hover { opacity: 1; }
+
+        /* ---- SECTION LABELS ---- */
+        .section-label {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            display: block;
+            margin-bottom: 20px;
+            opacity: 0.85;
+        }
+
+        /* ---- HERO ---- */
+        #hero {
+            padding: 120px 48px 100px;
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        #hero .eyebrow {
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            opacity: 0.38;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .status-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--orange);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+        #hero h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            max-width: 700px;
+            margin-bottom: 36px;
+        }
+        #hero h1 em {
+            font-style: normal;
+            color: var(--orange);
+        }
+        .hero-stats {
+            display: flex;
+            gap: 0;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+        }
+        .hero-stat {
+            font-size: 0.75rem;
+            opacity: 0.48;
+            padding-right: 20px;
+            margin-right: 20px;
+            border-right: 1px solid rgba(54,69,79,0.18);
+        }
+        .hero-stat:last-child { border-right: none; }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--cream);
+            background: var(--orange);
+            text-decoration: none;
+            padding: 13px 26px;
+            transition: opacity 0.18s;
+        }
+        .hero-cta:hover { opacity: 0.82; }
+
+        /* ---- STORY ---- */
+        #story { padding: 88px 0; }
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+        .story-headline {
+            font-size: clamp(1.4rem, 3vw, 2.1rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+            margin-bottom: 24px;
+        }
+        .story-body p {
+            font-size: 0.83rem;
+            line-height: 1.9;
+            opacity: 0.68;
+            margin-bottom: 16px;
+        }
+        .story-body p:last-child { margin-bottom: 0; }
+        .story-pills {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding-top: 8px;
+        }
+        .pill {
+            border-left: 2px solid var(--orange);
+            padding: 12px 0 12px 18px;
+        }
+        .pill-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .pill-sub {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            line-height: 1.55;
+        }
+
+        /* ---- RESULTS ---- */
+        #results {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 88px 0;
+        }
+        #results .section-label { color: var(--orange); }
+        .results-head {
+            font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+            font-weight: 700;
+            line-height: 1.25;
+            max-width: 540px;
+            margin-bottom: 52px;
+            letter-spacing: -0.01em;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+        .result-card {
+            background: rgba(253,252,241,0.05);
+            padding: 32px 26px;
+            cursor: pointer;
+            transition: background 0.18s;
+            border-left: 2px solid transparent;
+            transition: background 0.18s, border-color 0.18s;
+        }
+        .result-card:hover { background: rgba(253,252,241,0.09); border-color: var(--orange); }
+        .result-card.open { background: rgba(253,252,241,0.09); border-color: var(--orange); }
+        .result-num {
+            font-size: clamp(2rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+            color: var(--cream);
+        }
+        .result-lbl {
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.38;
+            margin-bottom: 4px;
+        }
+        .result-hint {
+            font-size: 0.6rem;
+            letter-spacing: 0.06em;
+            opacity: 0.2;
+            margin-top: 10px;
+            transition: opacity 0.18s;
+        }
+        .result-card:hover .result-hint { opacity: 0.5; }
+        .result-detail {
+            font-size: 0.74rem;
+            line-height: 1.7;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.38s ease, opacity 0.3s ease, margin-top 0.3s ease;
+            margin-top: 0;
+            color: var(--cream);
+        }
+        .result-card.open .result-detail { max-height: 160px; opacity: 0.55; margin-top: 14px; }
+        .result-card.open .result-hint { opacity: 0; }
+
+        /* ---- APPROACH ---- */
+        #approach { padding: 88px 0; }
+        .approach-head {
+            font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+            font-weight: 700;
+            line-height: 1.25;
+            max-width: 520px;
+            margin-bottom: 52px;
+            letter-spacing: -0.01em;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid rgba(54,69,79,0.1);
+        }
+        .step {
+            padding: 28px 22px 28px 0;
+        }
+        .step + .step { border-left: 1px solid rgba(54,69,79,0.1); padding-left: 22px; }
+        .step-num {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            color: var(--orange);
+            margin-bottom: 14px;
+            display: block;
+        }
+        .step-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+        .step-body { font-size: 0.75rem; line-height: 1.75; opacity: 0.55; }
+
+        /* ---- CAPABILITIES ---- */
+        #capabilities { padding: 88px 0; background: rgba(54,69,79,0.03); }
+        .cap-head {
+            font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 36px;
+            letter-spacing: -0.01em;
+        }
+        .cap-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .cap {
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+            padding: 8px 14px;
+            border: 1px solid rgba(54,69,79,0.16);
+            cursor: default;
+            transition: all 0.16s;
+        }
+        .cap:hover { background: var(--orange); color: var(--cream); border-color: var(--orange); }
+
+        /* ---- WHY ME ---- */
+        #why { padding: 88px 0; }
+        .why-head {
+            font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+            font-weight: 700;
+            line-height: 1.25;
+            max-width: 500px;
+            margin-bottom: 44px;
+            letter-spacing: -0.01em;
+        }
+        .why-list { display: flex; flex-direction: column; gap: 0; max-width: 620px; }
+        .why-item {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            padding: 22px 0;
+            border-bottom: 1px solid rgba(54,69,79,0.08);
+        }
+        .why-item:first-child { border-top: 1px solid rgba(54,69,79,0.08); }
+        .why-num {
+            font-size: 0.58rem;
+            font-weight: 700;
+            color: var(--orange);
+            letter-spacing: 0.1em;
+            flex-shrink: 0;
+            padding-top: 3px;
+            min-width: 20px;
+        }
+        .why-content {}
+        .why-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 6px; }
+        .why-body { font-size: 0.76rem; line-height: 1.72; opacity: 0.55; }
+
+        /* ---- FIT ---- */
+        #fit {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 88px 0;
+        }
+        #fit .section-label { color: var(--orange); }
+        .fit-head {
+            font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+            font-weight: 700;
+            line-height: 1.25;
+            max-width: 480px;
+            margin-bottom: 40px;
+            letter-spacing: -0.01em;
+        }
+        .fit-list { list-style: none; max-width: 620px; }
+        .fit-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            font-size: 0.82rem;
+            line-height: 1.72;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(253,252,241,0.08);
+            color: var(--cream);
+            opacity: 0.75;
+        }
+        .fit-item:first-child { border-top: 1px solid rgba(253,252,241,0.08); }
+        .fit-arrow { color: var(--orange); flex-shrink: 0; opacity: 1; }
+
+        /* ---- CTA ---- */
+        #cta { padding: 100px 0 88px; }
+        .cta-head {
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            max-width: 520px;
+            margin-bottom: 38px;
+            letter-spacing: -0.015em;
+        }
+        .cta-head em { font-style: normal; color: var(--orange); }
+        .cta-row { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+        .cta-btn {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: var(--cream);
+            background: var(--orange);
+            text-decoration: none;
+            padding: 14px 26px;
+            transition: opacity 0.18s;
+        }
+        .cta-btn:hover { opacity: 0.82; }
+        .cta-link {
+            font-size: 0.76rem;
+            color: var(--ink);
+            text-decoration: none;
+            opacity: 0.42;
+            letter-spacing: 0.04em;
+            border-bottom: 1px solid rgba(54,69,79,0.2);
+            padding-bottom: 2px;
+            transition: opacity 0.18s;
+        }
+        .cta-link:hover { opacity: 0.85; }
+
+        /* ---- FOOTER ---- */
+        footer {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 22px 48px;
+            border-top: 1px solid rgba(54,69,79,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        footer a {
+            font-size: 0.65rem;
+            color: var(--ink);
+            text-decoration: none;
+            opacity: 0.3;
+            letter-spacing: 0.06em;
+            transition: opacity 0.18s;
+        }
+        footer a:hover { opacity: 0.7; }
+
+        /* ---- SCROLL REVEAL ---- */
+        .rv {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .rv.in { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.08s; }
+        .d2 { transition-delay: 0.16s; }
+        .d3 { transition-delay: 0.24s; }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 760px) {
+            .wrap { padding: 0 24px; }
+            .divider { padding: 0 24px; }
+            #hero { padding: 100px 24px 72px; }
+            .sticky-nav { padding: 13px 24px; }
+            .nav-links { gap: 18px; }
+            .story-grid { grid-template-columns: 1fr; gap: 40px; }
+            .steps { grid-template-columns: 1fr 1fr; }
+            .step:nth-child(3), .step:nth-child(4) { border-top: 1px solid rgba(54,69,79,0.1); }
+            .step:nth-child(3) { border-left: none; padding-left: 0; }
+            .results-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 520px) {
+            .hero-stats { flex-direction: column; gap: 6px; }
+            .hero-stat { border-right: none; padding: 0; margin: 0; }
+            .steps { grid-template-columns: 1fr; }
+            .step + .step { border-left: none; border-top: 1px solid rgba(54,69,79,0.1); padding-left: 0; }
+            .results-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="pwOverlay">
+    <div id="pwBox">
+        <div class="pw-bar"></div>
+        <p id="pwLabel">Password required</p>
+        <input type="password" id="pwInput" placeholder="enter password" autocomplete="off" />
+        <button id="pwBtn">Enter</button>
+        <p id="pwError">Incorrect. Try again.</p>
+    </div>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="stickyNav">
+    <span class="nav-name">Jake Gronsky</span>
+    <div class="nav-links">
+        <a href="#results">Results</a>
+        <a href="#approach">Approach</a>
+        <a href="#why">Why Me</a>
+        <a href="#cta">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+    <div class="eyebrow">
+        <span class="status-dot"></span>
+        Jake Gronsky &nbsp;/&nbsp; Growth Consultant
+    </div>
+    <h1>Fractional hire.<br><em>Full-time</em> results.</h1>
+    <div class="hero-stats">
+        <span class="hero-stat">12 years</span>
+        <span class="hero-stat">5 companies scaled</span>
+        <span class="hero-stat">Reports to CEO</span>
+        <span class="hero-stat">Ex-St. Louis Cardinals</span>
+    </div>
+    <a href="mailto:gronsky.jake@gmail.com" class="hero-cta">Let's talk &rarr;</a>
+</div>
+
+<div class="divider"></div>
+
+<!-- STORY -->
+<div id="story">
+    <div class="wrap">
+        <div class="story-grid">
+            <div>
+                <span class="section-label rv">My story</span>
+                <h2 class="story-headline rv">I build the operating systems behind durable growth.</h2>
+                <div class="story-body rv">
+                    <p>Most companies don't have a growth problem. They have a structure problem. The pipeline slows. CAC climbs. Teams stop rowing in the same direction. That's not a marketing problem. That's a missing operating model.</p>
+                    <p>That's where I come in. I design and run the full GTM operating model: strategy, execution, cadence, and reporting. I sit where a Head of Growth or fractional CMO should sit, reporting into the CEO, owning the pipeline number.</p>
+                    <p>I have spent 12 years doing this across consumer apps, B2B SaaS, enterprise media, and growth-stage startups. The playbook adapts. The standard doesn't.</p>
+                </div>
+            </div>
+            <div class="story-pills rv d1">
+                <div class="pill">
+                    <div class="pill-title">Fractional Leadership</div>
+                    <div class="pill-sub">Embedded, hands-on execution at the Head of Growth or CMO level. Not advisory. Not a deck. In the work.</div>
+                </div>
+                <div class="pill">
+                    <div class="pill-title">GTM Operating Model</div>
+                    <div class="pill-sub">Strategy is only useful if it runs. I build the planning cadence, KPI framework, and sprint structure that keeps growth honest.</div>
+                </div>
+                <div class="pill">
+                    <div class="pill-title">Stage Agnostic</div>
+                    <div class="pill-sub">Series A through enterprise. B2B SaaS, consumer, marketplace, and media. I meet companies where they are.</div>
+                </div>
+                <div class="pill">
+                    <div class="pill-title">AI-Native Growth</div>
+                    <div class="pill-sub">I build AI infrastructure into the growth motion. Agents, workflows, and systems that compress work without cutting corners.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- RESULTS -->
+<div id="results">
+    <div class="wrap">
+        <span class="section-label">Evidence</span>
+        <h2 class="results-head">Results that hold up when you look behind the number.</h2>
+        <p style="font-size:0.65rem; letter-spacing:0.08em; opacity:0.25; margin-bottom:40px; margin-top:-32px;">Tap any result to expand.</p>
+        <div class="results-grid">
+
+            <div class="result-card" data-target="40" data-prefix="+" data-suffix="%">
+                <div class="result-num">+40%</div>
+                <div class="result-lbl">Pipeline YoY</div>
+                <div class="result-hint">tap for context &darr;</div>
+                <div class="result-detail">Rebuilt the GTM operating model: quarterly goal-setting, monthly cross-functional sprints, and a KPI framework from MQL through closed-won. Pipeline grew 40% year over year.</div>
+            </div>
+
+            <div class="result-card" data-target="32" data-prefix="-" data-suffix="%">
+                <div class="result-num">-32%</div>
+                <div class="result-lbl">Spend reduced</div>
+                <div class="result-hint">tap for context &darr;</div>
+                <div class="result-detail">Reduced total marketing spend by 32% while simultaneously growing pipeline. Achieved through structured program design, tighter channel allocation, and cutting everything without a clear pipeline tie.</div>
+            </div>
+
+            <div class="result-card" data-target="200" data-prefix="-" data-suffix="%">
+                <div class="result-num">-200%</div>
+                <div class="result-lbl">CAC reduction</div>
+                <div class="result-hint">tap for context &darr;</div>
+                <div class="result-detail">Cut customer acquisition cost by 200% alongside the spend reduction. Spending less, acquiring more efficiently. Both moved in the right direction at the same time.</div>
+            </div>
+
+            <div class="result-card" data-target="1" data-prefix="" data-suffix="M+">
+                <div class="result-num">1M+</div>
+                <div class="result-lbl">Monthly sessions</div>
+                <div class="result-hint">tap for context &darr;</div>
+                <div class="result-detail">Launched BestColleges marketplace at CNET from zero. Led full rebrand, rebuilt acquisition funnels, scaled the team from 5 to 17. Set all-time revenue and engagement records.</div>
+            </div>
+
+            <div class="result-card" data-target="34" data-prefix="+" data-suffix="%">
+                <div class="result-num">+34%</div>
+                <div class="result-lbl">Turnaround growth</div>
+                <div class="result-hint">tap for context &darr;</div>
+                <div class="result-detail">Reversed two years of portfolio decline at Red Ventures across SEO, content, UX, and brand. Introduced operating cadences and accountability structures that improved output quality and eliminated wasted effort.</div>
+            </div>
+
+            <div class="result-card" data-target="60" data-prefix="" data-suffix="K">
+                <div class="result-num">60K</div>
+                <div class="result-lbl">DAU in 10 months</div>
+                <div class="result-hint">tap for context &darr;</div>
+                <div class="result-detail">Scaled a consumer app from 500 daily active users to 60,000 in under 10 months through structured PLG design and disciplined multi-channel acquisition. Started from near zero.</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- APPROACH -->
+<div id="approach">
+    <div class="wrap">
+        <span class="section-label rv">How I work</span>
+        <h2 class="approach-head rv">Strategy without execution is noise. I do both.</h2>
+        <div class="steps">
+            <div class="step rv">
+                <span class="step-num">01</span>
+                <div class="step-title">Diagnose the structure</div>
+                <p class="step-body">Before a single tactic, I map the operating model: where is the program broken, what is misaligned, and what is the real bottleneck between you and durable growth.</p>
+            </div>
+            <div class="step rv d1">
+                <span class="step-num">02</span>
+                <div class="step-title">Design the system</div>
+                <p class="step-body">Strategy is only useful if it runs. I build the full operating model: planning cadences, KPI frameworks, cross-functional sprint structures, and accountability from MQL to closed-won.</p>
+            </div>
+            <div class="step rv d2">
+                <span class="step-num">03</span>
+                <div class="step-title">Build the cadence</div>
+                <p class="step-body">I install the rhythm: quarterly planning, monthly reviews, weekly sprints. Growth that cannot be measured, reviewed, and corrected is not durable. I build the machine that keeps it honest.</p>
+            </div>
+            <div class="step rv d3">
+                <span class="step-num">04</span>
+                <div class="step-title">Measure and compound</div>
+                <p class="step-body">Every program ties back to pipeline. Not impressions, not engagement. Pipeline. I build the reporting infrastructure that connects marketing activity to revenue, clearly, at the board level.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CAPABILITIES -->
+<div id="capabilities">
+    <div class="wrap">
+        <span class="section-label rv">What I bring</span>
+        <h2 class="cap-head rv">A full toolkit, not a specialty silo.</h2>
+        <div class="cap-grid">
+            <span class="cap rv">GTM Program Design</span>
+            <span class="cap rv d1">Pipeline Architecture</span>
+            <span class="cap rv d2">Quarterly Planning</span>
+            <span class="cap rv d3">Cross-functional Sprints</span>
+            <span class="cap rv">Field Marketing</span>
+            <span class="cap rv d1">ABM Programs</span>
+            <span class="cap rv d2">Demand Generation</span>
+            <span class="cap rv d3">MQL / SAL / SQL Reporting</span>
+            <span class="cap rv">P&amp;L Ownership</span>
+            <span class="cap rv d1">Board &amp; Executive Reporting</span>
+            <span class="cap rv d2">Agency &amp; Vendor Management</span>
+            <span class="cap rv d3">AI Agent Development</span>
+            <span class="cap rv">HubSpot / Salesforce</span>
+            <span class="cap rv d1">Team Scaling</span>
+            <span class="cap rv d2">Partner &amp; Co-marketing</span>
+            <span class="cap rv d3">Category Development</span>
+        </div>
+    </div>
+</div>
+
+<!-- WHY ME -->
+<div id="why">
+    <div class="wrap">
+        <span class="section-label rv">Why me</span>
+        <h2 class="why-head rv">A difference in approach, and care.</h2>
+        <div class="why-list">
+            <div class="why-item rv">
+                <span class="why-num">01</span>
+                <div class="why-content">
+                    <div class="why-title">Operator DNA</div>
+                    <div class="why-body">I have sat in the founding Head of Growth and CMO seat. I know what it takes to build from zero, own a pipeline number, and report to a board. I don't consult from a distance. I operate from inside.</div>
+                </div>
+            </div>
+            <div class="why-item rv d1">
+                <span class="why-num">02</span>
+                <div class="why-content">
+                    <div class="why-title">End-to-End Execution</div>
+                    <div class="why-body">Strategy without action is noise. I develop the operating model and then run it. No handoff to a junior team. No deck left behind. I own the outcome.</div>
+                </div>
+            </div>
+            <div class="why-item rv d2">
+                <span class="why-num">03</span>
+                <div class="why-content">
+                    <div class="why-title">Long-Term Commitment</div>
+                    <div class="why-body">I seek deeply integrated, long-term engagements. The companies I work with are not clients. They are partners. That difference shows up in the work every single day.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FIT -->
+<div id="fit">
+    <div class="wrap">
+        <span class="section-label">Who I work with</span>
+        <h2 class="fit-head">Built for founders and operators who are serious about durable growth.</h2>
+        <ul class="fit-list">
+            <li class="fit-item">
+                <span class="fit-arrow">&rsaquo;</span>
+                Series A through C companies that are growing but the growth is fragile, unstructured, or hard to explain to a board.
+            </li>
+            <li class="fit-item">
+                <span class="fit-arrow">&rsaquo;</span>
+                Enterprise teams where marketing, sales, and product are not aligned on the same pipeline goals or operating cadence.
+            </li>
+            <li class="fit-item">
+                <span class="fit-arrow">&rsaquo;</span>
+                Founders and CEOs who need a real GTM operating model, not a list of tactics or another agency with a retainer.
+            </li>
+            <li class="fit-item">
+                <span class="fit-arrow">&rsaquo;</span>
+                Companies coming off a decline or plateau that need a structured turnaround, not a rebrand.
+            </li>
+            <li class="fit-item">
+                <span class="fit-arrow">&rsaquo;</span>
+                Teams that want to build AI infrastructure into their growth motion without hiring a full engineering team to do it.
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- CTA -->
+<div id="cta">
+    <div class="wrap">
+        <h2 class="cta-head rv">If you are building something that needs to last, <em>let's talk.</em></h2>
+        <div class="cta-row rv d1">
+            <a href="mailto:gronsky.jake@gmail.com" class="cta-btn">gronsky.jake@gmail.com</a>
+            <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/" target="_blank" class="cta-link">LinkedIn &rarr;</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <a href="/">&larr; jakegronsky.com</a>
+    <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/" target="_blank">LinkedIn</a>
+</footer>
+
+<script>
+// ---- PASSWORD ----
+const overlay = document.getElementById('pwOverlay');
+const input   = document.getElementById('pwInput');
+const error   = document.getElementById('pwError');
+
+function unlock() {
+    if (input.value.trim().toUpperCase() === 'JGC') {
+        overlay.style.display = 'none';
+    } else {
+        error.style.display = 'block';
+        input.value = '';
+        input.focus();
+    }
+}
+
+document.getElementById('pwBtn').addEventListener('click', unlock);
+input.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+
+// ---- STICKY NAV ----
+const nav = document.getElementById('stickyNav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('visible', window.scrollY > 200);
+}, { passive: true });
+
+// ---- RESULT CARDS ----
+document.querySelectorAll('.result-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const open = card.classList.contains('open');
+        document.querySelectorAll('.result-card').forEach(c => c.classList.remove('open'));
+        if (!open) card.classList.add('open');
+    });
+});
+
+// ---- SCROLL REVEAL ----
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+}, { threshold: 0.08 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
