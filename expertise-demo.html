@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noodp, noimageindex">
+  <title>Expertise — Turn Website Visitors Into Meetings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #03060F; --surface: #0B1120; --border: rgba(255,255,255,0.07);
+      --text: #F9FAFB; --muted: #6B7280; --soft: #9CA3AF;
+      --pu: #8B5CF6; --pu-lt: #A78BFA; --gr: #10B981; --gr-lt: #34D399;
+    }
+    body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+
+    /* Orbs */
+    .orbs { position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden; }
+    .orb  { position:absolute;border-radius:50%;filter:blur(100px); }
+    .o1 { width:760px;height:760px;background:radial-gradient(circle,rgba(139,92,246,.28) 0%,transparent 70%);top:-320px;left:-200px;animation:drift 20s ease-in-out infinite; }
+    .o2 { width:620px;height:620px;background:radial-gradient(circle,rgba(59,130,246,.18) 0%,transparent 70%);top:-150px;right:-160px;animation:drift 26s ease-in-out infinite reverse;animation-delay:-8s; }
+    .o3 { width:500px;height:500px;background:radial-gradient(circle,rgba(16,185,129,.14) 0%,transparent 70%);bottom:0;right:18%;animation:drift 32s ease-in-out infinite;animation-delay:-14s; }
+    @keyframes drift { 0%,100%{transform:translate(0,0)scale(1)} 33%{transform:translate(50px,-60px)scale(1.07)} 66%{transform:translate(-35px,40px)scale(.93)} }
+    body::before { content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.02;background:radial-gradient(circle,#fff 1px,transparent 1px);background-size:30px 30px; }
+
+    /* Nav */
+    nav { position:relative;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:64px;border-bottom:1px solid var(--border);background:rgba(3,6,15,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px); }
+    .logo { display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text); }
+    .logo-icon { width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#8B5CF6,#3B82F6);display:flex;align-items:center;justify-content:center; }
+    .logo-text { font-size:16px;font-weight:700;letter-spacing:-.02em; }
+    .nav-links { display:flex;gap:28px;list-style:none; }
+    .nav-links a { color:var(--soft);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-right { display:flex;align-items:center;gap:10px; }
+    .btn-ghost { padding:7px 16px;border:1px solid var(--border);border-radius:8px;color:var(--soft);background:transparent;font:500 14px 'Inter',sans-serif;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s; }
+    .btn-ghost:hover { color:var(--text);border-color:rgba(255,255,255,.18); }
+    .btn-start { padding:8px 20px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);border:none;border-radius:8px;color:#fff;font:600 14px 'Inter',sans-serif;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 0 22px rgba(139,92,246,.4);transition:all .2s; }
+    .btn-start:hover { transform:translateY(-1px);box-shadow:0 0 34px rgba(139,92,246,.6); }
+
+    /* Hero */
+    .hero { position:relative;z-index:10;text-align:center;padding:68px 24px 48px; }
+    .badge { display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border:1px solid rgba(139,92,246,.35);border-radius:100px;font-size:12px;font-weight:500;color:var(--pu-lt);background:rgba(139,92,246,.09);margin-bottom:20px; }
+    .bdot { width:6px;height:6px;border-radius:50%;background:var(--pu);animation:bp 2s ease-in-out infinite; }
+    @keyframes bp { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+    h1 { font-size:clamp(34px,5vw,62px);font-weight:800;line-height:1.08;letter-spacing:-.035em;margin-bottom:16px;background:linear-gradient(155deg,#fff 0%,#CBD5E1 50%,#94A3B8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .hero-sub { font-size:clamp(14px,1.7vw,18px);color:var(--muted);max-width:500px;margin:0 auto 34px;line-height:1.65; }
+    .hero-ctas { display:flex;align-items:center;justify-content:center;gap:12px; }
+    .btn-demo { padding:13px 28px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);border:none;border-radius:10px;color:#fff;font:600 15px 'Inter',sans-serif;cursor:pointer;box-shadow:0 0 30px rgba(139,92,246,.45);transition:all .2s; }
+    .btn-demo:hover { transform:translateY(-2px);box-shadow:0 0 44px rgba(139,92,246,.65); }
+    .btn-watch { padding:13px 22px;border:1px solid var(--border);border-radius:10px;color:var(--soft);background:rgba(255,255,255,.03);font:500 15px 'Inter',sans-serif;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .2s; }
+    .btn-watch:hover { color:var(--text);border-color:rgba(255,255,255,.18); }
+    .play-icon { width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center; }
+
+    /* Motion section */
+    .motion-wrap { position:relative;z-index:10;max-width:1140px;margin:0 auto;padding:0 24px 72px; }
+    .section-label { display:flex;align-items:center;gap:14px;margin-bottom:20px; }
+    .sl-line { flex:1;height:1px;background:var(--border); }
+    .sl-txt { font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);white-space:nowrap; }
+
+    /* Journey card */
+    .journey { position:relative;background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden; }
+    .journey::before { content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(139,92,246,.06) 0%,rgba(139,92,246,.02) 46%,rgba(16,185,129,.02) 54%,rgba(16,185,129,.06) 100%); }
+    .j-divider { position:absolute;top:0;bottom:0;left:50%;z-index:3;width:1px;background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,.1) 20%,rgba(255,255,255,.1) 80%,transparent 100%); }
+    .journey-svg { display:block;width:100%;position:relative;z-index:1;overflow:visible; }
+    .prod-strip { display:flex;position:relative;z-index:2;border-top:1px solid var(--border); }
+    .prod-half { flex:1;display:flex;align-items:center;justify-content:center;padding:14px 0; }
+    .prod-half+.prod-half { border-left:1px solid var(--border); }
+    .prod-pill { display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:8px;border:1px solid;font-size:13px;font-weight:700; }
+    .pp-live { border-color:rgba(139,92,246,.45);background:rgba(139,92,246,.1);color:var(--pu-lt); }
+    .pp-ae   { border-color:rgba(16,185,129,.45);background:rgba(16,185,129,.1);color:var(--gr-lt); }
+    .pp-dot { width:6px;height:6px;border-radius:50%;animation:bp 1.8s ease-in-out infinite; }
+    .pp-dot-p { background:var(--pu-lt); }
+    .pp-dot-g { background:var(--gr-lt); }
+
+    /* Stats */
+    .stats { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px; }
+    .stat { text-align:center;padding:22px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.02); }
+    .stat-n { font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:6px; }
+    .sn-p { background:linear-gradient(135deg,#A78BFA,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .sn-g { background:linear-gradient(135deg,#34D399,#10B981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .stat-l { font-size:13px;color:var(--muted);font-weight:500; }
+
+    /* H2 section */
+    .h2-section { position:relative;z-index:10;max-width:1140px;margin:0 auto;padding:0 24px 80px; }
+    .h2-div { height:1px;background:var(--border);margin-bottom:48px; }
+    h2 { font-size:clamp(24px,3.2vw,38px);font-weight:700;letter-spacing:-.025em;margin-bottom:12px;background:linear-gradient(135deg,#fff,#94A3B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .h2-sub { font-size:16px;color:var(--muted);max-width:440px;line-height:1.65; }
+  </style>
+</head>
+<body>
+
+<div class="orbs"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3.5" fill="white" opacity=".9"/><circle cx="8" cy="8" r="6.5" stroke="white" stroke-width="1.2" opacity=".3"/></svg></div>
+    <span class="logo-text">expertise</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Platform</a></li><li><a href="#">Pricing</a></li>
+    <li><a href="#">Resources</a></li><li><a href="#">Partner Program</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="btn-ghost">Sign In</a>
+    <a href="#" class="btn-start">Start</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge"><span class="bdot"></span>The complete AI revenue platform</div>
+  <h1>Turn website visitors into<br>meetings and qualified pipeline</h1>
+  <p class="hero-sub">Expertise AI engages and qualifies prospects in real time, delivering a better buyer experience and more meetings with qualified pipeline.</p>
+  <div class="hero-ctas">
+    <button class="btn-demo">Book a Demo</button>
+    <button class="btn-watch">
+      <div class="play-icon"><svg width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M1.5 1.5L6.5 4.5L1.5 7.5V1.5Z" fill="white" opacity=".8"/></svg></div>
+      Watch it work
+    </button>
+  </div>
+</section>
+
+<!-- MOTION GRAPHIC -->
+<div class="motion-wrap">
+  <div class="section-label">
+    <div class="sl-line"></div><span class="sl-txt">See the full journey</span><div class="sl-line"></div>
+  </div>
+
+  <div class="journey" id="journey">
+    <div class="j-divider"></div>
+
+    <!--
+      THE DRUNKEN TREASURE MAP PATH
+      One continuous journey. Goes backward. Overshoots. Loops. Doubles back.
+      Still lands the meeting.
+
+      Node centers (each is a Bezier endpoint):
+        N1  visitor  :  72 , 255   (start)
+        N2  Q1       : 232 ,  92
+        N3  Q2       : 395 , 218
+        N4  Q3       : 515 ,  85   (extra research chaos)
+        N5  answer   : 648 , 215   (Expertise takes over ~x=580)
+        N6  followup : 782 ,  86
+        N7  schedule : 916 , 215
+        N8  BOOKED   :1042 , 228   (end)
+    -->
+    <svg class="journey-svg" id="jsvg"
+         viewBox="0 0 1092 330"
+         preserveAspectRatio="xMidYMid meet"
+         overflow="visible">
+      <defs>
+        <!-- Path color: purple → green -->
+        <linearGradient id="pg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="rgba(139,92,246,.75)"/>
+          <stop offset="46%"  stop-color="rgba(139,92,246,.75)"/>
+          <stop offset="58%"  stop-color="rgba(16,185,129,.75)"/>
+          <stop offset="100%" stop-color="rgba(16,185,129,.75)"/>
+        </linearGradient>
+        <!-- Same but for glow layer -->
+        <linearGradient id="pg2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="rgba(139,92,246,.5)"/>
+          <stop offset="46%"  stop-color="rgba(139,92,246,.5)"/>
+          <stop offset="58%"  stop-color="rgba(16,185,129,.5)"/>
+          <stop offset="100%" stop-color="rgba(16,185,129,.5)"/>
+        </linearGradient>
+        <filter id="fglow">
+          <feGaussianBlur stdDeviation="6"/>
+        </filter>
+        <filter id="fdot">
+          <feGaussianBlur stdDeviation="4"/>
+        </filter>
+        <filter id="fbooked">
+          <feGaussianBlur stdDeviation="10"/>
+        </filter>
+      </defs>
+
+      <!-- ── DEAD END MARKS — scattered X marks like a real treasure map ── -->
+      <g opacity="0" id="dead-ends">
+        <!-- left-side dead ends -->
+        <text font-family="Inter,sans-serif" font-size="13" font-weight="700"
+              fill="rgba(167,139,250,.35)" text-anchor="middle" x="148" y="185">✕</text>
+        <text font-family="Inter,sans-serif" font-size="11" font-weight="700"
+              fill="rgba(167,139,250,.25)" text-anchor="middle" x="310" y="82">✕</text>
+        <text font-family="Inter,sans-serif" font-size="13" font-weight="700"
+              fill="rgba(167,139,250,.3)"  text-anchor="middle" x="460" y="245">✕</text>
+        <!-- right-side dead ends -->
+        <text font-family="Inter,sans-serif" font-size="11" font-weight="700"
+              fill="rgba(52,211,153,.25)"  text-anchor="middle" x="700" y="165">✕</text>
+        <text font-family="Inter,sans-serif" font-size="13" font-weight="700"
+              fill="rgba(52,211,153,.3)"   text-anchor="middle" x="855" y="88">✕</text>
+      </g>
+
+      <!--
+        THE PATH — all control points chosen to be deliberately unhinged:
+          Seg 1: (72,255)→(232,92)     — flies off-left then swoops back
+          Seg 2: (232,92)→(395,218)    — overshoots right, loops DOWN past canvas bottom
+          Seg 3: (395,218)→(515,85)    — pulls back left, shoots UP past canvas top
+          Seg 4: (515,85)→(648,215)    — soars up then PLUNGES past canvas bottom
+          Seg 5: (648,215)→(782,86)    — dips way down then rockets up past top
+          Seg 6: (782,86)→(916,215)    — sweeps far below then comes back
+          Seg 7: (916,215)→(1042,228)  — wild right-left-right finale to BOOKED
+      -->
+
+      <!-- Path glow (thick + blurred) — starts visible -->
+      <path id="path-glow" opacity="0"
+        d="M 72,255
+           C -50,20    142,5     232,92
+           C 455,38    268,360   395,218
+           C 322,162   442,-22   515,85
+           C 606,4     604,348   648,215
+           C 700,292   712,-28   782,86
+           C 858,338   862,270   916,215
+           C 1002,65   1088,312  1042,228"
+        stroke="url(#pg2)" stroke-width="16" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"
+        filter="url(#fglow)" opacity="0.38"/>
+
+      <!-- Path main (crisp) — fades in on load, always visible -->
+      <path id="main-path" opacity="0"
+        d="M 72,255
+           C -50,20    142,5     232,92
+           C 455,38    268,360   395,218
+           C 322,162   442,-22   515,85
+           C 606,4     604,348   648,215
+           C 700,292   712,-28   782,86
+           C 858,338   862,270   916,215
+           C 1002,65   1088,312  1042,228"
+        stroke="url(#pg)" stroke-width="1.9" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Traveling dot -->
+      <circle id="tdglow" r="14" opacity="0" filter="url(#fdot)"/>
+      <circle id="tddot"  r="5"  opacity="0" fill="white"/>
+
+      <!-- ── NODE 1: Visitor (Will / Enterprise SaaS Co.) ── -->
+      <g id="n1" opacity="0">
+        <circle cx="72" cy="255" r="40"
+                fill="rgba(139,92,246,.11)" stroke="rgba(139,92,246,.4)" stroke-width="1.3"/>
+        <circle cx="72" cy="255" r="29" fill="rgba(139,92,246,.18)"/>
+        <circle cx="72" cy="245" r="8.5" fill="rgba(167,139,250,.85)"/>
+        <path d="M 51,276 Q 51,264 72,264 Q 93,264 93,276"
+              fill="rgba(139,92,246,.4)" stroke="none"/>
+        <text font-family="Inter,sans-serif" font-size="11" font-weight="700"
+              fill="#A78BFA" text-anchor="middle" x="72" y="294">Will</text>
+        <text font-family="Inter,sans-serif" font-size="8.5" font-weight="400"
+              fill="rgba(167,139,250,.55)" text-anchor="middle" x="72" y="306">Enterprise SaaS Co.</text>
+      </g>
+
+      <!-- ── NODE 2: "Will it handle custom processing workflows?" ── -->
+      <!-- Slight tilt: rotate(-1.8deg) around node center -->
+      <g id="n2" opacity="0" transform="rotate(-1.8, 232, 92)">
+        <rect x="140" y="60" width="184" height="64" rx="11"
+              fill="rgba(255,255,255,.04)"
+              stroke="rgba(139,92,246,.42)" stroke-width="1.1" stroke-dasharray="4.5,3.5"/>
+        <text font-family="Inter,sans-serif" font-size="9" font-weight="600"
+              fill="rgba(167,139,250,.85)" text-anchor="middle" x="232" y="78">Expertise Live</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="232" y="96">"Will it work with our</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="232" y="112">existing CRM stack?"</text>
+      </g>
+
+      <!-- ── NODE 3: "Specifically for enterprise SaaS sales cycles?" ── -->
+      <g id="n3" opacity="0" transform="rotate(2.1, 395, 218)">
+        <rect x="300" y="186" width="190" height="64" rx="11"
+              fill="rgba(255,255,255,.04)"
+              stroke="rgba(139,92,246,.42)" stroke-width="1.1" stroke-dasharray="4.5,3.5"/>
+        <text font-family="Inter,sans-serif" font-size="9" font-weight="600"
+              fill="rgba(167,139,250,.85)" text-anchor="middle" x="395" y="204">Expertise Live</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="395" y="222">"Specifically for enterprise</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="395" y="238">SaaS sales cycles?"</text>
+      </g>
+
+      <!-- ── NODE 4: "What about multi-stakeholder deal cycles?" ── -->
+      <g id="n4" opacity="0" transform="rotate(-1.4, 515, 85)">
+        <rect x="418" y="54" width="194" height="62" rx="11"
+              fill="rgba(255,255,255,.04)"
+              stroke="rgba(139,92,246,.42)" stroke-width="1.1" stroke-dasharray="4.5,3.5"/>
+        <text font-family="Inter,sans-serif" font-size="9" font-weight="600"
+              fill="rgba(167,139,250,.85)" text-anchor="middle" x="515" y="72">Expertise Live</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="515" y="90">"What about multi-</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="515" y="106">stakeholder deals?"</text>
+      </g>
+
+      <!-- ── NODE 5: Expertise takes over — Answering in real time ── -->
+      <g id="n5" opacity="0" transform="rotate(1.6, 648, 215)">
+        <rect x="552" y="184" width="192" height="62" rx="11"
+              fill="rgba(255,255,255,.04)"
+              stroke="rgba(16,185,129,.42)" stroke-width="1.1" stroke-dasharray="4.5,3.5"/>
+        <text font-family="Inter,sans-serif" font-size="9" font-weight="600"
+              fill="rgba(52,211,153,.88)" text-anchor="middle" x="648" y="202">Expertise</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="648" y="220">"Answering for your</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="648" y="236">use case in real time"</text>
+      </g>
+
+      <!-- ── NODE 6: Follow-up #3 delivered ── -->
+      <g id="n6" opacity="0" transform="rotate(-2.2, 782, 86)">
+        <rect x="688" y="55" width="188" height="62" rx="11"
+              fill="rgba(255,255,255,.04)"
+              stroke="rgba(16,185,129,.42)" stroke-width="1.1" stroke-dasharray="4.5,3.5"/>
+        <text font-family="Inter,sans-serif" font-size="9" font-weight="600"
+              fill="rgba(52,211,153,.88)" text-anchor="middle" x="782" y="73">Expertise</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="782" y="91">Follow-up #3 queued</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="782" y="107">and delivered</text>
+      </g>
+
+      <!-- ── NODE 7: Pulling available schedules ── -->
+      <g id="n7" opacity="0" transform="rotate(1.8, 916, 215)">
+        <rect x="822" y="184" width="188" height="62" rx="11"
+              fill="rgba(255,255,255,.04)"
+              stroke="rgba(16,185,129,.42)" stroke-width="1.1" stroke-dasharray="4.5,3.5"/>
+        <text font-family="Inter,sans-serif" font-size="9" font-weight="600"
+              fill="rgba(52,211,153,.88)" text-anchor="middle" x="916" y="202">Expertise</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="916" y="220">Pulling available</text>
+        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="500"
+              fill="rgba(249,250,251,.78)" text-anchor="middle" x="916" y="236">schedules...</text>
+      </g>
+
+      <!-- ── NODE 8: BOOKED ── -->
+      <g id="n8" opacity="0">
+        <!-- Animated pulse ring -->
+        <circle id="booked-ring" cx="1042" cy="228" r="56"
+                fill="none" stroke="rgba(16,185,129,.3)" stroke-width="1.2"/>
+        <!-- Glow -->
+        <circle cx="1042" cy="228" r="46" fill="rgba(16,185,129,.22)" filter="url(#fbooked)"/>
+        <!-- Rings -->
+        <circle cx="1042" cy="228" r="46" fill="none" stroke="rgba(16,185,129,.45)" stroke-width="1.2"/>
+        <circle cx="1042" cy="228" r="36" fill="rgba(16,185,129,.2)"/>
+        <!-- Core -->
+        <circle cx="1042" cy="228" r="26" fill="#10B981"/>
+        <!-- Checkmark -->
+        <path d="M 1030,228 L 1039,237 L 1056,220"
+              stroke="white" stroke-width="2.5" fill="none"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Labels -->
+        <text font-family="Inter,sans-serif" font-size="11" font-weight="800"
+              fill="white" text-anchor="middle" x="1042" y="284">BOOKED</text>
+        <text font-family="Inter,sans-serif" font-size="8.5" font-weight="400"
+              fill="rgba(52,211,153,.7)" text-anchor="middle" x="1042" y="296">Will · Enterprise SaaS Co.</text>
+      </g>
+
+    </svg><!-- /jsvg -->
+
+    <!-- Product label strip -->
+    <div class="prod-strip">
+      <div class="prod-half">
+        <div class="prod-pill pp-live"><div class="pp-dot pp-dot-p"></div>Expertise Live</div>
+      </div>
+      <div class="prod-half">
+        <div class="prod-pill pp-ae"><div class="pp-dot pp-dot-g"></div>Expertise</div>
+      </div>
+    </div>
+  </div><!-- /journey -->
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat"><div class="stat-n sn-p">5×</div><div class="stat-l">ROI on pipeline generated</div></div>
+    <div class="stat"><div class="stat-n sn-g">25%</div><div class="stat-l">Increase in booked meetings</div></div>
+  </div>
+
+</div><!-- /motion-wrap -->
+
+<!-- H2 -->
+<div class="h2-section">
+  <div class="h2-div"></div>
+  <h2>Built for every stage of the revenue journey</h2>
+  <p class="h2-sub">From the first question a visitor asks to the moment a deal closes, Expertise handles the research, the outreach, and the follow-through.</p>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// Always-on treasure map — dot rolls continuously, map never hides
+// ─────────────────────────────────────────────────────────────
+
+const NODES = [
+  { id:'n1', cx:  72, cy:255 },
+  { id:'n2', cx: 232, cy: 92 },
+  { id:'n3', cx: 395, cy:218 },
+  { id:'n4', cx: 515, cy: 85 },
+  { id:'n5', cx: 648, cy:215 },
+  { id:'n6', cx: 782, cy: 86 },
+  { id:'n7', cx: 916, cy:215 },
+  { id:'n8', cx:1042, cy:228 },
+];
+
+const ROLL_DUR    = 9000;  // ms for one full pass start → BOOKED
+const PAUSE_DUR   = 1400;  // ms to linger at BOOKED before restarting
+const MID_X       = 550;   // x at which dot switches purple → green
+
+let rafHandle    = null;
+let nodeTimers   = [];
+let fracs        = [];     // arc-length fraction (0–1) for each node
+let activeIdx    = -1;     // which node is currently highlighted
+
+// ── Compute arc-length fraction for each node ──────────────────
+function computeFractions(pathEl) {
+  const total = pathEl.getTotalLength();
+  return NODES.map(({ cx, cy }) => {
+    let best = 0, bestD = Infinity;
+    for (let i = 0; i <= 2000; i++) {
+      const t  = (i / 2000) * total;
+      const pt = pathEl.getPointAtLength(t);
+      const d  = Math.hypot(pt.x - cx, pt.y - cy);
+      if (d < bestD) { bestD = d; best = t; }
+    }
+    return best / total;
+  });
+}
+
+// ── Highlight / un-highlight a node ───────────────────────────
+function setHighlight(idx, on) {
+  const el = idx >= 0 ? document.getElementById(NODES[idx].id) : null;
+  if (!el) return;
+  const isPurple = idx < 4;
+  el.style.transition = on ? 'filter .15s ease' : 'filter .4s ease';
+  el.style.filter = on
+    ? `drop-shadow(0 0 14px ${isPurple ? 'rgba(139,92,246,.85)' : 'rgba(16,185,129,.85)'})`
+    : 'none';
+}
+
+// ── Move the dot to a path point ──────────────────────────────
+function placeDot(pt) {
+  const td = document.getElementById('tddot');
+  const tg = document.getElementById('tdglow');
+  const isPurple = pt.x < MID_X;
+  const col  = isPurple ? 'rgba(167,139,250,1)'  : 'rgba(52,211,153,1)';
+  const gcol = isPurple ? 'rgba(167,139,250,.55)' : 'rgba(52,211,153,.55)';
+  [td, tg].forEach(el => {
+    if (!el) return;
+    el.setAttribute('cx', pt.x);
+    el.setAttribute('cy', pt.y);
+  });
+  if (td) td.setAttribute('fill', col);
+  if (tg) tg.setAttribute('fill', gcol);
+}
+
+// ── Continuously rolling dot ───────────────────────────────────
+function startRoll(pathEl) {
+  const total   = pathEl.getTotalLength();
+  let   t0      = performance.now();
+  let   pausing = false;
+
+  // Threshold: dot is "at" a node when within 1.5% of path length
+  const THRESH = 0.015;
+
+  function frame(now) {
+    if (pausing) return;
+
+    const elapsed = now - t0;
+    const frac    = elapsed / ROLL_DUR;
+
+    if (frac >= 1) {
+      // Arrived at BOOKED
+      pausing = true;
+      placeDot(pathEl.getPointAtLength(total));
+      setHighlight(activeIdx, false);
+      setHighlight(7, true);
+      activeIdx = 7;
+
+      setTimeout(() => {
+        setHighlight(7, false);
+        activeIdx = -1;
+        t0        = performance.now();
+        pausing   = false;
+        rafHandle = requestAnimationFrame(frame);
+      }, PAUSE_DUR);
+      return;
+    }
+
+    const pt = pathEl.getPointAtLength(frac * total);
+    placeDot(pt);
+
+    // Find nearest node within threshold
+    let nearIdx = -1;
+    for (let i = 0; i < fracs.length; i++) {
+      if (Math.abs(frac - fracs[i]) < THRESH) { nearIdx = i; break; }
+    }
+    if (nearIdx !== activeIdx) {
+      setHighlight(activeIdx, false);
+      setHighlight(nearIdx,   true);
+      activeIdx = nearIdx;
+    }
+
+    rafHandle = requestAnimationFrame(frame);
+  }
+
+  rafHandle = requestAnimationFrame(frame);
+}
+
+// ── Booked ring — pulses forever ──────────────────────────────
+function startBookedPulse() {
+  const ring = document.getElementById('booked-ring');
+  if (!ring) return;
+  let scale = 1, dir = 1;
+  (function pulse() {
+    scale += dir * 0.008;
+    if (scale > 1.3) dir = -1;
+    if (scale < 1.0) dir =  1;
+    ring.style.transform       = `scale(${scale.toFixed(3)})`;
+    ring.style.transformBox    = 'fill-box';
+    ring.style.transformOrigin = 'center';
+    ring.style.opacity         = `${Math.max(0, (1.3 - scale) * 3.3).toFixed(2)}`;
+    requestAnimationFrame(pulse);
+  })();
+}
+
+// ── Boot: reveal everything, then start rolling ────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const mp = document.getElementById('main-path');
+    const gp = document.getElementById('path-glow');
+    if (!mp) return;
+
+    // Compute node positions along the arc (once)
+    fracs = computeFractions(mp);
+
+    // Reveal path
+    [mp, gp].forEach(el => {
+      if (!el) return;
+      void el.offsetHeight;
+      el.style.transition = 'opacity 1s ease';
+      el.style.opacity    = '1';
+    });
+
+    // Reveal dead-end marks
+    const de = document.getElementById('dead-ends');
+    if (de) { de.style.transition = 'opacity 1.5s ease'; de.style.opacity = '1'; }
+
+    // Stagger-reveal nodes
+    NODES.forEach(({ id }, i) => {
+      nodeTimers.push(setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) { el.style.transition = 'opacity .55s ease'; el.style.opacity = '1'; }
+      }, 120 * i + 200));
+    });
+
+    // Show dot immediately
+    ['tddot','tdglow'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.opacity = '1';
+    });
+
+    // Start rolling after all nodes have appeared, start pulse ring
+    const revealTime = NODES.length * 120 + 700;
+    nodeTimers.push(setTimeout(() => {
+      startRoll(mp);
+      startBookedPulse();
+    }, revealTime));
+
+  }, 350);
+});
+</script>
+</body>
+</html>
