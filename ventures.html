@@ -16,3 +16,252 @@
         .wrap {
             max-width: 680px;
             margin: 0 auto;
+            padding: 80px 32px 120px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* back link */
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--orange);
+            text-decoration: none;
+            margin-bottom: 56px;
+            opacity: 0.7;
+            transition: opacity 0.15s;
+        }
+        .back:hover { opacity: 1; }
+        .back::before { content: '\2190'; font-size: 0.75rem; }
+
+        /* statement */
+        .statement {
+            margin-bottom: 52px;
+        }
+        .statement p {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.55;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+        .statement .accent { color: var(--orange); }
+
+        /* stamp line under statement */
+        .stamp-line {
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--orange);
+            margin-top: 16px;
+        }
+
+        /* ledger */
+        .ledger {
+            border: 1.5px solid var(--red);
+            background: var(--manila);
+            box-shadow:
+                0 1px 3px rgba(0,0,0,0.08),
+                0 8px 32px rgba(0,0,0,0.10),
+                4px 4px 0px rgba(140,28,28,0.08);
+        }
+
+        /* ledger top label bar */
+        .ledger-title {
+            padding: 8px 14px;
+            border-bottom: 1.5px solid var(--red);
+            background: rgba(140,28,28,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ledger-title span {
+            font-size: 0.46rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--red);
+        }
+
+        /* column headers */
+        .ledger-head {
+            display: grid;
+            grid-template-columns: 1fr 140px 110px;
+            border-bottom: 1px solid var(--red);
+        }
+        .ledger-head .hcell {
+            padding: 7px 14px;
+            font-size: 0.44rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--red);
+            border-right: 1px solid rgba(140,28,28,0.35);
+        }
+        .ledger-head .hcell:last-child { border-right: none; }
+
+        /* rows */
+        .ledger-row {
+            display: grid;
+            grid-template-columns: 1fr 140px 110px;
+            border-bottom: 1px solid rgba(140,28,28,0.22);
+            transition: background 0.13s;
+        }
+        .ledger-row:last-child { border-bottom: none; }
+        .ledger-row:hover { background: rgba(247,73,2,0.05); }
+
+        .lcell {
+            padding: 14px 14px;
+            border-right: 1px solid rgba(140,28,28,0.22);
+        }
+        .lcell:last-child { border-right: none; }
+
+        .co-name {
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--ink);
+            display: block;
+            letter-spacing: 0.02em;
+        }
+        .co-desc {
+            font-size: 0.60rem;
+            color: rgba(28,42,47,0.5);
+            display: block;
+            margin-top: 3px;
+            letter-spacing: 0.01em;
+        }
+
+        .co-sector {
+            font-size: 0.63rem;
+            color: var(--ink);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .co-role {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* note section below ledger */
+        .note {
+            margin-top: 40px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(28,42,47,0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .note-label {
+            font-size: 0.44rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(28,42,47,0.35);
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+        .note-text {
+            font-size: 0.64rem;
+            color: rgba(28,42,47,0.45);
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+
+        @media (max-width: 580px) {
+            .wrap { padding: 72px 20px 80px; }
+            .ledger-head { grid-template-columns: 1fr 90px; }
+            .ledger-row { grid-template-columns: 1fr 90px; }
+            .ledger-head .hcell:last-child,
+            .ledger-row .lcell:last-child { display: none; }
+            .statement p { font-size: 0.92rem; }
+        }
+    </style>
+</head>
+<body class="textured">
+
+<div class="wrap">
+
+    <a href="/" class="back">Home</a>
+
+    <div class="statement">
+        <p>Investing &amp; operating businesses that will last another <span class="accent">36 years.</span></p>
+        <span class="stamp-line"></span>
+    </div>
+
+    <div class="ledger">
+
+        <div class="ledger-title">
+            <span>Portfolio &amp; Partners</span>
+            <span>Active</span>
+        </div>
+
+        <div class="ledger-head">
+            <div class="hcell">Company</div>
+            <div class="hcell">Sector</div>
+            <div class="hcell">Role</div>
+        </div>
+
+        <div class="ledger-row">
+            <div class="lcell">
+                <span class="co-name">Looptimer</span>
+                <span class="co-desc">Workstation timers built for deep work</span>
+            </div>
+            <div class="lcell">
+                <span class="co-sector">DTC E-Commerce</span>
+            </div>
+            <div class="lcell">
+                <span class="co-role">Co-Founder</span>
+            </div>
+        </div>
+
+        <div class="ledger-row">
+            <div class="lcell">
+                <span class="co-name">Redmond Spine Center</span>
+                <span class="co-desc">Chiropractic &amp; spine care</span>
+            </div>
+            <div class="lcell">
+                <span class="co-sector">Healthcare</span>
+            </div>
+            <div class="lcell">
+                <span class="co-role">Co-Owner; Partner</span>
+            </div>
+        </div>
+
+        <div class="ledger-row">
+            <div class="lcell">
+                <span class="co-name">Growth Advising</span>
+                <span class="co-desc">SF &amp; NYC tech; Series A-D</span>
+            </div>
+            <div class="lcell">
+                <span class="co-sector">Tech</span>
+            </div>
+            <div class="lcell">
+                <span class="co-role">Advisor</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="note">
+        <span class="note-label">Note</span>
+        <span class="note-text">Actively investing in cash flowing companies &amp; growth consulting for tech companies.</span>
+    </div>
+
+</div>
+
+</body>
+</html>
