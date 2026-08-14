@@ -4,208 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jake Gronsky | Head of Growth | ex ballplayer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="/static/site.css" rel="stylesheet">
     <style>
-        :root {
-            --red:    #8C1C1C;
-            --manila: #EDD9A3;
-            --ink:    #1C2A2F;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
-            font-family: 'Source Code Pro', monospace;
-            background: #FDFCF1;
             color: var(--ink);
-            -webkit-font-smoothing: antialiased;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            padding: 72px 20px 80px;
         }
 
-        /* grain texture */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.042;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-size: 220px 220px;
-        }
-
-        /* orange top bar */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: #F74902;
-            z-index: 100;
-        }
-
-        /* ---- CARD ---- */
-        .card {
-            width: 500px;
-            background: var(--manila);
-            border: 1.5px solid var(--red);
+        .site {
+            width: 100%;
+            max-width: 560px;
             position: relative;
             z-index: 1;
-            box-shadow:
-                0 1px 3px rgba(0,0,0,0.08),
-                0 6px 28px rgba(0,0,0,0.10),
-                3px 3px 0px rgba(140,28,28,0.07);
         }
 
-        /* grid rows */
-        .row {
-            display: grid;
-            border-bottom: 1px solid var(--red);
+        /* ---- HEADER ---- */
+        .site-header {
+            text-align: center;
+            margin-bottom: 40px;
         }
-        .row:last-child { border-bottom: none; }
 
-        .cell {
-            padding: 8px 11px;
-            border-right: 1px solid var(--red);
-        }
-        .cell:last-child { border-right: none; }
-
-        /* label — printed red */
-        .lbl {
-            font-size: 0.48rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
+        .headline {
+            font-family: 'Archivo Black', 'Source Code Pro', sans-serif;
+            font-size: clamp(2.4rem, 10vw, 3.6rem);
+            line-height: 0.95;
+            letter-spacing: -0.01em;
             text-transform: uppercase;
-            color: var(--red);
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        /* value — typed ink */
-        .val {
-            font-size: 0.74rem;
             color: var(--ink);
-            letter-spacing: 0.01em;
-            display: block;
         }
 
-        /* blank fill line */
-        .blank {
+        .headline .accent { color: var(--orange); }
+
+        .footnote {
             display: inline-block;
-            border-bottom: 1px solid rgba(28,42,47,0.3);
-            width: 52px;
-            vertical-align: bottom;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.4rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: lowercase;
+            color: var(--ink);
+            opacity: 0.4;
+            text-decoration: none;
+            vertical-align: super;
+            margin-left: 6px;
+            transition: opacity 0.15s, color 0.15s;
+        }
+        .footnote:hover { opacity: 1; color: var(--orange); text-decoration: underline; }
+
+        /* ---- SECONDARY NAV ---- */
+        .site-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 56px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(140,28,28,0.25);
         }
 
-        /* dim empty cells */
-        .empty { opacity: 0.14; min-height: 34px; }
-
-        /* clickable entries */
-        a.entry, button.entry {
+        .site-nav a {
             all: unset;
             cursor: pointer;
             font-family: 'Source Code Pro', monospace;
-            font-size: 0.74rem;
-            letter-spacing: 0.01em;
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
             color: var(--ink);
-            display: block;
             transition: color 0.14s;
         }
-        a.entry:hover, button.entry:hover { color: var(--red); }
+        .site-nav a:hover { color: var(--red); }
 
-
-        @media (max-width: 540px) {
-            .card { width: 94vw; }
+        .site-nav .sep {
+            color: var(--red);
+            opacity: 0.45;
+            font-size: 0.66rem;
         }
+
+        /* ---- ESSAY (focal point) ---- */
+        .essay {
+            margin-bottom: 52px;
+        }
+
+        .essay p {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.94rem;
+            line-height: 1.75;
+            color: var(--ink);
+            margin-bottom: 20px;
+        }
+        .essay p:last-of-type { margin-bottom: 0; }
+
+        .essay-cta {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 12px 22px;
+            border: 1.5px solid var(--red);
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--red);
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+        }
+        .essay-cta:hover { background: var(--red); color: var(--cream); }
     </style>
 </head>
-<body>
+<body class="textured">
 
-<div class="card">
+<div class="site">
 
-    <!-- ROW 0: H1 title -->
-    <div class="row" style="grid-template-columns: 1fr;">
-        <div class="cell" style="text-align:center; padding: 11px 11px 10px;">
-            <h1 style="font-size:0.82rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink);">Builder of Durable Projects</h1>
-        </div>
-    </div>
+    <header class="site-header">
+        <h1 class="headline">Make Good <span class="accent">Art</span><a href="https://www.youtube.com/watch?v=plWexCID-kA" class="footnote">max understands</a></h1>
+    </header>
 
-    <!-- ROW 1: Ref. | NAME | Status -->
-    <div class="row" style="grid-template-columns: 80px 1fr 148px;">
-        <div class="cell">
-            <span class="lbl">Ref.</span>
-            <span class="val"><span class="blank"></span></span>
-        </div>
-        <div class="cell">
-            <span class="lbl">Name</span>
-            <span class="val">Jake Gronsky</span>
-        </div>
-        <div class="cell">
-            <span class="lbl">Status</span>
-            <span class="val">Active</span>
-        </div>
-    </div>
+    <nav class="site-nav">
+        <a href="https://www.simonandschuster.com/books/Just-Enough/David-Eckstein/9781968707712">Wrote this.</a>
+        <span class="sep">|</span>
+        <a href="/ventures">Building these</a>
+        <span class="sep">|</span>
+        <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/">Connect here</a>
+    </nav>
 
-    <!-- ROW 2: column headers -->
-    <div class="row" style="grid-template-columns: 100px 1fr 58px 58px;">
-        <div class="cell empty"></div>
-        <div class="cell">
-            <span class="lbl">About</span>
-        </div>
-        <div class="cell empty"></div>
-        <div class="cell empty"></div>
-    </div>
-
-    <!-- ROW 3: Writing -->
-    <div class="row" style="grid-template-columns: 100px 1fr 58px 58px;">
-        <div class="cell">
-            <span class="lbl">Writing</span>
-        </div>
-        <div class="cell">
-            <a href="/writing" class="entry">Why I write.</a>
-        </div>
-        <div class="cell empty"></div>
-        <div class="cell empty"></div>
-    </div>
-
-    <!-- ROW 4: Building -->
-    <div class="row" style="grid-template-columns: 100px 1fr 58px 58px;">
-        <div class="cell">
-            <span class="lbl">Building</span>
-        </div>
-        <div class="cell">
-            <a href="/ventures" class="entry">My dad retired after 36 years on the same street corner. This is now my investing principle.</a>
-        </div>
-        <div class="cell empty"></div>
-        <div class="cell empty"></div>
-    </div>
-
-    <!-- ROW 5: Connect -->
-    <div class="row" style="grid-template-columns: 100px 1fr 58px 58px;">
-        <div class="cell">
-            <span class="lbl">Connect</span>
-        </div>
-        <div class="cell">
-            <a href="https://www.linkedin.com/in/jake-gronsky-87671bb0/" class="entry">Connect with me on growth &amp; writing. What's that? You gotta podcast? I'm in.</a>
-        </div>
-        <div class="cell empty"></div>
-        <div class="cell empty"></div>
-    </div>
-
-    <!-- ROW 6: footer -->
-    <div class="row" style="grid-template-columns: 1fr 148px;">
-        <div class="cell empty"></div>
-        <div class="cell">
-            <span class="lbl">P.S.</span>
-            <a href="/wrong" class="entry" style="font-size:0.65rem; opacity:0.7;">What's wrong with me.</a>
-        </div>
-    </div>
+    <section class="essay">
+        <p>I've seen him bleed before.</p>
+        <p>I've seen his eye swell and his nose cuve.</p>
+        <p>I've seen him struggle to breath and I've seen his arm raise.</p>
+        <p>But today I see him downing his third margarita, floating around a pool escaping in the Jamaican heat.</p>
+        <p>He's a middleweight fighter in one of the deadliests divisions in the UFC.</p>
+        <p>My brother and I downed our pina coladas and swim. Seconds laters &mdash; guys being dudes.</p>
+        <p>&ldquo;Okay, I have to ask,&rdquo; I said. &ldquo;Who wins in a fight: The wrestler or boxer.&rdquo;</p>
+        <p>&ldquo;It doesn't matter.&rdquo; He smiles. &ldquo;The one who turns the fight to their favor wins.&rdquo;</p>
+        <p>I didn't get it.</p>
+        <p>&ldquo;If the boxer can stay on his feet, he wins.&rdquo; He takes another drink. &ldquo;Then again, if I get him to the ground. Game over.&rdquo;</p>
+        <p>I like this guy. He's the tough guy you don't realize is a tough guy until you try to be a tough guy. Savvy? Seems like it's how he's gotten to where he is. Guys underestimate him, and by the time they realize they are in over their head, the medical staff is shaking their legs hoping their pupils can still dilate.</p>
+        <p>He reaches over for another drink. I see his Muay Thai back tattoo. He sees my portrait. His feel more earned. &ldquo;Through it all, you must be willing to stand in the octagon.&rdquo;</p>
+        <p>He was talking about fighting.</p>
+        <p>I am not.</p>
+        <a href="/wrong" class="essay-cta">What's Wrong With Me</a>
+    </section>
 
 </div>
-
 
 </body>
 </html>
