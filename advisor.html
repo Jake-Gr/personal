@@ -8,6 +8,115 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="/static/site.css" rel="stylesheet">
     <style>
+        /* ---- PASSWORD GATE ---- */
+        #gate {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+        #gate::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.042;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 220px 220px;
+        }
+        #gate::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--orange);
+            z-index: 100;
+        }
+        .gate-inner {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 100%;
+            max-width: 340px;
+            padding: 0 24px;
+        }
+        .gate-logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        .gate-logo span { color: var(--orange); }
+        .gate-sub {
+            font-size: 0.56rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(28,42,47,0.35);
+            margin-bottom: 48px;
+        }
+        .gate-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        #gate-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid rgba(140,28,28,0.3);
+            background: white;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--ink);
+            text-align: center;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+        #gate-input::placeholder {
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: rgba(28,42,47,0.28);
+            text-transform: none;
+        }
+        #gate-input:focus { border-color: var(--orange); }
+        #gate-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--orange);
+            border: none;
+            cursor: pointer;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: white;
+            transition: background 0.15s;
+        }
+        #gate-btn:hover { background: var(--red); }
+        #gate-error {
+            font-size: 0.56rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--red);
+            opacity: 0;
+            transition: opacity 0.2s;
+            margin-top: 4px;
+        }
+        #gate-error.show { opacity: 1; }
+
         body { color: var(--ink); min-height: 100vh; }
         .page { position: relative; z-index: 1; }
 
@@ -868,5 +977,52 @@
     </section>
 
 </div>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+    <div class="gate-inner">
+        <p class="gate-logo">Jake <span>Gronsky</span></p>
+        <p class="gate-sub">Private — Enter Access Code</p>
+        <div class="gate-form">
+            <input id="gate-input" type="password" placeholder="Access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <button id="gate-btn" type="button">Enter</button>
+            <p id="gate-error">Incorrect code. Try again.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var KEY = 'advisor_auth';
+    var CODE = 'JGC';
+    var gate = document.getElementById('gate');
+    var input = document.getElementById('gate-input');
+    var btn = document.getElementById('gate-btn');
+    var err = document.getElementById('gate-error');
+
+    if (sessionStorage.getItem(KEY) === '1') {
+        gate.style.display = 'none';
+        return;
+    }
+
+    function attempt() {
+        if (input.value.trim().toUpperCase() === CODE) {
+            sessionStorage.setItem(KEY, '1');
+            gate.style.transition = 'opacity 0.3s';
+            gate.style.opacity = '0';
+            setTimeout(function () { gate.style.display = 'none'; }, 300);
+        } else {
+            err.classList.add('show');
+            input.value = '';
+            input.focus();
+            setTimeout(function () { err.classList.remove('show'); }, 2400);
+        }
+    }
+
+    btn.addEventListener('click', attempt);
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') attempt(); });
+    input.focus();
+})();
+</script>
 </body>
 </html>
