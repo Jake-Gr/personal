@@ -169,6 +169,47 @@
     .btn-talk:hover { background: var(--gold-dark); }
     .cta-note { font-size: 0.68rem; line-height: 1.55; color: var(--ink-3); max-width: 380px; }
 
+    /* ---- UPLOAD (matches ponoko.com's homepage upload widget) ---- */
+    .upload-wrap { padding: 0 40px 20px; }
+    .upload-card {
+        max-width: 1080px; margin: 0 auto; background: var(--white);
+        border: 1px solid var(--grey-7); box-shadow: 0 2px 0 var(--grey-7);
+        padding: 32px 36px; text-align: center;
+    }
+    .upload-hd { margin-bottom: 22px; }
+    .upload-title { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .upload-sub { font-size: 0.76rem; color: var(--ink-3); }
+
+    .upload-dropzone {
+        display: flex; flex-direction: column; align-items: center; gap: 10px;
+        border: 1.5px dashed var(--grey-6); background: var(--grey-10);
+        padding: 36px 24px; cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    }
+    .upload-dropzone:hover, .upload-dropzone.drag-over { border-color: var(--gold-dark); background: rgba(255,183,29,0.06); }
+    .upload-input { display: none; }
+    .upload-icon { width: 40px; height: 40px; }
+    .upload-cta-text { font-size: 0.82rem; color: var(--ink-3); }
+    .upload-link { color: var(--gold-dark); font-weight: 700; text-decoration: underline; }
+    .upload-filetypes {
+        font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; letter-spacing: 0.04em;
+        color: var(--ink-3); opacity: 0.6; max-width: 480px;
+    }
+
+    .upload-files { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; text-align: left; }
+    .upload-file {
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        padding: 10px 14px; border: 1px solid var(--grey-7); background: var(--grey-10);
+        font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; color: var(--ink);
+    }
+    .upload-file-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .upload-file-status { color: #2C9A56; font-weight: 700; text-transform: uppercase; font-size: 0.56rem; letter-spacing: 0.06em; flex-shrink: 0; }
+
+    .upload-notice {
+        display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 18px;
+        font-size: 0.62rem; color: var(--ink-3); opacity: 0.7;
+    }
+    .upload-notice svg { width: 14px; height: 14px; flex-shrink: 0; }
+
     /* ---- CHAT WIDGET (Intercom-style mock, no live backend) ---- */
     .chat-launcher {
         position: fixed; bottom: 24px; right: 24px; z-index: 500;
@@ -414,6 +455,35 @@
     </div>
 </section>
 
+<section class="upload-wrap">
+    <div class="upload-card" id="upload">
+        <div class="upload-hd">
+            <p class="upload-title">Upload Your Part</p>
+            <p class="upload-sub">Drop a CAD file and we will follow the estimate above with a firm quote.</p>
+        </div>
+
+        <label class="upload-dropzone" id="upload-dropzone" for="file-input">
+            <input type="file" id="file-input" class="upload-input" multiple
+                   accept=".3dm,.3dxml,.3mf,.ai,.dxf,.eps,.iges,.igs,.ipt,.obj,.pdf,.prt,.sat,.sldprt,.step,.stl,.stp,.svg,.x_t">
+            <svg class="upload-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 27h16a6 6 0 0 0 1-11.9A8 8 0 0 0 13.6 13 6.5 6.5 0 0 0 12 27Z" stroke="#4D4D4D" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M20 30v-9m0 0-3.5 3.5M20 21l3.5 3.5" stroke="#FFB71D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="upload-cta-text"><span class="upload-link">Upload</span> or drop CAD files here</p>
+            <p class="upload-filetypes">3DM, 3DXML, 3MF, AI, DXF, EPS, IGES, IGS, IPT, OBJ, PDF, PRT, SAT, SLDPRT, STEP, STL, STP, SVG, X_T</p>
+        </label>
+
+        <div class="upload-files" id="upload-files"></div>
+
+        <div class="upload-notice">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 11h14v10H5zm2-3a5 5 0 0 1 5-5 5 5 0 0 1 5 5v3H7V8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            All uploads are secure and confidential
+        </div>
+    </div>
+</section>
+
 <section class="code-section" id="pricing-code">
     <div class="code-inner">
         <div class="code-hd">
@@ -536,6 +606,49 @@ Full file: /ponoko-pricing.md</pre>
     input.addEventListener('keydown', function (e) { if (e.key === 'Enter') sendMessage(); });
 
     window.openPonokoChat = openChat;
+})();
+</script>
+
+<script>
+(function () {
+    var zone = document.getElementById('upload-dropzone');
+    var input = document.getElementById('file-input');
+    var list = document.getElementById('upload-files');
+
+    function addFile(file) {
+        var row = document.createElement('div');
+        row.className = 'upload-file';
+        var name = document.createElement('span');
+        name.className = 'upload-file-name';
+        name.textContent = file.name;
+        var status = document.createElement('span');
+        status.className = 'upload-file-status';
+        status.textContent = 'Received';
+        row.appendChild(name);
+        row.appendChild(status);
+        list.appendChild(row);
+    }
+
+    input.addEventListener('change', function () {
+        Array.prototype.forEach.call(input.files, addFile);
+    });
+
+    ['dragover', 'dragenter'].forEach(function (evt) {
+        zone.addEventListener(evt, function (e) {
+            e.preventDefault();
+            zone.classList.add('drag-over');
+        });
+    });
+    ['dragleave', 'dragend'].forEach(function (evt) {
+        zone.addEventListener(evt, function () { zone.classList.remove('drag-over'); });
+    });
+    zone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        if (e.dataTransfer && e.dataTransfer.files) {
+            Array.prototype.forEach.call(e.dataTransfer.files, addFile);
+        }
+    });
 })();
 </script>
 
