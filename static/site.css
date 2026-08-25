@@ -1,26 +1,37 @@
 /* ==========================================================================
-   Shared site styles — design tokens and base rules used across every page.
+   Shared site styles: design tokens and base rules used across every page.
+   Brand system: IBM Plex Mono (headings, labels, numbers) + Open Sans (body),
+   near-black ink on white/grey surfaces, one accent (Flyers orange).
    Individual pages keep their own <style> block for page-specific layout;
    this file only holds what's genuinely common: the color palette, the
    base reset, and the grain-texture / top-bar treatment.
    ========================================================================== */
 
 :root {
-    --orange:  #F74902;
-    --red:     #8C1C1C;
-    --manila:  #EDD9A3;
-    --ink:     #1C2A2F;
-    --ink-alt: #36454F;
-    --cream:   #FDFCF1;
+    --orange:   #F74902;
+    --red:      #8C1C1C;
+    --ink:      #1A1919;
+    --ink-alt:  #4D4D4D;
+    --manila:   #F6F6F6;
+    --cream:    #F9FAFB;
+    --grey-6:   #CED4DA;
+    --grey-7:   #F2F2F2;
+    --grey-8:   #F6F6F6;
+    --grey-10:  #F9FAFB;
+    --white:    #FFFFFF;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Open Sans', sans-serif;
     background: var(--cream);
     -webkit-font-smoothing: antialiased;
+}
+
+.mono {
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 /* Grain texture + orange top bar. Opt in with class="textured" on <body>. */
