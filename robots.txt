@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /ponoko-pricing.html
+Disallow: /ponoko-pricing.md
