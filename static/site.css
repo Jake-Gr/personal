@@ -43,3 +43,39 @@ body.textured::before,
 body.textured::after {
     content: none;
 }
+
+/* ---- MORE-NAV ----
+   Small bottom link row so every secondary page points to the others
+   instead of dead-ending at a single "Home" link. */
+.more-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--grey-7);
+}
+.more-nav-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-alt);
+    opacity: 0.55;
+    margin-right: 2px;
+}
+.more-nav a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.14s;
+}
+.more-nav a:hover { color: var(--orange); }
+.more-nav .sep { color: var(--grey-6); font-size: 0.62rem; }
