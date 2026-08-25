@@ -116,65 +116,6 @@
             transition: background 0.15s, color 0.15s;
         }
         .essay-cta:hover { background: var(--red); color: var(--cream); }
-
-        /* ---- KEEP READING ---- */
-        .more-section {
-            margin-top: 56px;
-            padding-top: 32px;
-            border-top: 1px solid var(--grey-7);
-        }
-        .more-kicker {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.5rem;
-            font-weight: 700;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--orange);
-            margin-bottom: 16px;
-        }
-        .more-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .more-card {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding: 18px 20px;
-            border: 1px solid var(--grey-7);
-            background: var(--white);
-            text-decoration: none;
-            box-shadow: 0 2px 0 var(--grey-7);
-            transition: border-color 0.15s, transform 0.15s;
-        }
-        .more-card:hover {
-            border-color: var(--orange);
-            transform: translateY(-1px);
-        }
-        .more-card-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            color: var(--ink);
-        }
-        .more-card-desc {
-            font-size: 0.66rem;
-            line-height: 1.55;
-            color: var(--ink-alt);
-        }
-        .more-card-arrow {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.62rem;
-            font-weight: 700;
-            color: var(--orange);
-            margin-top: auto;
-        }
-        @media (max-width: 480px) {
-            .more-grid { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
 <body class="textured">
@@ -209,22 +150,6 @@
         <p>He was talking about fighting.</p>
         <p>I am not.</p>
         <a href="/wrong" class="essay-cta">What's Wrong With Me</a>
-    </section>
-
-    <section class="more-section">
-        <p class="more-kicker">Keep Reading</p>
-        <div class="more-grid">
-            <a href="/writing" class="more-card">
-                <span class="more-card-label">My Pledge to Readers</span>
-                <span class="more-card-desc">Nine commitments I made before I typed a word, from a recovering pro ballplayer turned author.</span>
-                <span class="more-card-arrow">&rarr;</span>
-            </a>
-            <a href="/wrong" class="more-card">
-                <span class="more-card-label">What's Wrong With Me</span>
-                <span class="more-card-desc">An unfiltered Q&amp;A on baseball, romance novels, and why I bought a domain with my own name on it.</span>
-                <span class="more-card-arrow">&rarr;</span>
-            </a>
-        </div>
     </section>
 
 </div>
