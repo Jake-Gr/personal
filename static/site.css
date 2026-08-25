@@ -1,10 +1,12 @@
 /* ==========================================================================
    Shared site styles: design tokens and base rules used across every page.
    Brand system: IBM Plex Mono (headings, labels, numbers) + Open Sans (body),
-   near-black ink on white/grey surfaces, one accent (Flyers orange).
+   near-black ink on a flat grey surface, one accent (Flyers orange). Matches
+   the Ponoko pricing prototype: no grain texture, no red-tinted borders,
+   flat grey/white component surfaces only.
    Individual pages keep their own <style> block for page-specific layout;
-   this file only holds what's genuinely common: the color palette, the
-   base reset, and the grain-texture / top-bar treatment.
+   this file only holds what's genuinely common: the color palette and
+   the base reset.
    ========================================================================== */
 
 :root {
@@ -34,23 +36,10 @@ body {
     font-family: 'IBM Plex Mono', monospace;
 }
 
-/* Grain texture + orange top bar. Opt in with class="textured" on <body>. */
-body.textured::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.042;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 220px 220px;
-}
-
+/* `class="textured"` is kept on <body> across pages for markup stability,
+   but the brand no longer uses a grain overlay or top accent bar, so
+   both pseudo-elements are intentionally empty. */
+body.textured::before,
 body.textured::after {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--orange);
-    z-index: 100;
+    content: none;
 }

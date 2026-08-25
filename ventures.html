@@ -65,19 +65,16 @@
 
         /* ledger */
         .ledger {
-            border: 1.5px solid var(--red);
-            background: var(--manila);
-            box-shadow:
-                0 1px 3px rgba(0,0,0,0.08),
-                0 8px 32px rgba(0,0,0,0.10),
-                4px 4px 0px rgba(140,28,28,0.08);
+            border: 1px solid var(--grey-7);
+            background: var(--white);
+            box-shadow: 0 2px 0 var(--grey-7);
         }
 
         /* ledger top label bar */
         .ledger-title {
             padding: 8px 14px;
-            border-bottom: 1.5px solid var(--red);
-            background: rgba(140,28,28,0.05);
+            border-bottom: 1px solid var(--grey-7);
+            background: var(--grey-10);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -88,14 +85,14 @@
             font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--red);
+            color: var(--ink-alt);
         }
 
         /* column headers */
         .ledger-head {
             display: grid;
             grid-template-columns: 1fr 140px 110px;
-            border-bottom: 1px solid var(--red);
+            border-bottom: 1px solid var(--grey-7);
         }
         .ledger-head .hcell {
             padding: 7px 14px;
@@ -104,8 +101,8 @@
             font-weight: 700;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: var(--red);
-            border-right: 1px solid rgba(140,28,28,0.35);
+            color: var(--ink-alt);
+            border-right: 1px solid var(--grey-7);
         }
         .ledger-head .hcell:last-child { border-right: none; }
 
@@ -113,15 +110,15 @@
         .ledger-row {
             display: grid;
             grid-template-columns: 1fr 140px 110px;
-            border-bottom: 1px solid rgba(140,28,28,0.22);
+            border-bottom: 1px solid var(--grey-7);
             transition: background 0.13s;
         }
         .ledger-row:last-child { border-bottom: none; }
-        .ledger-row:hover { background: rgba(247,73,2,0.05); }
+        .ledger-row:hover { background: var(--grey-8); }
 
         .lcell {
             padding: 14px 14px;
-            border-right: 1px solid rgba(140,28,28,0.22);
+            border-right: 1px solid var(--grey-7);
         }
         .lcell:last-child { border-right: none; }
 
@@ -155,7 +152,7 @@
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--red);
+            color: var(--orange);
             display: flex;
             align-items: center;
             height: 100%;

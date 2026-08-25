@@ -8,27 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="/static/site.css" rel="stylesheet">
     <style>
-        /* ---- PASSWORD GATE ---- */
+        /* ---- PASSWORD GATE (matches the Ponoko prototype's dark gate) ---- */
         #gate {
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: var(--cream);
+            background: var(--ink);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0;
-        }
-        #gate::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.042;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-size: 220px 220px;
         }
         #gate::after {
             content: '';
@@ -48,21 +37,22 @@
         }
         .gate-logo {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.1rem;
-            letter-spacing: -0.01em;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
-            color: var(--ink);
+            color: var(--white);
             margin-bottom: 8px;
         }
         .gate-logo span { color: var(--orange); }
         .gate-sub {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.56rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: rgba(26,25,25,0.35);
-            margin-bottom: 48px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 40px;
         }
         .gate-form {
             display: flex;
@@ -72,22 +62,22 @@
         #gate-input {
             width: 100%;
             padding: 14px 18px;
-            border: 1.5px solid rgba(140,28,28,0.3);
-            background: white;
+            border: 1.5px solid rgba(247,73,2,0.35);
+            background: rgba(255,255,255,0.04);
             font-family: 'IBM Plex Mono', monospace;
             font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 0.22em;
+            font-weight: 600;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--ink);
+            color: var(--white);
             text-align: center;
             outline: none;
             transition: border-color 0.15s;
         }
         #gate-input::placeholder {
             font-weight: 400;
-            letter-spacing: 0.1em;
-            color: rgba(26,25,25,0.28);
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.28);
             text-transform: none;
         }
         #gate-input:focus { border-color: var(--orange); }
@@ -98,20 +88,20 @@
             border: none;
             cursor: pointer;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.62rem;
+            font-size: 0.64rem;
             font-weight: 700;
-            letter-spacing: 0.16em;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: white;
+            color: var(--ink);
             transition: background 0.15s;
         }
-        #gate-btn:hover { background: var(--red); }
+        #gate-btn:hover { background: var(--white); }
         #gate-error {
-            font-size: 0.56rem;
+            font-size: 0.58rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--red);
+            color: #E34F2F;
             opacity: 0;
             transition: opacity 0.2s;
             margin-top: 4px;
@@ -123,12 +113,13 @@
 
         /* ---- TOP BAR ---- */
         .top-bar {
-            padding: 28px 48px;
+            padding: 22px 48px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
             z-index: 10;
+            border-bottom: 1px solid var(--grey-7);
         }
         .back {
             display: inline-flex;
@@ -260,8 +251,8 @@
         .edge {
             padding: 100px 48px;
             background: var(--manila);
-            border-top: 1.5px solid rgba(140,28,28,0.25);
-            border-bottom: 1.5px solid rgba(140,28,28,0.25);
+            border-top: 1.5px solid var(--grey-7);
+            border-bottom: 1.5px solid var(--grey-7);
         }
         .edge-grid {
             max-width: 1200px;
@@ -343,17 +334,17 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            border: 1.5px solid rgba(140,28,28,0.25);
+            border: 1.5px solid var(--grey-7);
         }
         .svc {
             padding: 40px;
-            border-right: 1px solid rgba(140,28,28,0.15);
-            border-bottom: 1px solid rgba(140,28,28,0.15);
+            border-right: 1px solid var(--grey-7);
+            border-bottom: 1px solid var(--grey-7);
             transition: background 0.14s;
         }
         .svc:nth-child(even) { border-right: none; }
         .svc:nth-child(3), .svc:nth-child(4) { border-bottom: none; }
-        .svc:hover { background: rgba(237,217,163,0.2); }
+        .svc:hover { background: var(--grey-8); }
 
         .svc-num {
             font-family: 'IBM Plex Mono', monospace;
@@ -386,7 +377,7 @@
         }
         .tag {
             padding: 4px 10px;
-            border: 1px solid rgba(140,28,28,0.2);
+            border: 1px solid var(--grey-7);
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.46rem;
             font-weight: 700;
@@ -503,7 +494,7 @@
         }
         .qcard {
             padding: 36px;
-            border: 1.5px solid rgba(140,28,28,0.18);
+            border: 1.5px solid var(--grey-7);
             background: white;
             display: flex;
             flex-direction: column;
@@ -525,7 +516,7 @@
             margin-bottom: 24px;
         }
         .qperson {
-            border-top: 1px solid rgba(140,28,28,0.12);
+            border-top: 1px solid var(--grey-7);
             padding-top: 16px;
         }
         .qname {
@@ -583,7 +574,7 @@
         .cta {
             padding: 110px 48px;
             text-align: center;
-            border-top: 1.5px solid rgba(140,28,28,0.18);
+            border-top: 1.5px solid var(--grey-7);
         }
         .cta-inner { max-width: 580px; margin: 0 auto; }
         .cta-h2 {
@@ -627,7 +618,7 @@
             .edge-grid { grid-template-columns: 1fr; gap: 40px; }
             .edge-grid .edge-vid { order: -1; }
             .services-grid { grid-template-columns: 1fr; }
-            .svc { border-right: none; border-bottom: 1px solid rgba(140,28,28,0.15); }
+            .svc { border-right: none; border-bottom: 1px solid var(--grey-7); }
             .svc:last-child { border-bottom: none; }
             .process-grid { grid-template-columns: 1fr; }
             .quotes { grid-template-columns: 1fr; }
@@ -947,7 +938,7 @@
     <!-- ================================================================
          DIAGRAM (The Operator-Strategist-Builder Triangle)
     ================================================================ -->
-    <section style="padding: 100px 48px; background: var(--cream); border-top: 1.5px solid rgba(140,28,28,0.15);">
+    <section style="padding: 100px 48px; background: var(--cream); border-top: 1.5px solid var(--grey-7);">
         <div style="max-width: 1200px; margin: 0 auto;">
             <p class="sec-label" style="text-align:center;">How I See It</p>
             <h2 class="sec-title" style="text-align:center; margin-bottom:64px;">The <span class="a">Intersection</span></h2>
