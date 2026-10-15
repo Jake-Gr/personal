@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Approved graphics</title><meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<style id="gate-style">html:not(.unlocked) body>*:not(#gate){display:none!important}#gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#111;font-family:system-ui,sans-serif}#gate form{display:flex;gap:8px}#gate input{padding:10px 14px;font-size:16px;border-radius:6px;border:1px solid #444;background:#222;color:#fff}#gate button{padding:10px 16px;font-size:16px;border-radius:6px;border:0;background:#fff;cursor:pointer}</style>
+<script>
+(function(){
+  var H="973d0c649aa97a0635e387399f32c49abdaa7b2e812a65812255d1ed863b1604";
+  function unlock(){document.documentElement.classList.add("unlocked");var g=document.getElementById("gate");if(g)g.remove();}
+  async function sha(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("");}
+  try{if(sessionStorage.getItem("ok")===H){document.documentElement.classList.add("unlocked");return;}}catch(e){}
+  document.addEventListener("DOMContentLoaded",function(){
+    var d=document.createElement("div");d.id="gate";
+    d.innerHTML='<form><input type="password" placeholder="Password" autofocus><button>Enter</button></form>';
+    document.body.appendChild(d);
+    d.querySelector("form").addEventListener("submit",async function(e){
+      e.preventDefault();var v=d.querySelector("input").value;
+      if(await sha(v)===H){try{sessionStorage.setItem("ok",H)}catch(e){}unlock();}
+      else{d.querySelector("input").value="";d.querySelector("input").placeholder="Wrong password";}
+    });
+  });
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F74902;--card:#F2F2EE;--ink:#0A0A0A;--pop:#FFD500}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Barlow Condensed",system-ui,sans-serif;padding:32px 16px 64px}
+h1{font-size:56px;font-weight:800;text-transform:uppercase;margin:0 0 28px;max-width:1100px;margin-inline:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:32px;max-width:1100px;margin:0 auto}
+.card{background:var(--card);border:6px solid var(--ink);box-shadow:12px 12px 0 var(--ink);padding:16px}
+.media{border:4px solid var(--ink);background:var(--bg);margin-bottom:12px}.media video,.media img{display:block;width:100%;height:auto;max-height:420px;object-fit:contain}
+h2{font-size:32px;font-weight:800;text-transform:uppercase;margin:0}p{margin:2px 0 12px;font-size:20px}
+.links{display:flex;flex-wrap:wrap;gap:10px}.links a{background:var(--pop);color:var(--ink);border:4px solid var(--ink);padding:6px 14px;font-size:22px;font-weight:700;text-transform:uppercase;text-decoration:none}
+.links a:hover{background:var(--ink);color:var(--pop)}
+</style></head>
+<body><h1>Approved graphics</h1><div class="grid">
+<section class="card"><div class="media"><video src="files/digital-framework/digital-framework-square.mp4" autoplay loop muted playsinline></video></div><h2>My $50M Digital Framework</h2><p>2026-10-14</p><div class="links"><a href="files/digital-framework/digital-framework-square.mp4" download>Square MP4</a><a href="files/digital-framework/digital-framework.gif" download>GIF</a></div></section>
+<section class="card"><div class="media"><video src="files/financial-density/financial-density-industrial-vertical.mp4" autoplay loop muted playsinline></video></div><h2>Financial Density</h2><p>2026-10-14</p><div class="links"><a href="files/financial-density/financial-density-industrial-vertical.mp4" download>Vertical MP4</a><a href="files/financial-density/financial-density-industrial-square.mp4" download>Square MP4</a><a href="files/financial-density/financial-density-industrial.gif" download>GIF</a></div></section>
+</div></body></html>

@@ -456,14 +456,14 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/*! tailwindcss v4.2.0 | MIT License |
   .flex {
     display: flex;
   }
+  .grid {
+    display: grid;
+  }
   .hidden {
     display: none;
   }
   .inline {
     display: inline;
-  }
-  .table {
-    display: table;
   }
   .shrink {
     flex-shrink: 1;
@@ -697,7 +697,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/*! tailwindcss v4.2.0 | MIT License |
     }
   }
 }
-`, "",{"version":3,"sources":["webpack://./src/index.css"],"names":[],"mappings":"AAAA,gEAAgE;AAChE,iBAAiB;AACjB,yCAAyC;AACzC;EACE;IACE;6DACyD;IACzD;iDAC6C;IAC7C,kBAAkB;IAClB,oCAAoC;IACpC,kEAAkE;IAClE,uCAAuC;IACvC,wEAAwE;IACxE;;KAEC;IACD,4CAA4C;IAC5C;;KAEC;IACD;;KAEC;EACH;AACF;AACA;EACE;IACE,sBAAsB;IACtB,SAAS;IACT,UAAU;IACV,eAAe;EACjB;EACA;IACE,gBAAgB;IAChB,8BAA8B;IAC9B,WAAW;IACX,6JAA6J;IAC7J,mEAAmE;IACnE,yEAAyE;IACzE,wCAAwC;EAC1C;EACA;IACE,oBAAoB;EACtB;EACA;IACE,SAAS;IACT,cAAc;IACd,qBAAqB;EACvB;EACA;IACE,yCAAyC;IACzC,iCAAiC;EACnC;EACA;IACE,kBAAkB;IAClB,oBAAoB;EACtB;EACA;IACE,cAAc;IACd,gCAAgC;IAChC,wBAAwB;EAC1B;EACA;IACE,mBAAmB;EACrB;EACA;IACE,kJAAkJ;IAClJ,0EAA0E;IAC1E,8EAA8E;IAC9E,cAAc;EAChB;EACA;IACE,cAAc;EAChB;EACA;IACE,cAAc;IACd,cAAc;IACd,kBAAkB;IAClB,wBAAwB;EAC1B;EACA;IACE,eAAe;EACjB;EACA;IACE,WAAW;EACb;EACA;IACE,cAAc;IACd,qBAAqB;IACrB,yBAAyB;EAC3B;EACA;IACE,aAAa;EACf;EACA;IACE,wBAAwB;EAC1B;EACA;IACE,kBAAkB;EACpB;EACA;IACE,gBAAgB;EAClB;EACA;IACE,cAAc;IACd,sBAAsB;EACxB;EACA;IACE,eAAe;IACf,YAAY;EACd;EACA;IACE,aAAa;IACb,8BAA8B;IAC9B,gCAAgC;IAChC,uBAAuB;IACvB,cAAc;IACd,gBAAgB;IAChB,6BAA6B;IAC7B,UAAU;EACZ;EACA;IACE,mBAAmB;EACrB;EACA;IACE,0BAA0B;EAC5B;EACA;IACE,sBAAsB;EACxB;EACA;IACE,UAAU;IACV,mBAAmB;IACnB;MACE,yDAAyD;IAC3D;EACF;EACA;IACE,gBAAgB;EAClB;EACA;IACE,wBAAwB;EAC1B;EACA;IACE,eAAe;IACf,mBAAmB;EACrB;EACA;IACE,oBAAoB;EACtB;EACA;IACE,UAAU;EACZ;EACA;IACE,gBAAgB;EAClB;EACA;IACE,gBAAgB;EAClB;EACA;IACE,kBAAkB;EACpB;EACA;IACE,YAAY;EACd;EACA;IACE,wBAAwB;EAC1B;AACF;AACA;EACE;IACE,mBAAmB;EACrB;EACA;IACE,kBAAkB;EACpB;EACA;IACE,eAAe;EACjB;EACA;IACE,kBAAkB;EACpB;EACA;IACE,gBAAgB;EAClB;EACA;IACE,kCAAkC;EACpC;EACA;IACE,gCAAgC;EAClC;EACA;IACE,WAAW;IACX;MACE,gBAAgB;IAClB;IACA;MACE,gBAAgB;IAClB;IACA;MACE,gBAAgB;IAClB;IACA;MACE,gBAAgB;IAClB;IACA;MACE,gBAAgB;IAClB;EACF;EACA;IACE,cAAc;EAChB;EACA;IACE,iBAAiB;EACnB;EACA;IACE,aAAa;EACf;EACA;IACE,aAAa;EACf;EACA;IACE,eAAe;EACjB;EACA;IACE,cAAc;EAChB;EACA;IACE,cAAc;EAChB;EACA;IACE,0GAA0G;EAC5G;EACA;IACE,sBAAsB;EACxB;EACA;IACE,oCAAoC;IACpC,iBAAiB;EACnB;EACA;IACE,yBAAyB;EAC3B;EACA;IACE,kBAAkB;EACpB;EACA;IACE,0HAA0H;IAC1H,sIAAsI;EACxI;EACA;IACE,wHAAwH;IACxH,sIAAsI;EACxI;EACA;IACE,sCAAsC;IACtC,kBAAkB;EACpB;EACA;IACE,oBAAoB;IACpB,0LAA0L;EAC5L;EACA;IACE,0LAA0L;EAC5L;EACA;IACE,yUAAyU;IACzU,qFAAqF;IACrF,2EAA2E;EAC7E;AACF;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;EACf,oBAAoB;AACtB;AACA;EACE,WAAW;EACX,eAAe;EACf,wBAAwB;AAC1B;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,sBAAsB;EACtB,eAAe;EACf,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,eAAe;EACf,wBAAwB;AAC1B;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,sBAAsB;EACtB,eAAe;EACf,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;EACf,wBAAwB;AAC1B;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;EACf,wBAAwB;AAC1B;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,kBAAkB;EAClB,eAAe;EACf,kBAAkB;AACpB;AACA;EACE,WAAW;EACX,eAAe;EACf,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,eAAe;EACf,wBAAwB;AAC1B;AACA;EACE,WAAW;EACX,eAAe;EACf,oBAAoB;AACtB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,sBAAsB;EACtB,eAAe;EACf,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE;IACE;MACE,sBAAsB;MACtB,sBAAsB;MACtB,sBAAsB;MACtB,oBAAoB;MACpB,oBAAoB;MACpB,wBAAwB;MACxB,sBAAsB;MACtB,0BAA0B;MAC1B,uBAAuB;MACvB,4BAA4B;MAC5B,gCAAgC;MAChC,6BAA6B;MAC7B,wBAAwB;MACxB,2BAA2B;MAC3B,8BAA8B;MAC9B,iCAAiC;MACjC,wBAAwB;MACxB,2BAA2B;MAC3B,4BAA4B;MAC5B,kCAAkC;MAClC,yBAAyB;MACzB,kBAAkB;MAClB,wBAAwB;MACxB,sBAAsB;MACtB,uBAAuB;MACvB,wBAAwB;MACxB,oBAAoB;MACpB,qBAAqB;MACrB,sBAAsB;MACtB,mBAAmB;MACnB,yBAAyB;MACzB,+BAA+B;MAC/B,4BAA4B;MAC5B,8BAA8B;IAChC;EACF;AACF","sourcesContent":["/*! tailwindcss v4.2.0 | MIT License | https://tailwindcss.com */\n@layer properties;\n@layer theme, base, components, utilities;\n@layer theme {\n  :root, :host {\n    --font-sans: ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\",\n      \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";\n    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,\n      \"Liberation Mono\", \"Courier New\", monospace;\n    --spacing: 0.25rem;\n    --default-transition-duration: 150ms;\n    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n    --default-font-family: var(--font-sans);\n    --default-font-feature-settings: var(--font-sans--font-feature-settings);\n    --default-font-variation-settings: var(\n      --font-sans--font-variation-settings\n    );\n    --default-mono-font-family: var(--font-mono);\n    --default-mono-font-feature-settings: var(\n      --font-mono--font-feature-settings\n    );\n    --default-mono-font-variation-settings: var(\n      --font-mono--font-variation-settings\n    );\n  }\n}\n@layer base {\n  *, ::after, ::before, ::backdrop, ::file-selector-button {\n    box-sizing: border-box;\n    margin: 0;\n    padding: 0;\n    border: 0 solid;\n  }\n  html, :host {\n    line-height: 1.5;\n    -webkit-text-size-adjust: 100%;\n    tab-size: 4;\n    font-family: var( --default-font-family, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\" );\n    font-feature-settings: var(--default-font-feature-settings, normal);\n    font-variation-settings: var( --default-font-variation-settings, normal );\n    -webkit-tap-highlight-color: transparent;\n  }\n  body {\n    line-height: inherit;\n  }\n  hr {\n    height: 0;\n    color: inherit;\n    border-top-width: 1px;\n  }\n  abbr:where([title]) {\n    -webkit-text-decoration: underline dotted;\n    text-decoration: underline dotted;\n  }\n  h1, h2, h3, h4, h5, h6 {\n    font-size: inherit;\n    font-weight: inherit;\n  }\n  a {\n    color: inherit;\n    -webkit-text-decoration: inherit;\n    text-decoration: inherit;\n  }\n  b, strong {\n    font-weight: bolder;\n  }\n  code, kbd, samp, pre {\n    font-family: var( --default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace );\n    font-feature-settings: var( --default-mono-font-feature-settings, normal );\n    font-variation-settings: var( --default-mono-font-variation-settings, normal );\n    font-size: 1em;\n  }\n  small {\n    font-size: 80%;\n  }\n  sub, sup {\n    font-size: 75%;\n    line-height: 0;\n    position: relative;\n    vertical-align: baseline;\n  }\n  sub {\n    bottom: -0.25em;\n  }\n  sup {\n    top: -0.5em;\n  }\n  table {\n    text-indent: 0;\n    border-color: inherit;\n    border-collapse: collapse;\n  }\n  :-moz-focusring {\n    outline: auto;\n  }\n  progress {\n    vertical-align: baseline;\n  }\n  summary {\n    display: list-item;\n  }\n  ol, ul, menu {\n    list-style: none;\n  }\n  img, svg, video, canvas, audio, iframe, embed, object {\n    display: block;\n    vertical-align: middle;\n  }\n  img, video {\n    max-width: 100%;\n    height: auto;\n  }\n  button, input, select, optgroup, textarea, ::file-selector-button {\n    font: inherit;\n    font-feature-settings: inherit;\n    font-variation-settings: inherit;\n    letter-spacing: inherit;\n    color: inherit;\n    border-radius: 0;\n    background-color: transparent;\n    opacity: 1;\n  }\n  :where(select:is([multiple], [size])) optgroup {\n    font-weight: bolder;\n  }\n  :where(select:is([multiple], [size])) optgroup option {\n    padding-inline-start: 20px;\n  }\n  ::file-selector-button {\n    margin-inline-end: 4px;\n  }\n  ::placeholder {\n    opacity: 1;\n    color: currentColor;\n    @supports (color: color-mix(in lab, red, red)) {\n      color: color-mix(in oklab, currentColor 50%, transparent);\n    }\n  }\n  textarea {\n    resize: vertical;\n  }\n  ::-webkit-search-decoration {\n    -webkit-appearance: none;\n  }\n  ::-webkit-date-and-time-value {\n    min-height: 1lh;\n    text-align: inherit;\n  }\n  ::-webkit-datetime-edit {\n    display: inline-flex;\n  }\n  ::-webkit-datetime-edit-fields-wrapper {\n    padding: 0;\n  }\n  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {\n    padding-block: 0;\n  }\n  :-moz-ui-invalid {\n    box-shadow: none;\n  }\n  button, input:where([type=\"button\"], [type=\"reset\"], [type=\"submit\"]), ::file-selector-button {\n    appearance: button;\n  }\n  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {\n    height: auto;\n  }\n  [hidden]:where(:not([hidden=\"until-found\"])) {\n    display: none !important;\n  }\n}\n@layer utilities {\n  .visible {\n    visibility: visible;\n  }\n  .absolute {\n    position: absolute;\n  }\n  .fixed {\n    position: fixed;\n  }\n  .relative {\n    position: relative;\n  }\n  .static {\n    position: static;\n  }\n  .start {\n    inset-inline-start: var(--spacing);\n  }\n  .end {\n    inset-inline-end: var(--spacing);\n  }\n  .container {\n    width: 100%;\n    @media (width >= 40rem) {\n      max-width: 40rem;\n    }\n    @media (width >= 48rem) {\n      max-width: 48rem;\n    }\n    @media (width >= 64rem) {\n      max-width: 64rem;\n    }\n    @media (width >= 80rem) {\n      max-width: 80rem;\n    }\n    @media (width >= 96rem) {\n      max-width: 96rem;\n    }\n  }\n  .block {\n    display: block;\n  }\n  .contents {\n    display: contents;\n  }\n  .flex {\n    display: flex;\n  }\n  .hidden {\n    display: none;\n  }\n  .inline {\n    display: inline;\n  }\n  .table {\n    display: table;\n  }\n  .shrink {\n    flex-shrink: 1;\n  }\n  .transform {\n    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);\n  }\n  .rounded {\n    border-radius: 0.25rem;\n  }\n  .border {\n    border-style: var(--tw-border-style);\n    border-width: 1px;\n  }\n  .uppercase {\n    text-transform: uppercase;\n  }\n  .italic {\n    font-style: italic;\n  }\n  .shadow {\n    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .ring {\n    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .outline {\n    outline-style: var(--tw-outline-style);\n    outline-width: 1px;\n  }\n  .blur {\n    --tw-blur: blur(8px);\n    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);\n  }\n  .filter {\n    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);\n  }\n  .transition {\n    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;\n    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));\n    transition-duration: var(--tw-duration, var(--default-transition-duration));\n  }\n}\n@property --tw-rotate-x {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-rotate-y {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-rotate-z {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-skew-x {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-skew-y {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-border-style {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: solid;\n}\n@property --tw-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-inset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-ring-inset {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-offset-width {\n  syntax: \"<length>\";\n  inherits: false;\n  initial-value: 0px;\n}\n@property --tw-ring-offset-color {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: #fff;\n}\n@property --tw-ring-offset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-outline-style {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: solid;\n}\n@property --tw-blur {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-brightness {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-contrast {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-grayscale {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-hue-rotate {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-invert {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-opacity {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-saturate {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-sepia {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-drop-shadow {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-drop-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-drop-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-drop-shadow-size {\n  syntax: \"*\";\n  inherits: false;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    *, ::before, ::after, ::backdrop {\n      --tw-rotate-x: initial;\n      --tw-rotate-y: initial;\n      --tw-rotate-z: initial;\n      --tw-skew-x: initial;\n      --tw-skew-y: initial;\n      --tw-border-style: solid;\n      --tw-shadow: 0 0 #0000;\n      --tw-shadow-color: initial;\n      --tw-shadow-alpha: 100%;\n      --tw-inset-shadow: 0 0 #0000;\n      --tw-inset-shadow-color: initial;\n      --tw-inset-shadow-alpha: 100%;\n      --tw-ring-color: initial;\n      --tw-ring-shadow: 0 0 #0000;\n      --tw-inset-ring-color: initial;\n      --tw-inset-ring-shadow: 0 0 #0000;\n      --tw-ring-inset: initial;\n      --tw-ring-offset-width: 0px;\n      --tw-ring-offset-color: #fff;\n      --tw-ring-offset-shadow: 0 0 #0000;\n      --tw-outline-style: solid;\n      --tw-blur: initial;\n      --tw-brightness: initial;\n      --tw-contrast: initial;\n      --tw-grayscale: initial;\n      --tw-hue-rotate: initial;\n      --tw-invert: initial;\n      --tw-opacity: initial;\n      --tw-saturate: initial;\n      --tw-sepia: initial;\n      --tw-drop-shadow: initial;\n      --tw-drop-shadow-color: initial;\n      --tw-drop-shadow-alpha: 100%;\n      --tw-drop-shadow-size: initial;\n    }\n  }\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/index.css"],"names":[],"mappings":"AAAA,gEAAgE;AAChE,iBAAiB;AACjB,yCAAyC;AACzC;EACE;IACE;6DACyD;IACzD;iDAC6C;IAC7C,kBAAkB;IAClB,oCAAoC;IACpC,kEAAkE;IAClE,uCAAuC;IACvC,wEAAwE;IACxE;;KAEC;IACD,4CAA4C;IAC5C;;KAEC;IACD;;KAEC;EACH;AACF;AACA;EACE;IACE,sBAAsB;IACtB,SAAS;IACT,UAAU;IACV,eAAe;EACjB;EACA;IACE,gBAAgB;IAChB,8BAA8B;IAC9B,WAAW;IACX,6JAA6J;IAC7J,mEAAmE;IACnE,yEAAyE;IACzE,wCAAwC;EAC1C;EACA;IACE,oBAAoB;EACtB;EACA;IACE,SAAS;IACT,cAAc;IACd,qBAAqB;EACvB;EACA;IACE,yCAAyC;IACzC,iCAAiC;EACnC;EACA;IACE,kBAAkB;IAClB,oBAAoB;EACtB;EACA;IACE,cAAc;IACd,gCAAgC;IAChC,wBAAwB;EAC1B;EACA;IACE,mBAAmB;EACrB;EACA;IACE,kJAAkJ;IAClJ,0EAA0E;IAC1E,8EAA8E;IAC9E,cAAc;EAChB;EACA;IACE,cAAc;EAChB;EACA;IACE,cAAc;IACd,cAAc;IACd,kBAAkB;IAClB,wBAAwB;EAC1B;EACA;IACE,eAAe;EACjB;EACA;IACE,WAAW;EACb;EACA;IACE,cAAc;IACd,qBAAqB;IACrB,yBAAyB;EAC3B;EACA;IACE,aAAa;EACf;EACA;IACE,wBAAwB;EAC1B;EACA;IACE,kBAAkB;EACpB;EACA;IACE,gBAAgB;EAClB;EACA;IACE,cAAc;IACd,sBAAsB;EACxB;EACA;IACE,eAAe;IACf,YAAY;EACd;EACA;IACE,aAAa;IACb,8BAA8B;IAC9B,gCAAgC;IAChC,uBAAuB;IACvB,cAAc;IACd,gBAAgB;IAChB,6BAA6B;IAC7B,UAAU;EACZ;EACA;IACE,mBAAmB;EACrB;EACA;IACE,0BAA0B;EAC5B;EACA;IACE,sBAAsB;EACxB;EACA;IACE,UAAU;IACV,mBAAmB;IACnB;MACE,yDAAyD;IAC3D;EACF;EACA;IACE,gBAAgB;EAClB;EACA;IACE,wBAAwB;EAC1B;EACA;IACE,eAAe;IACf,mBAAmB;EACrB;EACA;IACE,oBAAoB;EACtB;EACA;IACE,UAAU;EACZ;EACA;IACE,gBAAgB;EAClB;EACA;IACE,gBAAgB;EAClB;EACA;IACE,kBAAkB;EACpB;EACA;IACE,YAAY;EACd;EACA;IACE,wBAAwB;EAC1B;AACF;AACA;EACE;IACE,mBAAmB;EACrB;EACA;IACE,kBAAkB;EACpB;EACA;IACE,eAAe;EACjB;EACA;IACE,kBAAkB;EACpB;EACA;IACE,gBAAgB;EAClB;EACA;IACE,kCAAkC;EACpC;EACA;IACE,gCAAgC;EAClC;EACA;IACE,WAAW;IACX;MACE,gBAAgB;IAClB;IACA;MACE,gBAAgB;IAClB;IACA;MACE,gBAAgB;IAClB;IACA;MACE,gBAAgB;IAClB;IACA;MACE,gBAAgB;IAClB;EACF;EACA;IACE,cAAc;EAChB;EACA;IACE,iBAAiB;EACnB;EACA;IACE,aAAa;EACf;EACA;IACE,aAAa;EACf;EACA;IACE,aAAa;EACf;EACA;IACE,eAAe;EACjB;EACA;IACE,cAAc;EAChB;EACA;IACE,0GAA0G;EAC5G;EACA;IACE,sBAAsB;EACxB;EACA;IACE,oCAAoC;IACpC,iBAAiB;EACnB;EACA;IACE,yBAAyB;EAC3B;EACA;IACE,kBAAkB;EACpB;EACA;IACE,0HAA0H;IAC1H,sIAAsI;EACxI;EACA;IACE,wHAAwH;IACxH,sIAAsI;EACxI;EACA;IACE,sCAAsC;IACtC,kBAAkB;EACpB;EACA;IACE,oBAAoB;IACpB,0LAA0L;EAC5L;EACA;IACE,0LAA0L;EAC5L;EACA;IACE,yUAAyU;IACzU,qFAAqF;IACrF,2EAA2E;EAC7E;AACF;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;EACf,oBAAoB;AACtB;AACA;EACE,WAAW;EACX,eAAe;EACf,wBAAwB;AAC1B;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,sBAAsB;EACtB,eAAe;EACf,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,eAAe;EACf,wBAAwB;AAC1B;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,sBAAsB;EACtB,eAAe;EACf,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;EACf,wBAAwB;AAC1B;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;EACf,wBAAwB;AAC1B;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,kBAAkB;EAClB,eAAe;EACf,kBAAkB;AACpB;AACA;EACE,WAAW;EACX,eAAe;EACf,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,eAAe;EACf,wBAAwB;AAC1B;AACA;EACE,WAAW;EACX,eAAe;EACf,oBAAoB;AACtB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE,sBAAsB;EACtB,eAAe;EACf,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,eAAe;AACjB;AACA;EACE;IACE;MACE,sBAAsB;MACtB,sBAAsB;MACtB,sBAAsB;MACtB,oBAAoB;MACpB,oBAAoB;MACpB,wBAAwB;MACxB,sBAAsB;MACtB,0BAA0B;MAC1B,uBAAuB;MACvB,4BAA4B;MAC5B,gCAAgC;MAChC,6BAA6B;MAC7B,wBAAwB;MACxB,2BAA2B;MAC3B,8BAA8B;MAC9B,iCAAiC;MACjC,wBAAwB;MACxB,2BAA2B;MAC3B,4BAA4B;MAC5B,kCAAkC;MAClC,yBAAyB;MACzB,kBAAkB;MAClB,wBAAwB;MACxB,sBAAsB;MACtB,uBAAuB;MACvB,wBAAwB;MACxB,oBAAoB;MACpB,qBAAqB;MACrB,sBAAsB;MACtB,mBAAmB;MACnB,yBAAyB;MACzB,+BAA+B;MAC/B,4BAA4B;MAC5B,8BAA8B;IAChC;EACF;AACF","sourcesContent":["/*! tailwindcss v4.2.0 | MIT License | https://tailwindcss.com */\n@layer properties;\n@layer theme, base, components, utilities;\n@layer theme {\n  :root, :host {\n    --font-sans: ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\",\n      \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";\n    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,\n      \"Liberation Mono\", \"Courier New\", monospace;\n    --spacing: 0.25rem;\n    --default-transition-duration: 150ms;\n    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n    --default-font-family: var(--font-sans);\n    --default-font-feature-settings: var(--font-sans--font-feature-settings);\n    --default-font-variation-settings: var(\n      --font-sans--font-variation-settings\n    );\n    --default-mono-font-family: var(--font-mono);\n    --default-mono-font-feature-settings: var(\n      --font-mono--font-feature-settings\n    );\n    --default-mono-font-variation-settings: var(\n      --font-mono--font-variation-settings\n    );\n  }\n}\n@layer base {\n  *, ::after, ::before, ::backdrop, ::file-selector-button {\n    box-sizing: border-box;\n    margin: 0;\n    padding: 0;\n    border: 0 solid;\n  }\n  html, :host {\n    line-height: 1.5;\n    -webkit-text-size-adjust: 100%;\n    tab-size: 4;\n    font-family: var( --default-font-family, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\" );\n    font-feature-settings: var(--default-font-feature-settings, normal);\n    font-variation-settings: var( --default-font-variation-settings, normal );\n    -webkit-tap-highlight-color: transparent;\n  }\n  body {\n    line-height: inherit;\n  }\n  hr {\n    height: 0;\n    color: inherit;\n    border-top-width: 1px;\n  }\n  abbr:where([title]) {\n    -webkit-text-decoration: underline dotted;\n    text-decoration: underline dotted;\n  }\n  h1, h2, h3, h4, h5, h6 {\n    font-size: inherit;\n    font-weight: inherit;\n  }\n  a {\n    color: inherit;\n    -webkit-text-decoration: inherit;\n    text-decoration: inherit;\n  }\n  b, strong {\n    font-weight: bolder;\n  }\n  code, kbd, samp, pre {\n    font-family: var( --default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace );\n    font-feature-settings: var( --default-mono-font-feature-settings, normal );\n    font-variation-settings: var( --default-mono-font-variation-settings, normal );\n    font-size: 1em;\n  }\n  small {\n    font-size: 80%;\n  }\n  sub, sup {\n    font-size: 75%;\n    line-height: 0;\n    position: relative;\n    vertical-align: baseline;\n  }\n  sub {\n    bottom: -0.25em;\n  }\n  sup {\n    top: -0.5em;\n  }\n  table {\n    text-indent: 0;\n    border-color: inherit;\n    border-collapse: collapse;\n  }\n  :-moz-focusring {\n    outline: auto;\n  }\n  progress {\n    vertical-align: baseline;\n  }\n  summary {\n    display: list-item;\n  }\n  ol, ul, menu {\n    list-style: none;\n  }\n  img, svg, video, canvas, audio, iframe, embed, object {\n    display: block;\n    vertical-align: middle;\n  }\n  img, video {\n    max-width: 100%;\n    height: auto;\n  }\n  button, input, select, optgroup, textarea, ::file-selector-button {\n    font: inherit;\n    font-feature-settings: inherit;\n    font-variation-settings: inherit;\n    letter-spacing: inherit;\n    color: inherit;\n    border-radius: 0;\n    background-color: transparent;\n    opacity: 1;\n  }\n  :where(select:is([multiple], [size])) optgroup {\n    font-weight: bolder;\n  }\n  :where(select:is([multiple], [size])) optgroup option {\n    padding-inline-start: 20px;\n  }\n  ::file-selector-button {\n    margin-inline-end: 4px;\n  }\n  ::placeholder {\n    opacity: 1;\n    color: currentColor;\n    @supports (color: color-mix(in lab, red, red)) {\n      color: color-mix(in oklab, currentColor 50%, transparent);\n    }\n  }\n  textarea {\n    resize: vertical;\n  }\n  ::-webkit-search-decoration {\n    -webkit-appearance: none;\n  }\n  ::-webkit-date-and-time-value {\n    min-height: 1lh;\n    text-align: inherit;\n  }\n  ::-webkit-datetime-edit {\n    display: inline-flex;\n  }\n  ::-webkit-datetime-edit-fields-wrapper {\n    padding: 0;\n  }\n  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {\n    padding-block: 0;\n  }\n  :-moz-ui-invalid {\n    box-shadow: none;\n  }\n  button, input:where([type=\"button\"], [type=\"reset\"], [type=\"submit\"]), ::file-selector-button {\n    appearance: button;\n  }\n  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {\n    height: auto;\n  }\n  [hidden]:where(:not([hidden=\"until-found\"])) {\n    display: none !important;\n  }\n}\n@layer utilities {\n  .visible {\n    visibility: visible;\n  }\n  .absolute {\n    position: absolute;\n  }\n  .fixed {\n    position: fixed;\n  }\n  .relative {\n    position: relative;\n  }\n  .static {\n    position: static;\n  }\n  .start {\n    inset-inline-start: var(--spacing);\n  }\n  .end {\n    inset-inline-end: var(--spacing);\n  }\n  .container {\n    width: 100%;\n    @media (width >= 40rem) {\n      max-width: 40rem;\n    }\n    @media (width >= 48rem) {\n      max-width: 48rem;\n    }\n    @media (width >= 64rem) {\n      max-width: 64rem;\n    }\n    @media (width >= 80rem) {\n      max-width: 80rem;\n    }\n    @media (width >= 96rem) {\n      max-width: 96rem;\n    }\n  }\n  .block {\n    display: block;\n  }\n  .contents {\n    display: contents;\n  }\n  .flex {\n    display: flex;\n  }\n  .grid {\n    display: grid;\n  }\n  .hidden {\n    display: none;\n  }\n  .inline {\n    display: inline;\n  }\n  .shrink {\n    flex-shrink: 1;\n  }\n  .transform {\n    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);\n  }\n  .rounded {\n    border-radius: 0.25rem;\n  }\n  .border {\n    border-style: var(--tw-border-style);\n    border-width: 1px;\n  }\n  .uppercase {\n    text-transform: uppercase;\n  }\n  .italic {\n    font-style: italic;\n  }\n  .shadow {\n    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .ring {\n    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .outline {\n    outline-style: var(--tw-outline-style);\n    outline-width: 1px;\n  }\n  .blur {\n    --tw-blur: blur(8px);\n    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);\n  }\n  .filter {\n    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);\n  }\n  .transition {\n    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;\n    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));\n    transition-duration: var(--tw-duration, var(--default-transition-duration));\n  }\n}\n@property --tw-rotate-x {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-rotate-y {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-rotate-z {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-skew-x {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-skew-y {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-border-style {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: solid;\n}\n@property --tw-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-inset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-ring-inset {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-offset-width {\n  syntax: \"<length>\";\n  inherits: false;\n  initial-value: 0px;\n}\n@property --tw-ring-offset-color {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: #fff;\n}\n@property --tw-ring-offset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-outline-style {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: solid;\n}\n@property --tw-blur {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-brightness {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-contrast {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-grayscale {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-hue-rotate {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-invert {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-opacity {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-saturate {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-sepia {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-drop-shadow {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-drop-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-drop-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-drop-shadow-size {\n  syntax: \"*\";\n  inherits: false;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    *, ::before, ::after, ::backdrop {\n      --tw-rotate-x: initial;\n      --tw-rotate-y: initial;\n      --tw-rotate-z: initial;\n      --tw-skew-x: initial;\n      --tw-skew-y: initial;\n      --tw-border-style: solid;\n      --tw-shadow: 0 0 #0000;\n      --tw-shadow-color: initial;\n      --tw-shadow-alpha: 100%;\n      --tw-inset-shadow: 0 0 #0000;\n      --tw-inset-shadow-color: initial;\n      --tw-inset-shadow-alpha: 100%;\n      --tw-ring-color: initial;\n      --tw-ring-shadow: 0 0 #0000;\n      --tw-inset-ring-color: initial;\n      --tw-inset-ring-shadow: 0 0 #0000;\n      --tw-ring-inset: initial;\n      --tw-ring-offset-width: 0px;\n      --tw-ring-offset-color: #fff;\n      --tw-ring-offset-shadow: 0 0 #0000;\n      --tw-outline-style: solid;\n      --tw-blur: initial;\n      --tw-brightness: initial;\n      --tw-contrast: initial;\n      --tw-grayscale: initial;\n      --tw-hue-rotate: initial;\n      --tw-invert: initial;\n      --tw-opacity: initial;\n      --tw-saturate: initial;\n      --tw-sepia: initial;\n      --tw-drop-shadow: initial;\n      --tw-drop-shadow-color: initial;\n      --tw-drop-shadow-alpha: 100%;\n      --tw-drop-shadow-size: initial;\n    }\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* export default */ const __rspack_default_export = (___CSS_LOADER_EXPORT___);
 
@@ -18352,7 +18352,7 @@ function styleTagTransform(css, styleElement) {
 module.exports = styleTagTransform;
 
 },
-7885(__unused_rspack_module, __unused_rspack___webpack_exports__, __webpack_require__) {
+9154(__unused_rspack_module, __unused_rspack___webpack_exports__, __webpack_require__) {
 
 // EXTERNAL MODULE: ./node_modules/remotion/dist/esm/index.mjs
 var esm = __webpack_require__(3947);
@@ -25209,6 +25209,664 @@ const financialDensityDefaults = {
     layout: "vertical"
 };
 
+;// CONCATENATED MODULE: ./src/graphics/templates/primitives.tsx
+
+
+
+
+
+const primitives_pointAt = (d, length)=>esm_getPointAtLength(d, length) ?? {
+        x: 0,
+        y: 0
+    };
+const primitives_ease = esm.Easing.inOut(esm.Easing.quad);
+const primitives_clamp = {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp"
+};
+// A smooth arrow that draws on, then flows forever with marching dashes.
+const FlowArrow = ({ d, start, end, color, flowColor, flow = true, speed = 4 })=>{
+    const frame = (0,esm.useCurrentFrame)();
+    const p = (0,esm.interpolate)(frame, [
+        start,
+        end
+    ], [
+        0,
+        1
+    ], {
+        ...primitives_clamp,
+        easing: primitives_ease
+    });
+    const evolved = evolvePath(p, d);
+    const len = getLength(d);
+    const tip = primitives_pointAt(d, Math.max(1, len * p));
+    const back = primitives_pointAt(d, Math.max(0, len * p - 6));
+    const angle = Math.atan2(tip.y - back.y, tip.x - back.x) * 180 / Math.PI;
+    const { length: hl, half } = stroke.arrowhead;
+    const flowOpacity = flow ? (0,esm.interpolate)(frame, [
+        end,
+        end + 8
+    ], [
+        0,
+        1
+    ], primitives_clamp) : 0;
+    const offset = -(Math.max(0, frame - end) * speed);
+    return /*#__PURE__*/ (0,jsx_runtime.jsxs)("g", {
+        opacity: p > 0.03 ? 1 : 0,
+        children: [
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                d: d,
+                fill: "none",
+                stroke: color,
+                strokeWidth: stroke.arrow,
+                strokeLinecap: "butt",
+                strokeLinejoin: "round",
+                strokeDasharray: evolved.strokeDasharray,
+                strokeDashoffset: evolved.strokeDashoffset
+            }),
+            flow ? /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                d: d,
+                fill: "none",
+                stroke: flowColor,
+                strokeWidth: 5,
+                strokeLinecap: "butt",
+                strokeDasharray: "20 32",
+                strokeDashoffset: offset,
+                opacity: flowOpacity
+            }) : null,
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("g", {
+                transform: `translate(${tip.x} ${tip.y}) rotate(${angle})`,
+                children: /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                    d: `M 8 0 L ${-hl} ${-half} L ${-hl} ${half} Z`,
+                    fill: color
+                })
+            })
+        ]
+    });
+};
+// A repeating pulse so looped cards keep turning.
+const primitives_loopPulse = (frame, start, period, offset, amount = 0.06)=>{
+    const t = frame - start - offset;
+    if (t < 0) return 1;
+    const m = t % period;
+    return (0,esm.interpolate)(m, [
+        0,
+        4,
+        10
+    ], [
+        1,
+        1 + amount,
+        1
+    ], primitives_clamp);
+};
+const primitives_Card = ({ node, label, enter, z, fill, ink, fontSize = sizes.label, shadow = shadows.card, scale = 1, slide = 120 })=>{
+    const frame = (0,esm.useCurrentFrame)();
+    const { fps } = (0,esm.useVideoConfig)();
+    const p = (0,esm.spring)({
+        frame: frame - enter,
+        fps,
+        config: springs.enter
+    });
+    const y = (0,esm.interpolate)(p, [
+        0,
+        1
+    ], [
+        slide,
+        0
+    ]);
+    return /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+        style: {
+            position: "absolute",
+            left: node.x - node.w / 2,
+            top: node.y - node.h / 2 + y,
+            width: node.w,
+            height: node.h,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            opacity: frame >= enter ? 1 : 0,
+            transform: `translateZ(${z * Math.min(p, 1.05)}px) scale(${scale})`,
+            background: fill,
+            border: `${border.width}px solid ${ink}`,
+            borderRadius: radius.none,
+            boxShadow: `${shadow}px ${shadow}px 0 ${ink}`,
+            color: ink,
+            fontFamily: fonts.headline,
+            fontWeight: fonts.headlineWeight,
+            fontSize,
+            textTransform: "uppercase",
+            letterSpacing: 1,
+            whiteSpace: "nowrap",
+            boxSizing: "border-box"
+        },
+        children: label
+    });
+};
+// A section panel: filled with the background color, black border, hard shadow.
+const PanelRect = ({ box, enter, fill, ink, slide = 0 })=>{
+    const frame = (0,esm.useCurrentFrame)();
+    const { fps } = (0,esm.useVideoConfig)();
+    const p = (0,esm.spring)({
+        frame: frame - enter,
+        fps,
+        config: springs.settle
+    });
+    if (frame < enter) return null;
+    const sh = 16 * Math.min(p, 1);
+    const dy = (0,esm.interpolate)(p, [
+        0,
+        1
+    ], [
+        slide,
+        0
+    ]);
+    return /*#__PURE__*/ (0,jsx_runtime.jsxs)("g", {
+        opacity: Math.min(1, p * 2),
+        transform: `translate(0 ${dy})`,
+        children: [
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("rect", {
+                x: box.x1 + sh,
+                y: box.y1 + sh,
+                width: box.x2 - box.x1,
+                height: box.y2 - box.y1,
+                fill: ink
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("rect", {
+                x: box.x1,
+                y: box.y1,
+                width: box.x2 - box.x1,
+                height: box.y2 - box.y1,
+                fill: fill,
+                stroke: ink,
+                strokeWidth: border.width
+            })
+        ]
+    });
+};
+// Text that sits on a line, with a background plate so the line breaks behind it.
+const LineLabel = ({ text, x, y, enter, fill, ink, align = "center", plate = true })=>{
+    const frame = (0,esm.useCurrentFrame)();
+    const o = (0,esm.interpolate)(frame, [
+        enter,
+        enter + 8
+    ], [
+        0,
+        1
+    ], primitives_clamp);
+    return /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+        style: {
+            position: "absolute",
+            left: x,
+            top: y,
+            transform: `translate(${align === "center" ? "-50%" : "-100%"}, -50%)`,
+            opacity: o,
+            padding: "2px 10px",
+            background: plate ? fill : "transparent",
+            color: ink,
+            fontFamily: fonts.headline,
+            fontWeight: fonts.labelWeight,
+            fontSize: sizes.labelMin,
+            letterSpacing: 1,
+            textTransform: "uppercase",
+            whiteSpace: "nowrap"
+        },
+        children: text
+    });
+};
+
+;// CONCATENATED MODULE: ./src/graphics/digital-framework/DigitalFramework.tsx
+
+
+
+
+
+
+
+const digitalFrameworkSchema = schemas.object({
+    labels: schemas.object({
+        title: schemas.string(),
+        organic: schemas.string(),
+        topicTag: schemas.string(),
+        search: schemas.string(),
+        shortsOrganic: schemas.string(),
+        winnersOrganic: schemas.string(),
+        viz: schemas.string(),
+        engage: schemas.string(),
+        paidMedia: schemas.string(),
+        stills: schemas.string(),
+        longs: schemas.string(),
+        shortsPaid: schemas.string(),
+        winnersPaid: schemas.string(),
+        repost: schemas.string()
+    }),
+    backgroundColor: (0,dist_esm.zColor)(),
+    cardColor: (0,dist_esm.zColor)(),
+    inkColor: (0,dist_esm.zColor)(),
+    titleColor: (0,dist_esm.zColor)(),
+    timing: schemas.object({
+        partTwoIn: schemas.number()
+    })
+});
+// Square 1080 x 1080 layout.
+const N = {
+    title: {
+        x: 540,
+        y: 62,
+        w: 1020,
+        h: 84
+    },
+    organicTab: {
+        x: 159,
+        y: 165,
+        w: 210,
+        h: 56
+    },
+    topicTab: {
+        x: 766,
+        y: 165,
+        w: 520,
+        h: 56
+    },
+    paidTab: {
+        x: 179,
+        y: 600,
+        w: 250,
+        h: 56
+    },
+    search: {
+        x: 220,
+        y: 275,
+        w: 220,
+        h: 90
+    },
+    shortsO: {
+        x: 800,
+        y: 275,
+        w: 220,
+        h: 90
+    },
+    winnersO: {
+        x: 510,
+        y: 465,
+        w: 260,
+        h: 80
+    },
+    stills: {
+        x: 200,
+        y: 705,
+        w: 170,
+        h: 90
+    },
+    longs: {
+        x: 510,
+        y: 705,
+        w: 170,
+        h: 90
+    },
+    shortsP: {
+        x: 820,
+        y: 705,
+        w: 170,
+        h: 90
+    },
+    winnersP: {
+        x: 510,
+        y: 930,
+        w: 260,
+        h: 80
+    }
+};
+const ORGANIC = {
+    x1: 30,
+    y1: 165,
+    x2: 1050,
+    y2: 535
+};
+const PAID = {
+    x1: 30,
+    y1: 600,
+    x2: 1050,
+    y2: 1030
+};
+const DigitalFramework_P = {
+    cycleOut: "M 330 251 C 420 206, 600 206, 684 251",
+    cycleBack: "M 690 299 C 600 344, 420 344, 336 299",
+    toWinnersO: "M 510 336 V 419",
+    viz: "M 380 465 C 260 465, 220 420, 220 326",
+    engage: "M 640 465 C 760 465, 800 420, 800 326",
+    toPaid: "M 510 505 V 594",
+    stillsLongs: "M 285 681 C 320 641, 390 641, 419 681",
+    longsShorts: "M 595 729 C 630 769, 700 769, 729 729",
+    longsWinners: "M 510 750 V 884",
+    paidLoop: "M 380 930 C 190 950, 70 890, 70 780 V 636",
+    repost: "M 640 930 C 960 940, 1012 890, 1012 780 V 400 C 1012 310, 990 275, 916 275"
+};
+const DigitalFramework = ({ labels, backgroundColor, cardColor, inkColor, titleColor, timing })=>{
+    const frame = (0,esm.useCurrentFrame)();
+    const { width, height } = (0,esm.useVideoConfig)();
+    const B = timing.partTwoIn;
+    const z = depth.layerOffsetZ;
+    // Always-on pulses around each loop.
+    const searchS = primitives_loopPulse(frame, 56, 48, 0);
+    const shortsOS = primitives_loopPulse(frame, 56, 48, 12);
+    const winnersOS = primitives_loopPulse(frame, 92, 48, 24);
+    const stillsS = primitives_loopPulse(frame, B + 92, 72, 0);
+    const longsS = primitives_loopPulse(frame, B + 92, 72, 12);
+    const shortsPS = primitives_loopPulse(frame, B + 92, 72, 24);
+    const winnersPS = primitives_loopPulse(frame, B + 92, 72, 36);
+    const tiltX = (0,esm.interpolate)(frame, [
+        0,
+        285
+    ], [
+        3,
+        2
+    ]);
+    const tiltY = (0,esm.interpolate)(frame, [
+        0,
+        285
+    ], [
+        -4,
+        3
+    ]);
+    const flowArgs = {
+        color: inkColor,
+        flowColor: cardColor
+    };
+    return /*#__PURE__*/ (0,jsx_runtime.jsx)(esm.AbsoluteFill, {
+        style: {
+            background: backgroundColor,
+            perspective: depth.perspective
+        },
+        children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+            style: {
+                position: "absolute",
+                inset: 0,
+                transformStyle: "preserve-3d",
+                transform: `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`
+            },
+            children: [
+                /*#__PURE__*/ (0,jsx_runtime.jsxs)("svg", {
+                    width: width,
+                    height: height,
+                    style: {
+                        position: "absolute",
+                        inset: 0,
+                        transform: "translateZ(20px)"
+                    },
+                    children: [
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(PanelRect, {
+                            box: ORGANIC,
+                            enter: 4,
+                            fill: backgroundColor,
+                            ink: inkColor
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(PanelRect, {
+                            box: PAID,
+                            enter: B + 8,
+                            fill: backgroundColor,
+                            ink: inkColor,
+                            slide: 60
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsxs)("svg", {
+                    width: width,
+                    height: height,
+                    style: {
+                        position: "absolute",
+                        inset: 0,
+                        transform: `translateZ(${depth.arrowZ}px)`
+                    },
+                    children: [
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.cycleOut,
+                            start: 24,
+                            end: 40,
+                            ...flowArgs
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.cycleBack,
+                            start: 40,
+                            end: 56,
+                            ...flowArgs
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.toWinnersO,
+                            start: 56,
+                            end: 70,
+                            ...flowArgs
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.viz,
+                            start: 74,
+                            end: 92,
+                            ...flowArgs
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.engage,
+                            start: 78,
+                            end: 96,
+                            ...flowArgs
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.toPaid,
+                            start: B,
+                            end: B + 14,
+                            ...flowArgs
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.stillsLongs,
+                            start: B + 34,
+                            end: B + 48,
+                            ...flowArgs
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.longsShorts,
+                            start: B + 44,
+                            end: B + 58,
+                            ...flowArgs
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.longsWinners,
+                            start: B + 56,
+                            end: B + 70,
+                            ...flowArgs
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.paidLoop,
+                            start: B + 72,
+                            end: B + 92,
+                            ...flowArgs
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: DigitalFramework_P.repost,
+                            start: B + 78,
+                            end: B + 113,
+                            ...flowArgs
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.title,
+                    label: labels.title,
+                    enter: 0,
+                    z: z,
+                    fill: titleColor,
+                    ink: inkColor,
+                    fontSize: sizes.headline - 32,
+                    shadow: shadows.outcome - 12,
+                    slide: -80
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.organicTab,
+                    label: labels.organic,
+                    enter: 6,
+                    z: z + 5,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: sizes.labelMin,
+                    shadow: 8,
+                    slide: 0
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.topicTab,
+                    label: labels.topicTag,
+                    enter: 10,
+                    z: z + 5,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: sizes.labelMin,
+                    shadow: 8,
+                    slide: 0
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.search,
+                    label: labels.search,
+                    enter: 14,
+                    z: z,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: 44,
+                    scale: searchS
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.shortsO,
+                    label: labels.shortsOrganic,
+                    enter: 20,
+                    z: z,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: 44,
+                    scale: shortsOS
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.winnersO,
+                    label: labels.winnersOrganic,
+                    enter: 60,
+                    z: z,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: 44,
+                    scale: winnersOS
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.paidTab,
+                    label: labels.paidMedia,
+                    enter: B + 14,
+                    z: z + 5,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: sizes.labelMin,
+                    shadow: 8,
+                    slide: 0
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.stills,
+                    label: labels.stills,
+                    enter: B + 24,
+                    z: z,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: 44,
+                    scale: stillsS
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.longs,
+                    label: labels.longs,
+                    enter: B + 30,
+                    z: z,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: 44,
+                    scale: longsS
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.shortsP,
+                    label: labels.shortsPaid,
+                    enter: B + 36,
+                    z: z,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: 44,
+                    scale: shortsPS
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: N.winnersP,
+                    label: labels.winnersPaid,
+                    enter: B + 64,
+                    z: z,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: 44,
+                    scale: winnersPS
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                    style: {
+                        position: "absolute",
+                        inset: 0,
+                        transform: `translateZ(${depth.arrowZ + 5}px)`
+                    },
+                    children: [
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(LineLabel, {
+                            text: labels.viz,
+                            x: 150,
+                            y: 452,
+                            enter: 92,
+                            fill: backgroundColor,
+                            ink: inkColor,
+                            plate: false
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(LineLabel, {
+                            text: labels.engage,
+                            x: 880,
+                            y: 452,
+                            enter: 96,
+                            fill: backgroundColor,
+                            ink: inkColor,
+                            plate: false
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(LineLabel, {
+                            text: labels.repost,
+                            x: 995,
+                            y: 568,
+                            enter: B + 100,
+                            fill: backgroundColor,
+                            ink: inkColor,
+                            align: "right",
+                            plate: false
+                        })
+                    ]
+                })
+            ]
+        })
+    });
+};
+const digitalFrameworkDefaults = {
+    labels: {
+        title: "My $50M Digital Framework",
+        organic: "Organic",
+        topicTag: "1 topic per audience problem",
+        search: "Search",
+        shortsOrganic: "Shorts",
+        winnersOrganic: "Winners",
+        viz: "Visibility",
+        engage: "Engagement",
+        paidMedia: "Paid media",
+        stills: "Stills",
+        longs: "Longs",
+        shortsPaid: "Shorts",
+        winnersPaid: "Winners",
+        repost: "Reposted as Shorts"
+    },
+    backgroundColor: colors.background,
+    cardColor: colors.surface,
+    inkColor: colors.ink,
+    titleColor: colors.highlight,
+    timing: {
+        partTwoIn: 112
+    }
+};
+
 ;// CONCATENATED MODULE: ./src/Root.tsx
 
 
@@ -25220,6 +25878,8 @@ const financialDensityDefaults = {
 
 
 
+
+const DF_FRAMES = 285; // 9.5 seconds
 const FD_FRAMES = 240; // 8 seconds
 const RemotionRoot = ()=>{
     return /*#__PURE__*/ (0,jsx_runtime.jsxs)(jsx_runtime.Fragment, {
@@ -25309,6 +25969,16 @@ const RemotionRoot = ()=>{
                     layout: "square"
                 },
                 durationInFrames: durations.total,
+                fps: theme_fps,
+                width: formats.square.width,
+                height: formats.square.height
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)(esm.Composition, {
+                id: "DigitalFramework-Square",
+                component: DigitalFramework,
+                schema: digitalFrameworkSchema,
+                defaultProps: digitalFrameworkDefaults,
+                durationInFrames: DF_FRAMES,
                 fps: theme_fps,
                 width: formats.square.width,
                 height: formats.square.height
@@ -56107,7 +56777,7 @@ __webpack_require__.ruid = "bundler=rspack@1.7.11";
 // This entry module is referenced by other modules so it can't be inlined
 __webpack_require__(6507);
 __webpack_require__(3999);
-__webpack_require__(7885);
+__webpack_require__(9154);
 __webpack_require__(3610);
 var __webpack_exports__ = __webpack_require__(3482);
 })()
