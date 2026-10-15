@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head><meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<style id="gate-style">html:not(.unlocked) body>*:not(#gate){display:none!important}#gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#111;font-family:system-ui,sans-serif}#gate form{display:flex;gap:8px}#gate input{padding:10px 14px;font-size:16px;border-radius:6px;border:1px solid #444;background:#222;color:#fff}#gate button{padding:10px 16px;font-size:16px;border-radius:6px;border:0;background:#fff;cursor:pointer}</style>
+<script>
+(function(){
+  var H="973d0c649aa97a0635e387399f32c49abdaa7b2e812a65812255d1ed863b1604";
+  function unlock(){document.documentElement.classList.add("unlocked");var g=document.getElementById("gate");if(g)g.remove();}
+  async function sha(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("");}
+  try{if(sessionStorage.getItem("ok")===H){document.documentElement.classList.add("unlocked");return;}}catch(e){}
+  document.addEventListener("DOMContentLoaded",function(){
+    var d=document.createElement("div");d.id="gate";
+    d.innerHTML='<form><input type="password" placeholder="Password" autofocus><button>Enter</button></form>';
+    document.body.appendChild(d);
+    d.querySelector("form").addEventListener("submit",async function(e){
+      e.preventDefault();var v=d.querySelector("input").value;
+      if(await sha(v)===H){try{sessionStorage.setItem("ok",H)}catch(e){}unlock();}
+      else{d.querySelector("input").value="";d.querySelector("input").placeholder="Wrong password";}
+    });
+  });
+})();
+</script>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link id="__remotion_favicon" rel="icon" type="image/png" href="/motion/favicon.ico" />
+		<title>Remotion Bundle</title>
+	</head>
+	<body>
+		
+		<script>window.remotion_numberOfAudioTags = 0;</script>
+		<script>window.remotion_audioLatencyHint = "playback";</script>
+		<script>window.remotion_experimentalKeepAudioContextAlive = false;</script>
+		<script>window.remotion_sampleRate = 48000;</script>
+		<script>window.remotion_previewSampleRate = 48000;</script>
+		
+		<script>window.remotion_staticBase = "/motion/public";</script>
+		<script>window.remotion_outputsBase = null;</script>
+		<script>window.remotion_editorName = null;</script>
+		<script>window.remotion_projectName = "motion-graphics";</script>
+		<script>window.remotion_publicPath = "/motion/";</script>
+		<script>window.remotion_audioEnabled = true;</script>
+		<script>window.remotion_videoEnabled = true;</script>
+		<script>window.remotion_studioConfig = {"showPremounting":null,"defaultPremountInSeconds":null,"experimentalSequenceActivityEnabled":false,"experimentalSequenceActivityLimit":20,"askAIEnabled":true,"bufferStateDelayInMilliseconds":null,"canvasTabsEnabled":true,"defaultCodingAgent":null,"defaultEditor":null,"interactivityEnabled":true,"keyboardShortcutsEnabled":true,"maxTimelineTracks":null,"publicLicenseKey":null,"configFileStudioSettings":null};</script>
+		<script>window.remotion_renderDefaults = {"darkMode":false,"jpegQuality":80,"scale":1,"logLevel":"info","codec":"h264","crf":null,"concurrency":4,"maxConcurrency":8,"minConcurrency":1,"stillImageFormat":"png","videoImageFormat":"jpeg","muted":false,"enforceAudioTrack":false,"proResProfile":null,"x264Preset":"medium","gopSize":null,"pixelFormat":"yuv420p","audioBitrate":null,"videoBitrate":null,"encodingBufferSize":null,"encodingMaxRate":null,"everyNthFrame":1,"delayRenderTimeout":30000,"audioCodec":null,"disableWebSecurity":false,"headless":true,"ignoreCertificateErrors":false,"openGlRenderer":null,"offthreadVideoCacheSizeInBytes":null,"offthreadVideoThreads":null,"colorSpace":"default","multiProcessOnLinux":true,"userAgent":null,"repro":false,"numberOfGifLoops":null,"beepOnFinish":false,"forSeamlessAacConcatenation":false,"hardwareAcceleration":"disable","chromeMode":"headless-shell","mediaCacheSizeInBytes":null,"publicLicenseKey":null,"outputLocation":null,"allowHtmlInCanvas":false,"sampleRate":48000,"configFileRenderDefaults":{"codec":null,"proResProfile":null,"stillImageFormat":null,"videoImageFormat":"jpeg","x264Preset":null},"sharedMemoryCapture":{"browserExecutable":null,"disabled":false}};</script>
+		<script>window.remotion_cwd = "C:\\Users\\Jake_\\OneDrive\\Taru\\1_Claude_Growth_Agents\\motion-graphics";</script>
+		<script>window.remotion_fileSystemPlatform = null;</script>
+		<script>window.remotion_studioServerCommand = null;</script>
+		
+		
+		
+		
+		
+		
+		<script>window.remotion_staticFiles = []</script>
+		<script>window.remotion_installedPackages = null</script>
+		<script>window.remotion_packageManager = "unknown"</script>
+		<script>window.remotion_publicFolderExists = "/motion/public";</script>
+		<script>
+				// Increment this value when the generated bundle format or behavior changes
+				// in a backwards-incompatible way. It is not the Remotion package version
+				// and should not be bumped for every generated HTML change.
+				// Keep it synchronized with requiredVersion in
+				// packages/renderer/src/set-props-and-env.ts by incrementing both values.
+				window.siteVersion = '11';
+				window.remotion_version = '4.0.535';
+		</script>
+		
+		<div id="video-container"></div>
+		<div id="__remotion-studio-container"></div>
+		<div id="remotion-error-overlay"></div>
+		<div id="server-disconnected-overlay"></div>
+		<div id="menuportal-0"></div>
+		<div id="menuportal-1"></div>
+		<div id="menuportal-2"></div>
+		<div id="menuportal-3"></div>
+		<div id="menuportal-4"></div>
+		<div id="menuportal-5"></div>
+		<script src="/motion/bundle.js"></script>
+	</body>
+</html>
