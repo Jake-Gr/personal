@@ -18352,7 +18352,7 @@ function styleTagTransform(css, styleElement) {
 module.exports = styleTagTransform;
 
 },
-9154(__unused_rspack_module, __unused_rspack___webpack_exports__, __webpack_require__) {
+7988(__unused_rspack_module, __unused_rspack___webpack_exports__, __webpack_require__) {
 
 // EXTERNAL MODULE: ./node_modules/remotion/dist/esm/index.mjs
 var esm = __webpack_require__(3947);
@@ -25240,7 +25240,7 @@ const FlowArrow = ({ d, start, end, color, flowColor, flow = true, speed = 4 })=
     const evolved = evolvePath(p, d);
     const len = getLength(d);
     const tip = primitives_pointAt(d, Math.max(1, len * p));
-    const back = primitives_pointAt(d, Math.max(0, len * p - 6));
+    const back = primitives_pointAt(d, Math.max(0, len * p - 1.5));
     const angle = Math.atan2(tip.y - back.y, tip.x - back.x) * 180 / Math.PI;
     const { length: hl, half } = stroke.arrowhead;
     const flowOpacity = flow ? (0,esm.interpolate)(frame, [
@@ -25867,6 +25867,413 @@ const digitalFrameworkDefaults = {
     }
 };
 
+;// CONCATENATED MODULE: ./src/graphics/strategy-to-performance/StrategyToPerformance.tsx
+
+
+
+
+
+
+
+const strategySchema = schemas.object({
+    labels: schemas.object({
+        business: schemas.string(),
+        uvo: schemas.string(),
+        product: schemas.string(),
+        icp: schemas.string(),
+        pain: schemas.string(),
+        tactic: schemas.string(),
+        strategy: schemas.string(),
+        delivery: schemas.string(),
+        branding: schemas.string(),
+        performance: schemas.string(),
+        outcome: schemas.string()
+    }),
+    backgroundColor: (0,dist_esm.zColor)(),
+    cardColor: (0,dist_esm.zColor)(),
+    inkColor: (0,dist_esm.zColor)(),
+    outcomeColor: (0,dist_esm.zColor)(),
+    layout: schemas["enum"]([
+        "vertical",
+        "square"
+    ])
+});
+const FORMATS = {
+    vertical: {
+        rows: {
+            biz: 340,
+            uvo: 510,
+            prod: 710,
+            icp: 880,
+            pain: 1080,
+            tac: 1280
+        },
+        cardH: 80,
+        cardW: 210,
+        colX: [
+            170,
+            400,
+            630
+        ],
+        bizW: 260,
+        uvoW: 440,
+        panel: {
+            x1: 40,
+            y1: 270,
+            x2: 1040,
+            y2: 1350
+        },
+        plate: {
+            x: 540,
+            y: 1425,
+            w: 1000,
+            h: 150
+        },
+        divX: 772,
+        labelX: 905,
+        font: 44,
+        plateFont: 76
+    },
+    square: {
+        rows: {
+            biz: 80,
+            uvo: 206,
+            prod: 366,
+            icp: 492,
+            pain: 652,
+            tac: 812
+        },
+        cardH: 60,
+        cardW: 200,
+        colX: [
+            160,
+            380,
+            600
+        ],
+        bizW: 240,
+        uvoW: 400,
+        panel: {
+            x1: 30,
+            y1: 22,
+            x2: 1050,
+            y2: 873
+        },
+        plate: {
+            x: 540,
+            y: 933,
+            w: 1020,
+            h: 120
+        },
+        divX: 740,
+        labelX: 895,
+        font: 40,
+        plateFont: 64
+    }
+};
+const StrategyToPerformance_top = (n)=>n.y - n.h / 2;
+const StrategyToPerformance_bottom = (n)=>n.y + n.h / 2;
+const straight = (from, to)=>`M ${from.x} ${StrategyToPerformance_bottom(from)} V ${StrategyToPerformance_top(to) - 6}`;
+// Smooth fan from one parent to several children.
+const fan = (from, to)=>{
+    if (Math.abs(from.x - to.x) < 1) return straight(from, to);
+    const y0 = StrategyToPerformance_bottom(from) + 8;
+    const y1 = StrategyToPerformance_top(to) - 6;
+    // End with a straight vertical run so the arrowhead sits squarely.
+    const yMid = y1 - (stroke.arrowhead.length + 4);
+    const d = yMid - y0;
+    return `M ${from.x} ${y0} C ${from.x} ${y0 + d * 0.5}, ${to.x} ${yMid - d * 0.5}, ${to.x} ${yMid} V ${y1}`;
+};
+const StrategyToPerformance = ({ labels, backgroundColor, cardColor, inkColor, outcomeColor, layout })=>{
+    const frame = (0,esm.useCurrentFrame)();
+    const { width, height } = (0,esm.useVideoConfig)();
+    const F = FORMATS[layout];
+    const { rows: R } = F;
+    const z = depth.layerOffsetZ;
+    const cx = F.colX[1];
+    const mk = (x, y, w = F.cardW)=>({
+            x,
+            y,
+            w,
+            h: F.cardH
+        });
+    const biz = mk(cx, R.biz, F.bizW);
+    const uvo = mk(cx, R.uvo, F.uvoW);
+    const prods = F.colX.map((x)=>mk(x, R.prod));
+    const icp = mk(cx, R.icp);
+    const pains = F.colX.map((x)=>mk(x, R.pain));
+    const tacs = F.colX.map((x)=>mk(x, R.tac));
+    // Timeline: each tier arrives, then its label.
+    const T = {
+        biz: 4,
+        uvo: 30,
+        prod: 56,
+        icp: 86,
+        pain: 112,
+        tac: 146,
+        plate: 174
+    };
+    // After the build, a wave runs down the example path, forever.
+    const wave = 60;
+    const pulse = (i)=>primitives_loopPulse(frame, T.plate + 8, wave, i * 6, 0.05);
+    const slam = (0,esm.interpolate)(frame, [
+        T.plate,
+        T.plate + 3,
+        T.plate + 12
+    ], [
+        0,
+        1,
+        0
+    ], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp"
+    });
+    const tiltX = (0,esm.interpolate)(frame, [
+        0,
+        240
+    ], [
+        3,
+        2
+    ]) + slam * 2;
+    const tiltY = (0,esm.interpolate)(frame, [
+        0,
+        240
+    ], [
+        -4,
+        3
+    ]);
+    const flowArgs = {
+        color: inkColor,
+        flowColor: cardColor
+    };
+    const stagger = 3;
+    const labelY = {
+        strategy: (R.biz + R.uvo) / 2,
+        delivery: R.prod,
+        branding: (R.icp + R.pain) / 2,
+        performance: R.tac
+    };
+    return /*#__PURE__*/ (0,jsx_runtime.jsx)(esm.AbsoluteFill, {
+        style: {
+            background: backgroundColor,
+            perspective: depth.perspective
+        },
+        children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+            style: {
+                position: "absolute",
+                inset: 0,
+                transformStyle: "preserve-3d",
+                transform: `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`
+            },
+            children: [
+                /*#__PURE__*/ (0,jsx_runtime.jsxs)("svg", {
+                    width: width,
+                    height: height,
+                    style: {
+                        position: "absolute",
+                        inset: 0,
+                        transform: "translateZ(20px)"
+                    },
+                    children: [
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(PanelRect, {
+                            box: {
+                                ...F.panel,
+                                y2: F.panel.y2 + 4
+                            },
+                            enter: 0,
+                            fill: backgroundColor,
+                            ink: inkColor
+                        }),
+                        frame >= 4 ? /*#__PURE__*/ (0,jsx_runtime.jsx)("line", {
+                            x1: F.divX,
+                            y1: F.panel.y1,
+                            x2: F.divX,
+                            y2: F.panel.y2,
+                            stroke: inkColor,
+                            strokeWidth: 6
+                        }) : null
+                    ]
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsxs)("svg", {
+                    width: width,
+                    height: height,
+                    style: {
+                        position: "absolute",
+                        inset: 0,
+                        transform: `translateZ(${depth.arrowZ}px)`
+                    },
+                    children: [
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: straight(biz, uvo),
+                            start: T.biz + 16,
+                            end: T.biz + 28,
+                            ...flowArgs
+                        }),
+                        prods.map((p, i)=>/*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                                d: fan(uvo, p),
+                                start: T.uvo + 14 + i * stagger,
+                                end: T.uvo + 14 + i * stagger + 16,
+                                ...flowArgs
+                            }, `up${i}`)),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                            d: straight(prods[1], icp),
+                            start: T.prod + 20,
+                            end: T.prod + 32,
+                            ...flowArgs
+                        }),
+                        pains.map((p, i)=>/*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                                d: fan(icp, p),
+                                start: T.icp + 14 + i * stagger,
+                                end: T.icp + 14 + i * stagger + 16,
+                                ...flowArgs
+                            }, `ip${i}`)),
+                        tacs.map((t, i)=>/*#__PURE__*/ (0,jsx_runtime.jsx)(FlowArrow, {
+                                d: fan(pains[1], t),
+                                start: T.pain + 22 + i * stagger,
+                                end: T.pain + 22 + i * stagger + 16,
+                                ...flowArgs
+                            }, `pt${i}`))
+                    ]
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: biz,
+                    label: labels.business,
+                    enter: T.biz,
+                    z: z,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: F.font,
+                    scale: pulse(0)
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: uvo,
+                    label: labels.uvo,
+                    enter: T.uvo,
+                    z: z,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: F.font,
+                    scale: pulse(1)
+                }),
+                prods.map((p, i)=>/*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                        node: p,
+                        label: `${labels.product} ${i + 1}`,
+                        enter: T.prod + i * 4,
+                        z: z,
+                        fill: cardColor,
+                        ink: inkColor,
+                        fontSize: F.font,
+                        scale: i === 1 ? pulse(2) : 1
+                    }, `p${i}`)),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: icp,
+                    label: labels.icp,
+                    enter: T.icp,
+                    z: z,
+                    fill: cardColor,
+                    ink: inkColor,
+                    fontSize: F.font,
+                    scale: pulse(3)
+                }),
+                pains.map((p, i)=>/*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                        node: p,
+                        label: `${labels.pain} ${i + 1}`,
+                        enter: T.pain + i * 4,
+                        z: z,
+                        fill: cardColor,
+                        ink: inkColor,
+                        fontSize: F.font,
+                        scale: i === 1 ? pulse(4) : 1
+                    }, `n${i}`)),
+                tacs.map((t, i)=>/*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                        node: t,
+                        label: `${labels.tactic} ${i + 1}`,
+                        enter: T.tac + i * 4,
+                        z: z,
+                        fill: cardColor,
+                        ink: inkColor,
+                        fontSize: F.font,
+                        scale: pulse(5)
+                    }, `t${i}`)),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)(primitives_Card, {
+                    node: F.plate,
+                    label: labels.outcome,
+                    enter: T.plate,
+                    z: 20,
+                    fill: outcomeColor,
+                    ink: inkColor,
+                    fontSize: F.plateFont,
+                    shadow: shadows.outcome - 6
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                    style: {
+                        position: "absolute",
+                        inset: 0,
+                        transform: `translateZ(${z}px)`
+                    },
+                    children: [
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(LineLabel, {
+                            text: labels.strategy,
+                            x: F.labelX,
+                            y: labelY.strategy,
+                            enter: T.biz + 6,
+                            fill: backgroundColor,
+                            ink: inkColor,
+                            plate: false
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(LineLabel, {
+                            text: labels.delivery,
+                            x: F.labelX,
+                            y: labelY.delivery,
+                            enter: T.prod + 2,
+                            fill: backgroundColor,
+                            ink: inkColor,
+                            plate: false
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(LineLabel, {
+                            text: labels.branding,
+                            x: F.labelX,
+                            y: labelY.branding,
+                            enter: T.icp + 2,
+                            fill: backgroundColor,
+                            ink: inkColor,
+                            plate: false
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(LineLabel, {
+                            text: labels.performance,
+                            x: F.labelX,
+                            y: labelY.performance,
+                            enter: T.tac + 2,
+                            fill: backgroundColor,
+                            ink: inkColor,
+                            plate: false
+                        })
+                    ]
+                })
+            ]
+        })
+    });
+};
+const strategyDefaults = {
+    labels: {
+        business: "Business",
+        uvo: "Unique value offering",
+        product: "Product",
+        icp: "ICP",
+        pain: "Pain",
+        tactic: "Tactic",
+        strategy: "Strategy",
+        delivery: "Delivery",
+        branding: "Branding",
+        performance: "Performance",
+        outcome: "Product-led SEO"
+    },
+    backgroundColor: colors.background,
+    cardColor: colors.surface,
+    inkColor: colors.ink,
+    outcomeColor: colors.highlight,
+    layout: "vertical"
+};
+
 ;// CONCATENATED MODULE: ./src/Root.tsx
 
 
@@ -25879,6 +26286,8 @@ const digitalFrameworkDefaults = {
 
 
 
+
+const SP_FRAMES = 240; // 8 seconds
 const DF_FRAMES = 285; // 9.5 seconds
 const FD_FRAMES = 240; // 8 seconds
 const RemotionRoot = ()=>{
@@ -25979,6 +26388,29 @@ const RemotionRoot = ()=>{
                 schema: digitalFrameworkSchema,
                 defaultProps: digitalFrameworkDefaults,
                 durationInFrames: DF_FRAMES,
+                fps: theme_fps,
+                width: formats.square.width,
+                height: formats.square.height
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)(esm.Composition, {
+                id: "StrategyToPerformance-Vertical",
+                component: StrategyToPerformance,
+                schema: strategySchema,
+                defaultProps: strategyDefaults,
+                durationInFrames: SP_FRAMES,
+                fps: theme_fps,
+                width: formats.vertical.width,
+                height: formats.vertical.height
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)(esm.Composition, {
+                id: "StrategyToPerformance-Square",
+                component: StrategyToPerformance,
+                schema: strategySchema,
+                defaultProps: {
+                    ...strategyDefaults,
+                    layout: "square"
+                },
+                durationInFrames: SP_FRAMES,
                 fps: theme_fps,
                 width: formats.square.width,
                 height: formats.square.height
@@ -56777,7 +57209,7 @@ __webpack_require__.ruid = "bundler=rspack@1.7.11";
 // This entry module is referenced by other modules so it can't be inlined
 __webpack_require__(6507);
 __webpack_require__(3999);
-__webpack_require__(9154);
+__webpack_require__(7988);
 __webpack_require__(3610);
 var __webpack_exports__ = __webpack_require__(3482);
 })()
